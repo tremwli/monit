@@ -1,7 +1,7 @@
 import {useStore} from '../store.jsx';
 import {HOME} from '../lib/data.js';
 import {buildCourse,hashtags,placeById} from '../lib/logic.js';
-import {fmtT,fmtShort,fmtDate,travelLabel,toast,go,kakaoMapUrl} from '../lib/utils.js';
+import {fmtT,fmtShort,fmtDate,travelLabel,toast,go} from '../lib/utils.js';
 import {Thumb,Face,Icon,MapBox,BottomCta} from '../components/ui.jsx';
 
 const COLS=['#FFE08A','#A9DDB4','#8EC1F2','#93A9EE','#FFE08A','#A9DDB4'];
@@ -40,10 +40,10 @@ export default function Result(){
       if(it.kind==='end')return <div key={i} className="tl" style={{height:34}}><span style={{fontSize:13,fontWeight:600,color:'var(--sub)'}}>{fmtShort(it.time)}</span><span style={{width:12,height:12,borderRadius:999,background:'var(--peri)',border:'2px solid #fff',justifySelf:'center',position:'relative'}}/><span style={{fontSize:14,fontWeight:600}}>집 도착 {it.note?<span style={{fontSize:12,fontWeight:500,color:'var(--periInk)'}}>· {it.note}</span>:null}</span></div>;
       const p=placeById(it.id);num++;const col=COLS[(num-1)%6];
       return <div key={i} className="tl"><span style={{fontSize:13,fontWeight:600,color:'var(--sub)'}}>{fmtShort(it.time)}</span><span style={{width:20,height:20,borderRadius:999,background:col,color:'var(--navy)',fontSize:11,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>{num}</span>
-       <a href={kakaoMapUrl(p)} target="_blank" rel="noopener" aria-label={p.name+' 카카오맵에서 보기'} className="card row gap12" style={{padding:10,textAlign:'left',width:'100%',textDecoration:'none',color:'inherit'}}><Thumb p={p} size={64}/>
+       <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="card row gap12" style={{padding:10,textAlign:'left',width:'100%',textDecoration:'none',color:'inherit'}}><Thumb p={p} size={64}/>
         <span className="col" style={{flex:1,minWidth:0,gap:4}}><span className="row between gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontWeight:700,padding:'2px 8px',fontSize:11}}>새로운 발견</span>:it.meal?null:<Face level={it.level}/>}</span>
         <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
-        <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span><Icon name="pin"/></a></div>;
+        <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></a></div>;
      })}
     </div>
    </div>))}

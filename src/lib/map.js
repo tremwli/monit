@@ -69,6 +69,8 @@ export function drawMap(el,pts,opts){
 }
 
 /* 카카오맵 앱·웹 길찾기 링크 (현재 위치 → 목적지) */
+/* 카카오맵에서 그 장소를 핀으로 보여주는 링크. 폰에서는 카카오맵 앱이 열린다 */
+export function kakaoMapUrl(p){return 'https://map.kakao.com/link/map/'+encodeURIComponent(p.name)+','+p.lat+','+p.lng}
 export function kakaoRouteUrl(p){return 'https://map.kakao.com/link/to/'+encodeURIComponent(p.name)+','+p.lat+','+p.lng}
 
 /* 카카오 장소 검색 (같은 JavaScript 키로 동작, libraries=services).

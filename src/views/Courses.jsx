@@ -20,14 +20,14 @@ export default function Courses(){
   {S.courses.map(k=><div key={k.key} className="card col gap12" style={{padding:18}}>
    <div className="row between" style={{alignItems:'baseline'}}><span style={{fontSize:17,fontWeight:700}}>{fmtDate(k.date)}</span><span className="small">{k.places.length}곳</span></div>
    {k.places.map(x=>{const p=placeById(x.id);const r=REACT[x.v];return (
-    <div key={x.id} className="row gap12">
+    <a key={x.id} href={'#/place?id='+p.id} className="row gap12" style={{textDecoration:'none',color:'inherit'}}>
      <Thumb p={p} size={52}/>
      <div className="col" style={{flex:1,minWidth:0,gap:3}}>
       <div className="row gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span><span className="small">{fmtShort(x.time)}</span></div>
       {x.note?<div style={{fontSize:13,color:'var(--sub)'}}>{x.note}</div>:null}
      </div>
      {r?<Html s={moodSvg(r[0],24)} role="img" aria-label={n+'가 '+r[1]} style={{display:'inline-flex'}}/>:null}
-    </div>)})}
+    </a>)})}
   </div>)}
  </div>:<div className="pad col gap12" style={{paddingTop:48,alignItems:'center',textAlign:'center'}}>
   <div className="h-title">아직 다녀온 코스가 없어요</div>

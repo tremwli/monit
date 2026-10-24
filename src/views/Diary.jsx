@@ -30,12 +30,13 @@ export default function Diary(){
  const today=ymd(new Date());
  const qd=new URLSearchParams(location.hash.split('?')[1]||'').get('date');
  const [date,setDate]=useState(qd&&/^\d{4}-\d{2}-\d{2}$/.test(qd)&&qd<=today?qd:today);
- const [title,setTitle]=useState('');const [placeId,setPlaceId]=useState('');
+ const qp=new URLSearchParams(location.hash.split('?')[1]||'').get('place')||'';
+ const [title,setTitle]=useState('');const [placeId,setPlaceId]=useState(qp);
  const [blocks,setBlocks]=useState(()=>[{id:bid(),type:'text',text:''}]);
  const [focus,setFocus]=useState(0);const [uploading,setUploading]=useState(false);
  const [busy,setBusy]=useState(false);const [result,setResult]=useState(null);
  const fileRef=useRef(null);
- const recentPlaces=[...new Set([...(S.visited||[]),...(S.lastCourse?S.lastCourse.days.flatMap(d=>d.items.filter(i=>i.kind==='place').map(i=>i.id)):[])])].map(id=>PLACES.find(p=>p.id===id)).filter(Boolean).slice(0,6);
+ const recentPlaces=[...new Set([qp,...(S.visited||[]),...(S.lastCourse?S.lastCourse.days.flatMap(d=>d.items.filter(i=>i.kind==='place').map(i=>i.id)):[])])].map(id=>PLACES.find(p=>p.id===id)).filter(Boolean).slice(0,6);
 
  const text=blocks.filter(b=>b.type==='text').map(b=>b.text.trim()).filter(Boolean).join('\n\n');
  const photoIds=blocks.filter(b=>b.type==='photo').map(b=>b.id);

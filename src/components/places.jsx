@@ -1,5 +1,4 @@
 /* 장소 모음 화면(홈 '좋아할 곳', 분류별 모아보기)에서 함께 쓰는 필터 칩과 2열 카드 */
-import {useStore} from '../store.jsx';
 import {levelOf,hashtags} from '../lib/logic.js';
 import {go} from '../lib/utils.js';
 import {Thumb,MoodRow} from './ui.jsx';
@@ -13,10 +12,9 @@ export function FilterChips({opts,cur,onPick,style}){return (
   {opts.map(([v,l])=><button type="button" key={v} className={'chip dark '+(cur===v?'on':'')} aria-pressed={cur===v} style={{flexShrink:0}} onClick={()=>onPick(v)}>{l}</button>)}
  </div>)}
 
-/* list: [{p,s}] (s = scorePlace 점수). 카드를 누르면 지도에서 그 장소를 열어 줌 */
+/* list: [{p,s}] (s = scorePlace 점수). 카드를 누르면 장소 상세로 */
 export function PlaceGrid({list,style}){
- const {setUI}=useStore();
- const open=id=>{setUI(u=>{u.mapSel=id;u.mapCat='fit'});go('map')};
+ const open=id=>go('place?id='+id);
  if(!list.length)return <div className="help" style={{padding:'24px 0',textAlign:'center',...style}}>조건에 맞는 곳이 없어요</div>;
  return (
  <div className="pick-grid" style={style}>
