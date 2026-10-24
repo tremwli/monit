@@ -3,8 +3,7 @@ import {HOME,PLACES,INTEREST,FAC,FACE_TXT,FACE_INK,ICON} from '../lib/data.js';
 import {scorePlace,levelOf,placeById} from '../lib/logic.js';
 import {travel,travelLabel,demo} from '../lib/utils.js';
 import {Thumb,Face,Icon,Html,MapBox,TabBar} from '../components/ui.jsx';
-
-function naverRouteUrl(p,mode){return 'https://map.naver.com/p/directions/'+HOME.lng+','+HOME.lat+','+encodeURIComponent('집')+',,/'+p.lng+','+p.lat+','+encodeURIComponent(p.name)+',,/-/'+(mode==='walk'?'walk':'car')}
+import {kakaoRouteUrl} from '../lib/map.js';
 
 function PlaceSheet({p}){
  const {S,setUI}=useStore();const s=scorePlace(S,p),lv=levelOf(s);const tr=travel(HOME,p,S.c.mode);
@@ -15,7 +14,7 @@ function PlaceSheet({p}){
   <div className="row gap12"><Thumb p={p} size={80}/><div className="col gap6" style={{flex:1,minWidth:0}}>{p.type==='meal'?null:<div className="row gap6" style={{fontSize:12,fontWeight:600,color:FACE_INK[lv]}}><Face level={lv}/>{S.child.name}가 {FACE_TXT[lv]}</div>}<div style={{fontSize:17,fontWeight:700}}>{p.name}</div><div className="small">{p.cat} · {travelLabel(S.c.mode)} {tr}분 · {p.fee?'1인 '+p.fee.toLocaleString('ko-KR')+'원':'무료'}</div></div>
    <button type="button" className="iconbtn" onClick={()=>setUI(u=>{u.mapSel=null})} aria-label="닫기" style={{width:32,height:32}}><Icon name="close"/></button></div>
   <div className="row gap6 wrap">{tags.slice(0,9).map(([c,t])=><span key={t} className={'tag '+c}>{t}</span>)}</div>
-  <div className="row gap8"><a className="chip" href={naverRouteUrl(p,'car')} target="_blank" rel="noopener" style={{flex:1,justifyContent:'center',height:40,background:'#fff',border:'1.5px solid var(--primary)',color:'var(--primaryInk)',fontWeight:600,textDecoration:'none'}}><Html s={ICON.car.replace(/24/g,'18')}/>차로 {travel(HOME,p,'car')}분</a><a className="chip" href={naverRouteUrl(p,'walk')} target="_blank" rel="noopener" style={{flex:1,justifyContent:'center',height:40,background:'#fff',border:'1.5px solid var(--line)',color:'var(--sub)',textDecoration:'none'}}><Html s={ICON.stroller.replace(/24/g,'18')}/>걸어서 {travel(HOME,p,'walk')}분</a></div>
+  <div className="row gap8"><a className="chip" href={kakaoRouteUrl(p)} target="_blank" rel="noopener" style={{flex:1,justifyContent:'center',height:40,background:'#fff',border:'1.5px solid var(--primary)',color:'var(--primaryInk)',fontWeight:600,textDecoration:'none'}}><Html s={ICON.car.replace(/24/g,'18')}/>차로 {travel(HOME,p,'car')}분</a><a className="chip" href={kakaoRouteUrl(p)} target="_blank" rel="noopener" style={{flex:1,justifyContent:'center',height:40,background:'#fff',border:'1.5px solid var(--line)',color:'var(--sub)',textDecoration:'none'}}><Html s={ICON.stroller.replace(/24/g,'18')}/>걸어서 {travel(HOME,p,'walk')}분</a></div>
   <a className="btn btn-primary btn-sm" href="#/c1">이 곳으로 코스 만들기</a>
  </div>)}
 

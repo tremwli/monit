@@ -11,8 +11,8 @@ npm run dev        # http://localhost:5173
 npm run build      # dist/
 ```
 
-네이버 지도를 쓰려면 `.env.example`을 `.env`로 복사하고 `VITE_NAVER_MAP_KEY`에 Client ID를 넣으세요. 비워두면 그림 지도로 동작합니다.
-(네이버 클라우드 콘솔의 Web 서비스 URL에는 경로 없이 호스트만: `http://localhost:5173`, 배포 주소)
+카카오 지도를 쓰려면 `.env.example`을 `.env`로 복사하고 `VITE_KAKAO_MAP_KEY`에 **JavaScript 키**를 넣으세요. 비워두면 그림 지도로 동작합니다.
+(developers.kakao.com → 플랫폼 → Web → 사이트 도메인에 `http://localhost:5173`과 배포 주소를 등록해야 지도가 뜹니다. `.env`는 깃에 올라가지 않으니 팀원에게 키를 따로 전달하세요.)
 
 ## 구조
 
@@ -26,7 +26,7 @@ src/
     data.js           샘플 장소·관심사·편의시설·아이콘 (원본 그대로)
     logic.js          추천 점수·코스 생성 (원본 그대로, S를 인자로 받음)
     state.js          기본값·localStorage 저장
-    map.js            네이버 지도 / 그림 지도
+    map.js            카카오 지도 / 그림 지도 폴백
     svg.js, utils.js  SVG 문자열, 포맷 함수
   components/ui.jsx   Chip, Seg, Switch, TabBar, StepHead, Thumb, Face, MapBox …
   views/              화면 하나당 파일 하나
@@ -48,7 +48,7 @@ setUI(u => { u.mapSel = 'p1' });     // 저장 안 되는 화면 상태
 | 시작 · 취향 고르기 | 이름·나이, 좋아하는 장소 유형 → 첫 취향 점수 |
 | 코스 만들기 5단계 | 일정(시간 휠, 아이 일정), 장소, 함께·이동, 원하는 곳, 아이 맞춤 |
 | 코스 결과 | 조건 필터 + 취향 점수로 시간표 계산. 낮잠 피하기, 점심, 며칠 여행(최대 3일) |
-| 지도 | 추천 핀, 코스 경로 (네이버 지도 키 있으면 실제 지도) |
+| 지도 | 추천 핀, 코스 경로 (카카오 지도 키 있으면 실제 지도) |
 | 하루 기록 | 장소별 좋아했어요/시큰둥, 한 줄 기록, 사진 첨부 |
 | 우리 아이 | 기록하면 취향 막대가 바뀌고 추천이 달라짐 |
 | 아이 전용 | 아이가 고른 것과 직접 쓴 말이 취향에 반영 |

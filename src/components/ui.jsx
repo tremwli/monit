@@ -2,7 +2,7 @@
 import {useEffect,useRef} from 'react';
 import {IC,TINT,ICON} from '../lib/data.js';
 import {pkey,faceSvg,carSvg,LOGO_SVG} from '../lib/svg.js';
-import {drawMap,onNaverChange} from '../lib/map.js';
+import {drawMap,onMapSdkChange} from '../lib/map.js';
 import {css} from '../lib/utils.js';
 
 /* SVG 문자열을 그대로 삽입 */
@@ -50,7 +50,7 @@ export function BottomCta({children,style}){return <div className="bottom-cta" s
 export function MapBox({id,pts,opts,style,className='mapbox'}){
  const ref=useRef(null);
  const key=JSON.stringify({pts,route:opts.route,padTop:opts.padTop,padBottom:opts.padBottom});
- useEffect(()=>{drawMap(ref.current,pts,opts);return onNaverChange(()=>drawMap(ref.current,pts,opts))},[key]); // eslint-disable-line
+ useEffect(()=>{drawMap(ref.current,pts,opts);return onMapSdkChange(()=>drawMap(ref.current,pts,opts))},[key]); // eslint-disable-line
  useEffect(()=>{const f=()=>drawMap(ref.current,pts,opts);window.addEventListener('resize',f);return()=>window.removeEventListener('resize',f)},[key]); // eslint-disable-line
  return <div id={id} ref={ref} className={className} style={style} onClick={e=>{const b=e.target.closest('[data-v]');if(b&&opts.onTap){e.preventDefault();opts.onTap(b.dataset.v)}}}/>;
 }
