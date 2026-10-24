@@ -12,9 +12,11 @@ export function Logo(){return <Html s={LOGO_SVG} style={{display:'inline-flex'}}
 export function Face({level,size=18}){return <Html s={faceSvg(level,size)} style={{display:'inline-flex'}}/>}
 export function CarSvg({w}){return <Html s={carSvg(w)} style={{display:'inline-flex'}}/>}
 
+/* 실제 데이터에 사진(p.image)이 있으면 사진, 없거나 못 불러오면 원래 그림 아이콘 */
 export function Thumb({p,size,square}){const k=pkey(p);return (
- <div className="thumb" role="img" aria-label={p.name+' 사진 자리'} style={{width:size,height:size,background:TINT[k],...(square?{borderRadius:0}:{})}}>
+ <div className="thumb" role="img" aria-label={p.image?p.name:p.name+' 사진 자리'} style={{width:size,height:size,background:TINT[k],position:'relative',overflow:'hidden',...(square?{borderRadius:0}:{})}}>
   <svg width={Math.round(size*.7)} height={Math.round(size*.7)} viewBox="0 0 100 100" aria-hidden="true" dangerouslySetInnerHTML={{__html:IC[k]}}/>
+  {p.image?<img src={p.image} alt="" loading="lazy" referrerPolicy="no-referrer" onError={e=>{e.currentTarget.style.display='none'}} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}}/>:null}
  </div>)}
 
 export function Chip({on,onClick,children,style,className=''}){return <button type="button" className={'chip '+(on?'on':'')+' '+className} aria-pressed={!!on} onClick={onClick} style={style}>{children}</button>}

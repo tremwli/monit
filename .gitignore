@@ -26,3 +26,6 @@ dist-ssr
 # env
 .env
 .env.*.local
+
+# TourAPI 응답 캐시 (npm run fetch-places)
+scripts/.cache
