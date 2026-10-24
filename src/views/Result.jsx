@@ -1,6 +1,6 @@
 import {useStore} from '../store.jsx';
 import {HOME} from '../lib/data.js';
-import {buildCourse,hashtags,placeById} from '../lib/logic.js';
+import {buildCourse,hashtags,placeById,rememberCourse} from '../lib/logic.js';
 import {fmtT,fmtShort,fmtDate,travelLabel,toast,go} from '../lib/utils.js';
 import {Thumb,Face,Icon,MapBox,BottomCta} from '../components/ui.jsx';
 
@@ -50,5 +50,5 @@ export default function Result(){
   {L.days.every(d=>d.count===0)?<div className="card" style={{padding:'14px 16px',marginTop:12,fontSize:14}}>시간 안에 들를 수 있는 곳을 찾지 못했어요. 돌아오는 시간이나 이동 시간을 늘려보세요.</div>:null}
   <div className="card row gap8" style={{padding:'12px 14px',marginTop:14,fontSize:13,color:'#333D4B'}}><Icon name="rain"/>{L.allIndoor?'비가 와도 그대로 가요 · 모두 실내예요':(c.rainIndoor?'비가 오면 실외 장소를 실내로 바꿔 알려드려요':'실외 장소가 포함돼 있어요')}</div>
  </div>
- <BottomCta><button type="button" className="btn btn-soft" style={{flex:1}} onClick={()=>{set(S=>{S.lastCourse=buildCourse(S)});toast('조건 그대로 새로 짰어요')}}>다시 만들기</button><a className="btn btn-primary" style={{flex:1.6}} href="#/record">다녀와서 기록하기</a></BottomCta>
+ <BottomCta><button type="button" className="btn btn-soft" style={{flex:1}} onClick={()=>{set(S=>{const prev=S.lastCourse?.createdAt;S.lastCourse=buildCourse(S);rememberCourse(S,prev)});toast('조건 그대로 새로 짰어요')}}>다시 만들기</button><a className="btn btn-primary" style={{flex:1.6}} href="#/record">다녀와서 기록하기</a></BottomCta>
 </div>)}

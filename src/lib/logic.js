@@ -102,3 +102,12 @@ export function buildCourse(S){
 }
 export function hashtags(p){const tg=p.theme?[p.theme]:[];p.ints.forEach(i=>{if(INTEREST[i]!==p.theme)tg.push(INTEREST[i])});['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
 export function placeById(id){return PLACES.find(p=>p.id===id)}
+
+/* 코스를 만들면 바로 '지난 코스'에 넣는다 (done:false = 아직 안 다녀옴).
+   replaceKey: '다시 만들기'처럼 기록 안 한 이전 코스를 대신할 때 그 키. 기록이 끝난 코스는 절대 지우지 않는다 */
+export function rememberCourse(S,replaceKey){
+ const L=S.lastCourse;if(!L)return;
+ const entry={key:L.createdAt,date:L.days[0].date,done:false,course:L,
+  places:L.days.flatMap(d=>d.items.filter(it=>it.kind==='place').map(it=>({id:it.id,time:it.time,v:null,note:''})))};
+ S.courses=[entry,...(S.courses||[]).filter(k=>k.key!==entry.key&&!(replaceKey&&k.key===replaceKey&&!k.done))];
+}

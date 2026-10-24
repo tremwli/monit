@@ -2,7 +2,7 @@
 import {useEffect,useRef} from 'react';
 import {useStore} from '../store.jsx';
 import {INTEREST,FAC,ICON} from '../lib/data.js';
-import {buildCourse} from '../lib/logic.js';
+import {buildCourse,rememberCourse} from '../lib/logic.js';
 import {fmtT,fmtShort,fmtDate,demo,go} from '../lib/utils.js';
 import {StepHead,BottomCta,Chip,Seg,Switch,Icon,Face,Html} from '../components/ui.jsx';
 
@@ -131,7 +131,7 @@ export function C5(){
  const {S,set,setUI}=useStore();const c=S.c;const n=S.child.name;
  const faces=[['high','A','쌩쌩해요'],['mid','B','보통이에요'],['low','C','금방 지쳐요']];
  const tg=(arr,v)=>{const i=arr.indexOf(v);if(i>=0)arr.splice(i,1);else arr.push(v)};
- const build=()=>{set(S=>{S.lastCourse=buildCourse(S)});setUI(u=>{u.rec={};u.photos={}});go('result')};
+ const build=()=>{set(S=>{S.lastCourse=buildCourse(S);rememberCourse(S)});setUI(u=>{u.rec={};u.photos={}});go('result')};
  return (
 <div className="screen">
  <StepHead n={5} back="c4" eyebrow={n+' 맞춤'} title={n+'에게 맞춰볼까요?'} help={'이번 코스를 '+n+'가 좋아할 것들로 채워요'}/>
