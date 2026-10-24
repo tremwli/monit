@@ -37,6 +37,10 @@ export default function Home(){
    {S.lastCourse?<a href="#/result" style={{fontSize:13,color:'var(--sub)',textDecoration:'none'}}>최근 만든 코스 다시 보기 ›</a>:null}
    <a className="btn btn-primary" href="#/c1" style={{height:50,fontSize:16}}><Icon name="route"/>코스 만들기 시작</a>
   </div>
+  <a href="#/diary" className="card row between" style={{padding:'14px 18px',marginTop:10,textDecoration:'none',color:'inherit',background:'#FFF9EA'}}>
+   <span className="col" style={{gap:2}}><span style={{fontSize:15,fontWeight:700}}>오늘 {n} 이야기 적기</span><span className="small" style={{color:'#6B5A2A'}}>적을수록 {n}를 더 잘 알게 돼요 · {S.diary.length}편</span></span>
+   <span style={{fontSize:20,color:'var(--yellowInk)'}}>›</span>
+  </a>
  </div>
  <div className="pad row between" style={{paddingTop:28,paddingBottom:12,alignItems:'baseline'}}><div style={{fontSize:19,fontWeight:700}}>{n}가 좋아할 곳</div><a href="#/map" style={{fontSize:13,color:'var(--sub)',textDecoration:'none'}}>지도로 보기</a></div>
  <div className="row gap12" style={{overflowX:'auto',padding:'0 20px 4px',scrollSnapType:'x mandatory',scrollbarWidth:'none'}}>

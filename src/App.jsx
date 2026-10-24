@@ -10,8 +10,9 @@ import Kid from './views/Kid.jsx';
 import MapView from './views/MapView.jsx';
 import Community from './views/Community.jsx';
 import Calendar from './views/Calendar.jsx';
+import Diary from './views/Diary.jsx';
 
-const VIEWS={start:Start,home:Home,c1:C1,c2:C2,c3:C3,c4:C4,c5:C5,result:Result,record:Record,my:My,kid:Kid,map:MapView,community:Community,calendar:Calendar};
+const VIEWS={start:Start,home:Home,c1:C1,c2:C2,c3:C3,c4:C4,c5:C5,result:Result,record:Record,my:My,kid:Kid,map:MapView,community:Community,calendar:Calendar,diary:Diary};
 
 export default function App(){
  const {S,setUI}=useStore();

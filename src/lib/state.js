@@ -12,9 +12,11 @@ export function defaults(){const sat=nextSat();return {
     place:'near',maxTravel:30,mode:'car',adults:['엄마','아빠'],stroller:'bring',
     fac:['stroller','nursing','diaper','parking','pediatric'],feeMode:'paid',feeMax:30000,rainIndoor:true,
     wants:['dino','water'],energy:'high',novelty:'one',perDay:2,meal:true,avoidCrowd:true},
- lastCourse:null, history:[], visited:[]
+ lastCourse:null, history:[], visited:[],
+ diary:[], styles:{}, avoid:[]
 }}
 
-export function load(){try{return JSON.parse(localStorage.getItem(KEY))||defaults()}catch(e){return defaults()}}
+/* 예전 저장본에 새 필드가 없을 수 있으니 기본값 위에 덮어쓴다 */
+export function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));return saved?{...defaults(),...saved}:defaults()}catch(e){return defaults()}}
 export function save(S){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 export function clear(){try{localStorage.removeItem(KEY)}catch(e){}}
