@@ -20,7 +20,9 @@ const SCORE_CLS=s=>s>=.55?'t-mint':s>=.4?'t-blue':'t-red';
 export default function Diary(){
  const {S,set}=useStore();const n=S.child.name;const ag=ageGroupOf(S.child.age);const P=PROMPTS[ag];
  const today=ymd(new Date());
- const [text,setText]=useState('');const [title,setTitle]=useState('');const [date,setDate]=useState(today);const [placeId,setPlaceId]=useState('');
+ /* #/diary?date=YYYY-MM-DD 로 오면 그 날짜로 시작 (캘린더에서 날짜 눌러 들어온 경우) */
+ const qd=new URLSearchParams(location.hash.split('?')[1]||'').get('date');
+ const [text,setText]=useState('');const [title,setTitle]=useState('');const [date,setDate]=useState(qd&&/^\d{4}-\d{2}-\d{2}$/.test(qd)&&qd<=today?qd:today);const [placeId,setPlaceId]=useState('');
  const [photos,setPhotos]=useState([]);const [uploading,setUploading]=useState(false);
  const [busy,setBusy]=useState(false);const [result,setResult]=useState(null);
  const recentPlaces=[...new Set([...(S.visited||[]),...(S.lastCourse?S.lastCourse.days.flatMap(d=>d.items.filter(i=>i.kind==='place').map(i=>i.id)):[])])].map(id=>PLACES.find(p=>p.id===id)).filter(Boolean).slice(0,6);

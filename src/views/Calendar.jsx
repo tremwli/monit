@@ -39,18 +39,22 @@ export default function Calendar(){
  <div className="pad" style={{paddingTop:16}}><div style={{background:'#fff',borderRadius:20,padding:'14px 10px 8px'}}>
   <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',textAlign:'center',fontSize:12,color:'var(--mute)',paddingBottom:8}}>{'일월화수목금토'.split('').map(x=><div key={x}>{x}</div>)}</div>
   <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',rowGap:4}}>{cells.map((v,i)=>{if(!v)return <div key={'e'+i}/>;const ds=ymd(new Date(y,m-1,v));const es=byDay[ds];const isToday=ds===today;const on=sel===ds;
-   return <button type="button" key={v} className="col" onClick={()=>setSel(on?null:(es?ds:null))} style={{alignItems:'center',gap:3,height:56,border:'none',background:'none',padding:0,cursor:es?'pointer':'default'}}>
+   return <button type="button" key={v} className="col" onClick={()=>setSel(on?null:ds)} aria-pressed={on} style={{alignItems:'center',gap:3,height:56,border:'none',background:'none',padding:0,cursor:'pointer'}}>
     <div style={{width:34,height:34,borderRadius:10,overflow:'hidden',border:on?'2px solid var(--primary)':'2px solid transparent',background:es?entryTint(es[0]):'transparent'}}>{es&&es.find(e=>e.photos?.length)?<Photo id={es.find(e=>e.photos?.length).photos[0]} tint={entryTint(es[0])} style={{width:34,height:34}}/>:null}</div>
     <span style={{fontSize:12,fontWeight:isToday?800:400,color:isToday?'#fff':'var(--sub)',background:isToday?'var(--primary)':'transparent',borderRadius:999,minWidth:18,height:18,lineHeight:'18px',padding:'0 2px'}}>{v}</span></button>})}</div>
  </div></div>
 
- <div className="pad row between" style={{paddingTop:22,paddingBottom:10,alignItems:'baseline'}}>
-  <div style={{fontSize:17,fontWeight:700}}>엽서 컬렉션</div>
-  {sel?<button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>{Number(sel.slice(8))}일 기록 보는 중 · 전체 보기</button>:<a href="#/diary" style={{fontSize:13,color:'var(--sub)',textDecoration:'none'}}>+ 오늘 기록</a>}
+ {sel?<div className="pad" style={{paddingTop:12}}>
+  <a className="btn btn-primary btn-sm" href={'#/diary?date='+sel} style={{height:46}}>{Number(sel.slice(5,7))}월 {Number(sel.slice(8))}일 일기 쓰기</a>
+ </div>:null}
+ <div className="pad row between" style={{paddingTop:sel?16:22,paddingBottom:10,alignItems:'baseline'}}>
+  <div style={{fontSize:17,fontWeight:700}}>{sel?Number(sel.slice(8))+'일의 엽서':'엽서 컬렉션'}</div>
+  {sel?<button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>전체 보기</button>:<span className="small">날짜를 누르면 그날 일기를 쓸 수 있어요</span>}
  </div>
  {list.length?<div className="row gap8" style={{overflowX:'auto',padding:'4px 18px 10px',scrollSnapType:'x mandatory',scrollbarWidth:'none',alignItems:'flex-start'}}>{list.map((e,i)=><Postcard key={e.id} e={e} i={i}/>)}</div>
- :<div className="pad"><a href="#/diary" style={{display:'block',width:124,margin:'4px 0',padding:'8px 8px 10px',background:'#fff',borderRadius:6,boxShadow:'0 3px 12px rgba(31,58,95,.10), 0 0 0 1px #EEF0F3',transform:'rotate(-1.2deg)',textDecoration:'none',color:'inherit'}}><div style={{height:84,borderRadius:3,border:'1.5px dashed #C9CED6',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--mute)',fontSize:22}}>+</div><div style={{paddingTop:9,fontFamily:'var(--deco)',fontSize:14,color:'var(--navy)'}}>{sel?'이 날은 비어 있어요':'첫 엽서 만들기'}</div><div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>사진 한 장이면 돼요</div></a></div>}
+ :<div className="pad"><a href={'#/diary'+(sel?'?date='+sel:'')} style={{display:'block',width:124,margin:'4px 0',padding:'8px 8px 10px',background:'#fff',borderRadius:6,boxShadow:'0 3px 12px rgba(31,58,95,.10), 0 0 0 1px #EEF0F3',transform:'rotate(-1.2deg)',textDecoration:'none',color:'inherit'}}><div style={{height:84,borderRadius:3,border:'1.5px dashed #C9CED6',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--mute)',fontSize:22}}>+</div><div style={{paddingTop:9,fontFamily:'var(--deco)',fontSize:14,color:'var(--navy)'}}>{sel?'이 날은 비어 있어요':'첫 엽서 만들기'}</div><div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>사진 한 장이면 돼요</div></a></div>}
 
  {tops.length?<div className="pad" style={{paddingTop:16}}><div className="card row between" style={{padding:'14px 16px',background:'#fff'}}><span style={{fontSize:14,fontWeight:600}}>이번 달 {n}가 제일 좋아한 것</span><span className="row gap6">{tops.map(t=><span key={t.tag} className="tag t-yellow" style={{fontWeight:700}}>{t.label}</span>)}</span></div></div>:null}
+ <a className="btn btn-primary" href={'#/diary'+(sel?'?date='+sel:'')} style={{position:'fixed',right:'max(20px,calc(50% - 195px))',bottom:'calc(84px + env(safe-area-inset-bottom))',width:'auto',height:50,padding:'0 20px',fontSize:15,zIndex:31,boxShadow:'0 4px 14px rgba(48,115,204,.35)'}}><Icon name="plus"/>일기 쓰기</a>
  <TabBar on="calendar"/>
 </div>)}
