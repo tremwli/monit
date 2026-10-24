@@ -5,7 +5,9 @@
 import Anthropic from '@anthropic-ai/sdk';
 import {systemPrompt,OUTPUT_SCHEMA,INTEREST_TAGS,STYLE_TAGS} from '../src/lib/analysis.js';
 
-const MODEL='claude-opus-5-5';
+/* 태그 고르기는 Haiku로 충분하고 Opus보다 약 40배 싸다 (입력 $0.10 / 출력 $0.50 per MTok).
+   호출 1회 ≈ 입력 550 + 출력 150 토큰 ≈ 0.2원. */
+const MODEL='claude-haiku-5-5';
 
 export default async function handler(req,res){
  if(req.method!=='POST'){res.statusCode=405;return res.end(JSON.stringify({error:'method_not_allowed'}))}
@@ -24,7 +26,7 @@ export default async function handler(req,res){
  try{
   const response=await client.messages.create({
    model:MODEL,
-   max_tokens:4000,
+   max_tokens:600, /* 구조화 출력이라 넘칠 일 없음. 출력 상한을 고정해 비용을 막는다 */
    output_config:{effort:'low',format:{type:'json_schema',schema:OUTPUT_SCHEMA}},
    system:systemPrompt(ageGroup,childName),
    messages:[{role:'user',content:`기록:\n"""\n${text}\n"""`}],

@@ -42,7 +42,7 @@ export default function Diary(){
   <div className="col gap10" style={{background:'#fff',borderRadius:20,padding:16}}>
    <div className="row between"><div style={{fontSize:16,fontWeight:700}}>오늘 알게 된 것</div><span className="small">{result.source==='claude'?'AI 분석':'간단 분석'}</span></div>
    <div style={{fontFamily:'var(--deco)',fontSize:19,color:'var(--navy)',lineHeight:1.4}}>{result.summary}</div>
-   {result.fallbackReason?<div className="small" style={{color:'var(--yellowInk)'}}>서버 분석을 못 써서 키워드로만 봤어요 ({result.fallbackReason==='no_key'?'API 키 없음':result.fallbackReason})</div>:null}
+   {result.fallbackReason==='short'?<div className="small">짧은 글은 키워드로만 봐요. 조금 더 길게 적으면 AI가 읽어요.</div>:result.fallbackReason?<div className="small" style={{color:'var(--yellowInk)'}}>서버 분석을 못 써서 키워드로만 봤어요 ({result.fallbackReason==='no_key'?'API 키 없음':result.fallbackReason})</div>:null}
   </div>
   {result.interests.length?<div className="col gap10" style={{background:'#fff',borderRadius:20,padding:16}}>
    <div style={{fontSize:15,fontWeight:700}}>관심사</div>
