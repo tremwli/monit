@@ -1,7 +1,9 @@
 /* 원본 MVP 상태 기본값·저장 그대로 */
 import {nextSat} from './utils.js';
+import {DATA_SOURCE} from './data.js';
 
-export const KEY='monit-mvp-v1';
+/* 샘플 데이터와 실제 데이터는 장소 id가 달라서 저장 공간을 나눠요 (예전 코스가 없는 장소를 가리키지 않게) */
+export const KEY=DATA_SOURCE==='tourapi'?'monit-real-v1':'monit-mvp-v1';
 
 export function defaults(){const sat=nextSat();return {
  onboarded:false, child:{name:'서아',age:5},

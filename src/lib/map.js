@@ -18,7 +18,7 @@ export function onMapSdkChange(f){listeners.add(f);return()=>listeners.delete(f)
 if(typeof window!=='undefined'&&KAKAO_MAP_KEY&&!window.__kakaoLoading){
  window.__kakaoLoading=true;
  const sc=document.createElement('script');
- sc.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+encodeURIComponent(KAKAO_MAP_KEY)+'&autoload=false';
+ sc.src='https://dapi.kakao.com/v2/maps/sdk.js?appkey='+encodeURIComponent(KAKAO_MAP_KEY)+'&autoload=false&libraries=services';
  sc.onload=()=>{try{window.kakao.maps.load(()=>{kakaoReady=true;notify()})}catch(e){kakaoFailed=true;notify()}};
  sc.onerror=()=>{kakaoFailed=true;notify()};
  document.head.appendChild(sc);
@@ -70,3 +70,20 @@ export function drawMap(el,pts,opts){
 
 /* 카카오맵 앱·웹 길찾기 링크 (현재 위치 → 목적지) */
 export function kakaoRouteUrl(p){return 'https://map.kakao.com/link/to/'+encodeURIComponent(p.name)+','+p.lat+','+p.lng}
+
+/* 카카오 장소 검색 (같은 JavaScript 키로 동작, libraries=services).
+   p 주변에서 keyword를 찾아 가까운 순으로 돌려줘요. 지도를 못 쓰면 null. */
+export function searchNearby(p,keyword,{radius=3000,category}={}){
+ return new Promise(resolve=>{
+  const k=typeof window!=='undefined'&&window.kakao;
+  if(!kakaoReady||kakaoFailed||!k||!k.maps||!k.maps.services)return resolve(null);
+  const ps=new k.maps.services.Places();
+  const opt={location:new k.maps.LatLng(p.lat,p.lng),radius,sort:k.maps.services.SortBy.DISTANCE};
+  if(category)opt.category_group_code=category;
+  ps.keywordSearch(keyword,(data,status)=>{
+   if(status===k.maps.services.Status.OK)resolve(data.map(d=>({name:d.place_name,dist:Number(d.distance)||0,phone:d.phone,url:d.place_url,lat:Number(d.y),lng:Number(d.x)})));
+   else if(status===k.maps.services.Status.ZERO_RESULT)resolve([]);
+   else resolve(null);
+  },opt);
+ });
+}
