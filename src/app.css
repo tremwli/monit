@@ -87,7 +87,7 @@ a{color:var(--primary)}
 .tabbar a.on{color:var(--ink);font-weight:700}
 .tabbar a.on svg{animation:pop .5s var(--spring)}
 @keyframes pop{0%{transform:scale(.8)}100%{transform:scale(1)}}
-.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%);background:rgba(25,31,40,.9);color:#fff;font-size:14px;padding:12px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(31,58,95,.2);z-index:100;max-width:90%;text-align:center;animation:fade 2.4s var(--ease) forwards}
+.toast{position:fixed;left:50%;bottom:calc(100px + env(safe-area-inset-bottom));transform:translateX(-50%);background:rgba(25,31,40,.9);color:#fff;font-size:14px;padding:12px 20px;border-radius:999px;box-shadow:0 8px 24px rgba(31,58,95,.2);z-index:100;width:max-content;max-width:calc(100% - 40px);text-align:center;animation:fade 2.4s var(--ease) forwards}
 @keyframes fade{0%{opacity:0;transform:translate(-50%,14px) scale(.96)}12%,85%{opacity:1;transform:translate(-50%,0) scale(1)}100%{opacity:0;transform:translate(-50%,6px) scale(.98)}}
 /* 하늘 그라데이션은 아래로 갈수록 흰빛으로 풀어져 시트와 자연스럽게 이어짐 */
 .hero{background:radial-gradient(circle at 50% 45%,var(--sky1) 0%,var(--sky2) 45%,var(--sky3) 82%,#E4EEF9 100%);position:relative}
@@ -138,3 +138,23 @@ a{color:var(--primary)}
 .moods{display:inline-flex;align-items:center;gap:4px;align-self:flex-start}
 .mood{display:inline-flex;opacity:.28;filter:grayscale(1);transform:scale(.88);transition:opacity var(--mid) var(--ease),filter var(--mid) var(--ease),transform var(--slow) var(--spring)}
 .mood.on{opacity:1;filter:none;transform:scale(1.12)}
+
+/* 홈: '좋아할 곳' 필터 칩(선택 시 남색)과 2열 카드 */
+.chip.dark.on{background:var(--navy);color:#fff;font-weight:700}
+.pick-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+.pick{border:none;background:none;padding:0;text-align:left;display:flex;flex-direction:column;gap:8px;min-width:0}
+.pick-tags{font-size:12px;line-height:1.5;color:var(--sub);overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+/* 하위 화면 상단 바: 뒤로 + 제목, 스크롤해도 위에 붙어 있음 */
+.topbar{position:sticky;top:0;z-index:10;height:56px;display:flex;align-items:center;gap:6px;padding:0 12px;background:rgba(252,253,255,.94);-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 2px 12px rgba(31,58,95,.06)}
+
+/* 홈: 아이 맞춤 분류 칩 (하늘색 아이콘 + 이름, 가운데 정렬) */
+.cat-chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.cat-chip{height:40px;padding:0 14px 0 10px;border-radius:999px;border:1px solid #D9E9FA;background:var(--paper);color:var(--ink2);font-size:14px;display:inline-flex;align-items:center;gap:6px;transition:border-color var(--mid) var(--ease),transform var(--mid) var(--spring)}
+.cat-chip svg{color:#86BDF2}
+.cat-chip .cut{fill:var(--paper);stroke:var(--paper)}
+@media (hover:hover){.cat-chip:hover{border-color:var(--sky1)}}
+/* 홈: 코스 만들기 버튼이 스크롤로 사라지면 나타나는 동그란 플로팅 버튼 */
+.fab{position:fixed;right:max(20px,calc(50% - 195px));bottom:calc(84px + env(safe-area-inset-bottom));z-index:25;width:68px;height:68px;border-radius:999px;background:var(--primary);box-shadow:0 6px 18px rgba(58,120,207,.32);display:flex;align-items:center;justify-content:center;opacity:0;transform:scale(.6) translateY(12px);pointer-events:none;transition:opacity var(--mid) var(--ease),transform var(--slow) var(--spring)}
+.fab.on{opacity:1;transform:none;pointer-events:auto}
+.fab.on:active{transform:scale(.92)}
+.fab svg{width:28px;height:28px}

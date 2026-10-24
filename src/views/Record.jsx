@@ -14,7 +14,10 @@ export default function Record(){
    S.lastCourse.days.forEach(d=>d.items.forEach(it=>{if(it.kind!=='place')return;const p=placeById(it.id);const r=rec[p.id]||{};
     if(!S.visited.includes(p.id))S.visited.push(p.id);
     if(r.v){p.ints.forEach(i=>{S.taste[i]=clamp(S.taste[i]+(r.v==='like'?.14:-.16))});changed++}
-    if(r.v||r.note)S.history.push({id:p.id,v:r.v||null,note:r.note||'',date})}))});
+    if(r.v||r.note)S.history.push({id:p.id,v:r.v||null,note:r.note||'',date})}));
+   /* 지난 코스 목록에 저장. 같은 코스를 다시 기록하면 덮어씀 */
+   const done={key:S.lastCourse.createdAt,date,places:S.lastCourse.days.flatMap(d=>d.items.filter(it=>it.kind==='place').map(it=>({id:it.id,time:it.time,v:(rec[it.id]||{}).v||null,note:(rec[it.id]||{}).note||''})))};
+   S.courses=[done,...S.courses.filter(k=>k.key!==done.key)]});
   setUI(u=>{u.rec={}});go('my');setTimeout(()=>toast(changed?n+' 취향이 업데이트됐어요':'기록을 저장했어요'),150)};
  return (
 <div className="screen" style={{background:'var(--bg2)'}}>

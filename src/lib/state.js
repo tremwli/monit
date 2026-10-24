@@ -12,9 +12,9 @@ export function defaults(){const sat=nextSat();return {
     place:'near',maxTravel:30,mode:'car',adults:['엄마','아빠'],stroller:'bring',
     fac:['stroller','nursing','diaper','parking','pediatric'],feeMode:'paid',feeMax:30000,rainIndoor:true,
     wants:['dino','water'],energy:'high',novelty:'one',perDay:2,meal:true,avoidCrowd:true},
- lastCourse:null, history:[], visited:[]
+ lastCourse:null, history:[], visited:[], courses:[]
 }}
 
-export function load(){try{return JSON.parse(localStorage.getItem(KEY))||defaults()}catch(e){return defaults()}}
+export function load(){try{const s=JSON.parse(localStorage.getItem(KEY));if(!s)return defaults();if(!s.courses)s.courses=[];return s}catch(e){return defaults()}}
 export function save(S){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 export function clear(){try{localStorage.removeItem(KEY)}catch(e){}}

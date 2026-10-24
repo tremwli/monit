@@ -88,5 +88,5 @@ export function buildCourse(S){
  const allIndoor=ids.every(id=>PLACES.find(p=>p.id===id).indoor);
  return {days,fee,move:mv,relaxed,allIndoor,createdAt:Date.now()};
 }
-export function hashtags(p){const tg=[];p.ints.forEach(i=>tg.push(INTEREST[i]));['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
+export function hashtags(p){const tg=p.theme?[p.theme]:[];p.ints.forEach(i=>{if(INTEREST[i]!==p.theme)tg.push(INTEREST[i])});['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
 export function placeById(id){return PLACES.find(p=>p.id===id)}

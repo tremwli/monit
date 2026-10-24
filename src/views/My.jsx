@@ -30,6 +30,7 @@ export default function My(){
    {(liked||meh)?<div className="col gap6" style={{borderTop:'1px solid var(--soft)',paddingTop:12}}>{liked?<div style={{fontSize:13,color:'#333D4B'}}>· 최근에 좋아한 곳: {placeById(liked.id).name}</div>:null}{meh?<div style={{fontSize:13,color:'#333D4B'}}>· 시큰둥했던 곳: {placeById(meh.id).name}</div>:null}</div>:null}
   </div>
   <div style={{background:'var(--paper)',borderRadius:20,padding:'4px 16px'}}>
+   <a href="#/courses" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>지난 코스</span><span className="small">{S.courses.length}개 ›</span></a>
    <a href="#/c4" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>부모님 기본 조건</span><span className="small">{S.c.fac.slice(0,3).map(f=>FAC[f]).join(' · ')} ›</span></a>
    <a href="#/c1" className="row between" style={{padding:'14px 0',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>{n}의 일정</span><span className="small">{S.c.schedules.map(s=>s.name).join(' · ')||'없음'} ›</span></a>
   </div>
