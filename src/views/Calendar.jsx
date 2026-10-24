@@ -1,17 +1,57 @@
+/* 캘린더 탭: 월간 달력(사진·색 표시) + 엽서 컬렉션 + 이번 달 제일 좋아한 것 */
+import {useState} from 'react';
 import {useStore} from '../store.jsx';
 import {ymd} from '../lib/utils.js';
-import {TabBar} from '../components/ui.jsx';
+import {entriesInMonth,entriesOnDay,monthTopTags,entryTitle,entryTint,fmtMd} from '../lib/journal.js';
+import {TabBar,Icon} from '../components/ui.jsx';
+import Photo from '../components/Photo.jsx';
+
+/* 폴라로이드: 흰 테두리 안에 사진, 아래 넓은 여백에 손글씨 제목과 날짜, 카드마다 살짝 기울임 */
+function Postcard({e,i=0,size=124}){const photoH=Math.round(size*.68);const tilt=[-1.6,1.2,-0.8,1.8][i%4];return (
+ <a href={'#/entry?id='+e.id} style={{width:size,flexShrink:0,textDecoration:'none',color:'inherit',scrollSnapAlign:'start',padding:'6px 2px'}}>
+  <div style={{background:'#fff',borderRadius:6,padding:'8px 8px 10px',boxShadow:'0 3px 12px rgba(31,58,95,.14), 0 0 0 1px #EEF0F3',transform:`rotate(${tilt}deg)`}}>
+   <div style={{height:photoH,borderRadius:3,overflow:'hidden',background:entryTint(e)}}>
+    <Photo id={e.photos?.[0]} tint={entryTint(e)} alt={entryTitle(e)} style={{width:'100%',height:photoH}}/>
+   </div>
+   <div style={{paddingTop:9,minHeight:34}}>
+    <div style={{fontFamily:'var(--deco)',fontSize:14,lineHeight:1.2,color:'var(--navy)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{entryTitle(e)}</div>
+    <div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>{fmtMd(e.date)}</div>
+   </div>
+  </div>
+ </a>)}
 
 export default function Calendar(){
- const {S}=useStore();const d=new Date();const y=d.getFullYear(),m=d.getMonth();const first=new Date(y,m,1).getDay(),last=new Date(y,m+1,0).getDate();
- const marked=new Set(S.history.map(h=>h.date));const cells=[];for(let i=0;i<first;i++)cells.push('');for(let i=1;i<=last;i++)cells.push(i);
+ const {S}=useStore();const n=S.child.name;const today=ymd(new Date());
+ const [ym,setYm]=useState(today.slice(0,7));const [sel,setSel]=useState(null);
+ const [y,m]=ym.split('-').map(Number);const first=new Date(y,m-1,1).getDay(),last=new Date(y,m,0).getDate();
+ const cells=[];for(let i=0;i<first;i++)cells.push('');for(let i=1;i<=last;i++)cells.push(i);
+ const monthEntries=entriesInMonth(S.diary,ym);
+ const byDay={};monthEntries.forEach(e=>{(byDay[e.date]=byDay[e.date]||[]).push(e)});
+ const tops=monthTopTags(S.diary,ym);
+ const move=d=>{const dt=new Date(y,m-1+d,1);setYm(ymd(dt).slice(0,7));setSel(null)};
+ const list=sel?entriesOnDay(S.diary,sel):monthEntries;
  return (
 <div className="screen" style={{background:'var(--bg2)'}}>
  <div className="pad col gap6" style={{paddingTop:24}}><div className="small">{y}년 {m+1}월</div><div className="h-title">{S.child.name}와 모은 순간 {S.history.length}개</div></div>
  <div className="pad" style={{paddingTop:16}}><div style={{background:'var(--paper)',borderRadius:20,padding:'14px 10px 8px'}}>
   <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',textAlign:'center',fontSize:12,color:'var(--mute)',paddingBottom:8}}>{'일월화수목금토'.split('').map(x=><div key={x}>{x}</div>)}</div>
-  <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',rowGap:4}}>{cells.map((v,i)=>{if(!v)return <div key={'e'+i}/>;const ds=ymd(new Date(y,m,v));const on=marked.has(ds);return <div key={v} className="col" style={{alignItems:'center',gap:3,height:52}}><div style={{width:34,height:34,borderRadius:10,...(on?{background:'var(--yellowT)',border:'2px solid var(--primary)'}:{})}}/><span style={{fontSize:12,color:'var(--sub)'}}>{v}</span></div>})}</div>
+  <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',rowGap:4}}>{cells.map((v,i)=>{if(!v)return <div key={'e'+i}/>;const ds=ymd(new Date(y,m-1,v));const es=byDay[ds];const isToday=ds===today;const on=sel===ds;
+   return <button type="button" key={v} className="col" onClick={()=>setSel(on?null:ds)} aria-pressed={on} style={{alignItems:'center',gap:3,height:56,border:'none',background:'none',padding:0,cursor:'pointer'}}>
+    <div style={{width:34,height:34,borderRadius:10,overflow:'hidden',border:on?'2px solid var(--primary)':'2px solid transparent',background:es?entryTint(es[0]):'transparent'}}>{es&&es.find(e=>e.photos?.length)?<Photo id={es.find(e=>e.photos?.length).photos[0]} tint={entryTint(es[0])} style={{width:34,height:34}}/>:null}</div>
+    <span style={{fontSize:12,fontWeight:isToday?800:400,color:isToday?'#fff':'var(--sub)',background:isToday?'var(--primary)':'transparent',borderRadius:999,minWidth:18,height:18,lineHeight:'18px',padding:'0 2px'}}>{v}</span></button>})}</div>
  </div></div>
- <div className="pad small" style={{paddingTop:12}}>기록을 남긴 날이 표시돼요. 사진 앨범과 엽서 모으기는 다음 버전에서 열려요.</div>
+
+ {sel?<div className="pad" style={{paddingTop:12}}>
+  <a className="btn btn-primary btn-sm" href={'#/diary?date='+sel} style={{height:46}}>{Number(sel.slice(5,7))}월 {Number(sel.slice(8))}일 일기 쓰기</a>
+ </div>:null}
+ <div className="pad row between" style={{paddingTop:sel?16:22,paddingBottom:10,alignItems:'baseline'}}>
+  <div style={{fontSize:17,fontWeight:700}}>{sel?Number(sel.slice(8))+'일의 엽서':'엽서 컬렉션'}</div>
+  {sel?<button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>전체 보기</button>:<span className="small">날짜를 누르면 그날 일기를 쓸 수 있어요</span>}
+ </div>
+ {list.length?<div className="row gap8" style={{overflowX:'auto',padding:'4px 18px 10px',scrollSnapType:'x mandatory',scrollbarWidth:'none',alignItems:'flex-start'}}>{list.map((e,i)=><Postcard key={e.id} e={e} i={i}/>)}</div>
+ :<div className="pad"><a href={'#/diary'+(sel?'?date='+sel:'')} style={{display:'block',width:124,margin:'4px 0',padding:'8px 8px 10px',background:'#fff',borderRadius:6,boxShadow:'0 3px 12px rgba(31,58,95,.10), 0 0 0 1px #EEF0F3',transform:'rotate(-1.2deg)',textDecoration:'none',color:'inherit'}}><div style={{height:84,borderRadius:3,border:'1.5px dashed #C9CED6',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--mute)',fontSize:22}}>+</div><div style={{paddingTop:9,fontFamily:'var(--deco)',fontSize:14,color:'var(--navy)'}}>{sel?'이 날은 비어 있어요':'첫 엽서 만들기'}</div><div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>사진 한 장이면 돼요</div></a></div>}
+
+ {tops.length?<div className="pad" style={{paddingTop:16}}><div className="card row between" style={{padding:'14px 16px',background:'#fff'}}><span style={{fontSize:14,fontWeight:600}}>이번 달 {n}가 제일 좋아한 것</span><span className="row gap6">{tops.map(t=><span key={t.tag} className="tag t-yellow" style={{fontWeight:700}}>{t.label}</span>)}</span></div></div>:null}
+ <a className="btn btn-primary" href={'#/diary'+(sel?'?date='+sel:'')} style={{position:'fixed',right:'max(20px,calc(50% - 195px))',bottom:'calc(84px + env(safe-area-inset-bottom))',width:'auto',height:50,padding:'0 20px',fontSize:15,zIndex:31,boxShadow:'0 4px 14px rgba(48,115,204,.35)'}}><Icon name="plus"/>일기 쓰기</a>
  <TabBar on="calendar"/>
 </div>)}

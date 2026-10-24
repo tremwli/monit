@@ -1,5 +1,6 @@
 import {useStore} from '../store.jsx';
 import {INTEREST,FAC} from '../lib/data.js';
+import {STYLE_TAGS} from '../lib/analysis.js';
 import {placeById} from '../lib/logic.js';
 import {go} from '../lib/utils.js';
 import {TabBar} from '../components/ui.jsx';

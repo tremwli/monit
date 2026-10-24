@@ -4,6 +4,7 @@ import {scorePlace,levelOf,placeById} from '../lib/logic.js';
 import {travel,travelLabel,demo} from '../lib/utils.js';
 import {Thumb,MoodRow,Icon,Html,MapBox,TabBar} from '../components/ui.jsx';
 import {kakaoRouteUrl} from '../lib/map.js';
+import NearbyCare from '../components/NearbyCare.jsx';
 
 function PlaceSheet({p}){
  const {S,setUI}=useStore();const lv=levelOf(scorePlace(S,p));const tr=travel(HOME,p,S.c.mode);
@@ -16,6 +17,7 @@ function PlaceSheet({p}){
   <div className="row gap6 wrap">{tags.slice(0,9).map(([c,t])=><span key={t} className={'tag '+c}>{t}</span>)}</div>
   <div className="row gap8"><a className="chip" href={kakaoRouteUrl(p)} target="_blank" rel="noopener" style={{flex:1,justifyContent:'center',height:40,background:'var(--paper)',border:'1.5px solid var(--primary)',color:'var(--primaryInk)',fontWeight:600,textDecoration:'none'}}><Html s={ICON.car.replace(/24/g,'18')}/>차로 {travel(HOME,p,'car')}분</a><a className="chip" href={kakaoRouteUrl(p)} target="_blank" rel="noopener" style={{flex:1,justifyContent:'center',height:40,background:'var(--paper)',border:'1.5px solid var(--line)',color:'var(--sub)',textDecoration:'none'}}><Html s={ICON.stroller.replace(/24/g,'18')}/>걸어서 {travel(HOME,p,'walk')}분</a></div>
   <a className="btn btn-primary btn-sm" href="#/c1">이 곳으로 코스 만들기</a>
+  {DATA_INFO?<div style={{fontSize:10,color:'var(--sub)',textAlign:'center',marginTop:-4}}>장소 정보 · {DATA_INFO.source}</div>:null}
  </div>)}
 
 export default function MapView(){

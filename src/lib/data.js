@@ -1,10 +1,14 @@
-/* 원본 MVP 데이터·아이콘 그대로 (export만 추가) */
-export const HOME = {lat:37.5340, lng:126.9940};
+/* 원본 MVP 데이터·아이콘 (export만 추가)
+   src/data/places.json 이 있으면(= npm run fetch-places 로 실제 데이터를 받았으면) 그걸 쓰고,
+   없으면 아래 샘플 장소로 동작해요. 파일이 없어도 에러가 나지 않게 glob으로 불러와요. */
+const REAL=Object.values(import.meta.glob('../data/places.json',{eager:true,import:'default'}))[0];
+export const DATA_SOURCE=REAL&&Array.isArray(REAL.places)&&REAL.places.some(p=>p.type==='play')?'tourapi':'sample';
+export const HOME = DATA_SOURCE==='tourapi'&&REAL.center?{lat:REAL.center.lat,lng:REAL.center.lng}:{lat:37.5340, lng:126.9940};
 export const INTEREST = {dino:'공룡',water:'물놀이',animal:'동물',draw:'그리기',train:'기차',plant:'식물',play:'뛰어놀기',book:'책'};
 export const FAC = {stroller:'유모차 가능',nursing:'수유실',diaper:'기저귀 교환대',parking:'주차장',elevator:'엘리베이터',babychair:'아기 의자',kidsmenu:'키즈 메뉴',pediatric:'가까운 소아과',er:'응급실 30분 이내',shade:'그늘·실내 쉼터'};
 export const MEAL_FAC = ['babychair','kidsmenu','parking'];
 export function P(id,name,cat,ints,fac,indoor,fee,stay,dlat,dlng,base,crowd,type){return {id,name,cat,ints,fac,indoor,fee,stay,lat:HOME.lat+dlat,lng:HOME.lng+dlng,base,crowd,type:type||'play'}}
-export const PLACES = [
+const SAMPLE_PLACES = [
  P('p1','공룡 박물관','박물관',['dino'],['stroller','nursing','diaper','parking','elevator','pediatric','shade'],true,8000,65,0.012,0.010,0.86,false),
  P('p2','자연사 체험관','박물관',['dino','plant'],['stroller','nursing','parking','elevator','shade'],true,6000,50,-0.018,0.024,0.74,true),
  P('p3','실내 물놀이터','물놀이',['water','play'],['stroller','nursing','diaper','parking','pediatric','shade'],true,15000,60,0.020,-0.016,0.84,true),

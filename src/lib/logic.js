@@ -1,4 +1,5 @@
-/* 원본 MVP 추천 로직 그대로. 전역 S 대신 첫 인자로 S를 받는다. */
+/* 원본 MVP 추천 로직. 전역 S 대신 첫 인자로 S를 받는다.
+   실제 데이터(TourAPI)용으로 더한 것: 모르는 편의시설은 통과(facKnown), 운영시간·휴무일 확인(openOk). */
 import {HOME,PLACES,MEAL_FAC,INTEREST,FAC} from './data.js';
 import {travel,ymd} from './utils.js';
 
@@ -9,15 +10,23 @@ export function scorePlace(S,p){
  if(c.avoidCrowd&&p.crowd)s-=.1;
  if(c.energy==='low'){if(p.stay>55)s-=.08;if(!p.indoor)s-=.06}
  if(c.energy==='high'&&p.ints.includes('play'))s+=.04;
+ /* 실제 데이터: 꼭 필요하다고 고른 시설인데 정보가 없는 곳은 살짝 뒤로 (확인된 곳 먼저) */
+ if(p.facKnown)s-=.05*c.fac.filter(f=>!p.facKnown.includes(f)&&f!=='pediatric'&&f!=='er').length;
  return Math.max(0,Math.min(1,s))}
 export function isNewCandidate(S,p){return avgTaste(S,p)<.42&&p.base>=.7&&!S.visited.includes(p.id)}
 export function levelOf(s,isNew){if(isNew)return 'C';return s>=.72?'A':s>=.52?'B':'C'}
 export function passFilters(S,p,relax){
  const c=S.c;
- if(!relax){const need=c.fac.filter(f=>p.type==='meal'?MEAL_FAC.includes(f)||f==='stroller':!MEAL_FAC.includes(f));if(!need.every(f=>p.fac.includes(f)))return false}
+ if(!relax){const need=c.fac.filter(f=>p.type==='meal'?MEAL_FAC.includes(f)||f==='stroller':!MEAL_FAC.includes(f));if(!need.every(f=>p.fac.includes(f)||(p.facKnown&&!p.facKnown.includes(f))))return false}
  if(c.feeMode==='free'&&p.fee>0&&p.type!=='meal')return false;
  if(c.feeMode==='paid'&&p.fee>(Number(c.feeMax)||0)&&p.type!=='meal')return false;
  if(c.place==='near'&&travel(HOME,p,c.mode)>c.maxTravel)return false;
+ return true}
+/* 그날 문 열었는지, 도착~떠나는 시간이 운영시간 안인지. 정보가 없으면 통과. */
+export function openOk(p,date,arrive,leave){
+ if(p.closedDays&&p.closedDays.length&&date){const wd=new Date(date+'T00:00:00').getDay();if(p.closedDays.includes(wd))return false}
+ if(p.open!=null&&arrive<p.open)return false;
+ if(p.close!=null&&leave>p.close)return false;
  return true}
 export function blocksFor(S){return S.c.schedules.filter(b=>b.end-b.start>20).map(b=>[b.start,b.end])}
 export function softFor(S){return S.c.schedules.filter(b=>b.end-b.start<=20)}
@@ -34,7 +43,7 @@ export function planDay(S,date,used,relax){
  const tryMeal=()=>{
   mealDone=true;
   const meals=PLACES.filter(m=>m.type==='meal'&&!used.has(m.id)&&passFilters(S,m,relax)).sort((a,b)=>travel(pos,a,c.mode)-travel(pos,b,c.mode));
-  for(const m of meals){const tr=travel(pos,m,c.mode);if(t+tr+m.stay+travel(m,HOME,c.mode)<=limitAt(t)){items.push({kind:'move',min:tr,mode:c.mode});items.push({kind:'place',id:m.id,time:t+tr,stay:m.stay,score:.7,level:'B',meal:true});used.add(m.id);pos=m;t+=tr+m.stay;return true}}
+  for(const m of meals){const tr=travel(pos,m,c.mode);if(!openOk(m,date,t+tr,t+tr+m.stay))continue;if(t+tr+m.stay+travel(m,HOME,c.mode)<=limitAt(t)){items.push({kind:'move',min:tr,mode:c.mode});items.push({kind:'place',id:m.id,time:t+tr,stay:m.stay,score:.7,level:'B',meal:true});used.add(m.id);pos=m;t+=tr+m.stay;return true}}
   return false};
  while(true){
   if(!mealDone&&t>=690&&t<840)tryMeal();
@@ -44,13 +53,16 @@ export function planDay(S,date,used,relax){
   let best=null;
   PLACES.filter(p=>p.type==='play'&&!used.has(p.id)&&passFilters(S,p,relax)).forEach(p=>{
    const tr=travel(pos,p,c.mode);if(tr>c.maxTravel+(c.place==='near'?0:15))return;
-   const leave=t+tr+p.stay;const back=travel(p,HOME,c.mode);
+   /* 문 열기 전에 도착하면 40분까지는 기다렸다 들어가요 */
+   let arr=t+tr;if(p.open!=null&&arr<p.open){if(p.open-arr>40)return;arr=p.open}
+   const leave=arr+p.stay;const back=travel(p,HOME,c.mode);
    const reserve=mealPending?55:0;
    if(leave+back+reserve>L)return;
+   if(!openOk(p,date,arr,leave))return;
    let s=scorePlace(S,p)-tr*.004+(rand?Math.random()*.6:0);
    const nw=!newUsed&&count>=1&&isNewCandidate(S,p);
    if(nw)s+=c.novelty==='many'?.5:.3;
-   if(!best||s>best.s)best={p,s,tr,leave,nw};
+   if(!best||s>best.s)best={p,s,tr,arr,leave,nw};
   });
   if(!best){
    if(mealPending&&t>=630){tryMeal();continue}
@@ -64,7 +76,7 @@ export function planDay(S,date,used,relax){
    break}
   items.push({kind:'move',min:best.tr,mode:c.mode});
   const sc=scorePlace(S,best.p);
-  items.push({kind:'place',id:best.p.id,time:t+best.tr,stay:best.p.stay,score:sc,level:levelOf(sc,best.nw),isNew:best.nw});
+  items.push({kind:'place',id:best.p.id,time:best.arr,stay:best.p.stay,score:sc,level:levelOf(sc,best.nw),isNew:best.nw});
   soft.forEach(sb=>{if(sb.start>=t&&sb.start<best.leave)items.push({kind:'note',time:sb.start,text:sb.name+' 시간 · 장소 안에서 챙겨요'})});
   if(best.nw&&c.novelty!=='many')newUsed=true;
   used.add(best.p.id);pos=best.p;t=best.leave;count++;

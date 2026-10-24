@@ -26,3 +26,9 @@ dist-ssr
 # env
 .env
 .env.*.local
+
+# TourAPI 응답 캐시 (npm run fetch-places)
+scripts/.cache
+
+# Claude Code worktrees (앱이 만드는 작업 폴더)
+.claude/worktrees

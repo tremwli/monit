@@ -1,6 +1,9 @@
 import {useStore} from '../store.jsx';
 import {placeById} from '../lib/logic.js';
 import {fmtT,fmtDate,clamp,toast,go} from '../lib/utils.js';
+import {savePhoto,cachedPhoto} from '../lib/photos.js';
+import {newEntryId} from '../lib/journal.js';
+import {ageGroupOf} from '../lib/analysis.js';
 import {Icon,BottomCta} from '../components/ui.jsx';
 
 export default function Record(){
@@ -9,9 +12,9 @@ export default function Record(){
  const ids=[];L.days.forEach(d=>d.items.forEach(it=>{if(it.kind==='place')ids.push(it)}));
  const setRec=(id,fn)=>setUI(u=>{u.rec={...u.rec};u.rec[id]={...(u.rec[id]||{})};fn(u.rec[id])});
  const saveRec=()=>{
-  const rec=UI.rec;let changed=0;
+  const rec=UI.rec,photos=UI.photos;let changed=0;const ag=ageGroupOf(S.child.age);
   set(S=>{const date=S.lastCourse.days[0].date;S.prevTaste={...S.taste};
-   S.lastCourse.days.forEach(d=>d.items.forEach(it=>{if(it.kind!=='place')return;const p=placeById(it.id);const r=rec[p.id]||{};
+   S.lastCourse.days.forEach(d=>d.items.forEach(it=>{if(it.kind!=='place')return;const p=placeById(it.id);const r=rec[p.id]||{};const ph=photos[p.id]||[];
     if(!S.visited.includes(p.id))S.visited.push(p.id);
     if(r.v){p.ints.forEach(i=>{S.taste[i]=clamp(S.taste[i]+(r.v==='like'?.14:-.16))});changed++}
     if(r.v||r.note)S.history.push({id:p.id,v:r.v||null,note:r.note||'',date})}));
