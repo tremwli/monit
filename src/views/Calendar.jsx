@@ -32,12 +32,8 @@ export default function Calendar(){
  const list=sel?entriesOnDay(S.diary,sel):monthEntries;
  return (
 <div className="screen" style={{background:'var(--bg2)'}}>
- <div className="pad row between" style={{paddingTop:24,alignItems:'flex-end'}}>
-  <div className="col gap6"><div className="small">{y}년 {m}월</div><div className="h-title">{n}와 모은 순간 {monthEntries.length}개</div></div>
-  <div className="row gap6"><button type="button" className="iconbtn" style={{background:'#fff'}} aria-label="이전 달" onClick={()=>move(-1)}><Icon name="back"/></button><button type="button" className="iconbtn" style={{background:'#fff',transform:'scaleX(-1)'}} aria-label="다음 달" onClick={()=>move(1)}><Icon name="back"/></button></div>
- </div>
- {tops.length?<div className="pad" style={{paddingTop:14}}><div className="card row between" style={{padding:'12px 16px',background:'#fff'}}><span style={{fontSize:14,fontWeight:600}}>이달의 흥미</span><span className="row gap6">{tops.map(t=><span key={t.tag} className="tag t-yellow" style={{fontWeight:700}}>{t.label}</span>)}</span></div></div>:null}
- <div className="pad" style={{paddingTop:tops.length?10:16}}><div style={{background:'#fff',borderRadius:20,padding:'14px 10px 8px'}}>
+ <div className="pad col gap6" style={{paddingTop:24}}><div className="small">{y}년 {m+1}월</div><div className="h-title">{S.child.name}와 모은 순간 {S.history.length}개</div></div>
+ <div className="pad" style={{paddingTop:16}}><div style={{background:'var(--paper)',borderRadius:20,padding:'14px 10px 8px'}}>
   <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',textAlign:'center',fontSize:12,color:'var(--mute)',paddingBottom:8}}>{'일월화수목금토'.split('').map(x=><div key={x}>{x}</div>)}</div>
   <div style={{display:'grid',gridTemplateColumns:'repeat(7,1fr)',rowGap:4}}>{cells.map((v,i)=>{if(!v)return <div key={'e'+i}/>;const ds=ymd(new Date(y,m-1,v));const es=byDay[ds];const isToday=ds===today;const on=sel===ds;
    /* 기록이 있는 날은 그날 엽서를 보여주고, 없는 날은 바로 일기 쓰기로 */

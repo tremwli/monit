@@ -1,7 +1,7 @@
 /* 공통 조각 컴포넌트. 원본 MVP의 chip/seg/sw/tabbar/stepHead/thumb/face 등을 React로 옮김. */
 import {useEffect,useRef} from 'react';
 import {IC,TINT,ICON} from '../lib/data.js';
-import {pkey,faceSvg,carSvg,LOGO_SVG} from '../lib/svg.js';
+import {pkey,faceSvg,moodSvg,MOODS,carSvg,LOGO_SVG} from '../lib/svg.js';
 import {drawMap,onMapSdkChange} from '../lib/map.js';
 import {css} from '../lib/utils.js';
 
@@ -10,11 +10,16 @@ export function Html({s,tag:Tag='span',...rest}){return <Tag {...rest} dangerous
 export function Icon({name,style,...rest}){return <Html s={ICON[name]} style={{display:'inline-flex',...style}} {...rest}/>}
 export function Logo(){return <Html s={LOGO_SVG} style={{display:'inline-flex'}}/>}
 export function Face({level,size=18}){return <Html s={faceSvg(level,size)} style={{display:'inline-flex'}}/>}
+/* 기쁨·그냥 그럼·싫음 세 표정을 나란히 두고, 예측 레벨(A·B·C)에 해당하는 표정만 또렷하게 */
+const MOOD_OF={A:'joy',B:'meh',C:'dislike'};
+export function MoodRow({level,size=18}){const cur=MOOD_OF[level];const label=MOODS.find(([m])=>m===cur)?.[1];return (
+ <span className="moods" role="img" aria-label={'예상 반응: '+label}>
+  {MOODS.map(([m])=><Html key={m} s={moodSvg(m,size)} className={'mood'+(m===cur?' on':'')}/>)}
+ </span>)}
 export function CarSvg({w}){return <Html s={carSvg(w)} style={{display:'inline-flex'}}/>}
 
-/* 실제 데이터에 사진(p.image)이 있으면 사진, 없거나 못 불러오면 원래 그림 아이콘 */
-export function Thumb({p,size,square}){const k=pkey(p);return (
- <div className="thumb" role="img" aria-label={p.image?p.name:p.name+' 사진 자리'} style={{width:size,height:size,background:TINT[k],position:'relative',overflow:'hidden',...(square?{borderRadius:0}:{})}}>
+export function Thumb({p,size,square,style}){const k=pkey(p);return (
+ <div className="thumb" role="img" aria-label={p.name+' 사진 자리'} style={{width:size,height:size,background:TINT[k],...(square?{borderRadius:0}:{}),...style}}>
   <svg width={Math.round(size*.7)} height={Math.round(size*.7)} viewBox="0 0 100 100" aria-hidden="true" dangerouslySetInnerHTML={{__html:IC[k]}}/>
   {p.image?<img src={p.image} alt="" loading="lazy" referrerPolicy="no-referrer" onError={e=>{e.currentTarget.style.display='none'}} style={{position:'absolute',inset:0,width:'100%',height:'100%',objectFit:'cover'}}/>:null}
  </div>)}
@@ -38,7 +43,7 @@ export function TabBar({on}){
 export function StepHead({n,back,eyebrow,title,help}){return (<>
  <div className="pad row gap12" style={{paddingTop:20}}>
   <a className="iconbtn" href={'#/'+back} aria-label={n===1?'닫기':'이전 단계'}><Icon name={n===1?'close':'back'}/></a>
-  <div className="progress"><i style={{width:n*20+'%'}}/></div><span className="small">{n} / 5</span>
+  <div className="progress"><i style={{width:n*20+'%','--from':(n-1)*20+'%'}}/></div><span className="small">{n} / 5</span>
  </div>
  <div className="pad col gap6" style={{paddingTop:22}}>
   <div className="eyebrow">코스 만들기 · {eyebrow}</div>

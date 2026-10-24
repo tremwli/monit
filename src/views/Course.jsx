@@ -53,13 +53,13 @@ export function C1(){
     <div key={s.id} className="row gap10" style={{minHeight:50,borderBottom:i<c.schedules.length-1?'1px solid #E9ECEF':'none'}}>
      <span style={{width:10,height:10,borderRadius:999,background:s.color}}/>
      <input value={s.name} aria-label="일정 이름" style={{flex:1,minWidth:0,border:'none',background:'none',fontSize:15,outline:'none'}} onChange={e=>set(S=>{S.c.schedules[i].name=e.target.value})}/>
-     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'#fff'}}><span>{fmtShort(s.start)}</span><input type="time" step={300} value={fmtShort(s.start)} aria-label="시작 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].start=toMin(e.target.value)})}}/></label>
+     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'var(--paper)'}}><span>{fmtShort(s.start)}</span><input type="time" step={300} value={fmtShort(s.start)} aria-label="시작 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].start=toMin(e.target.value)})}}/></label>
      <span className="small">–</span>
-     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'#fff'}}><span>{fmtShort(s.end)}</span><input type="time" step={300} value={fmtShort(s.end)} aria-label="끝 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].end=toMin(e.target.value)})}}/></label>
+     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'var(--paper)'}}><span>{fmtShort(s.end)}</span><input type="time" step={300} value={fmtShort(s.end)} aria-label="끝 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].end=toMin(e.target.value)})}}/></label>
      <button type="button" className="iconbtn" aria-label="일정 삭제" style={{width:30,height:30,background:'transparent'}} onClick={()=>set(S=>{S.c.schedules.splice(i,1)})}><Icon name="close"/></button>
     </div>)):<div className="small" style={{padding:'14px 0'}}>등록된 일정이 없어요</div>}
   </div>
-  <button type="button" className="chip" style={{justifyContent:'center',height:44,border:'1.5px dashed #B0B8C1',background:'#fff'}} onClick={()=>set(S=>{S.c.schedules.push({id:'s'+Date.now(),name:'새 일정',start:960,end:1020,color:['#F28B82','#A9DDB4','#8EC1F2'][S.c.schedules.length%3]})})}><Icon name="plus"/>일정 추가 (수업, 병원, 약 먹는 시간 등)</button>
+  <button type="button" className="chip" style={{justifyContent:'center',height:44,border:'1.5px dashed #B0B8C1',background:'var(--paper)'}} onClick={()=>set(S=>{S.c.schedules.push({id:'s'+Date.now(),name:'새 일정',start:960,end:1020,color:['#F28B82','#A9DDB4','#8EC1F2'][S.c.schedules.length%3]})})}><Icon name="plus"/>일정 추가 (수업, 병원, 약 먹는 시간 등)</button>
  </div>
  <BottomCta><a className="btn btn-primary" href="#/c2">다음</a></BottomCta>
 </div>)}
@@ -96,7 +96,7 @@ export function C3(){
  <div className="pad col" style={{paddingTop:18,gap:22}}>
   <div className="section"><div className="label">함께 가는 아이</div>
    <div className="row gap8"><div className="row gap10" style={{height:56,padding:'0 18px 0 8px',borderRadius:999,border:'2px solid var(--primary)',background:'#F3F8FE'}}><span style={{width:40,height:40,borderRadius:999,background:'var(--yellow)'}}/><span className="col"><span style={{fontSize:15,fontWeight:700}}>{n}</span><span className="small" style={{color:'var(--sub)'}}>{S.child.age}살</span></span></div>
-   <button type="button" className="chip" onClick={demo} style={{height:56,padding:'0 18px',border:'1.5px dashed #B0B8C1',background:'#fff'}}><Icon name="plus"/>아이 추가</button></div></div>
+   <button type="button" className="chip" onClick={demo} style={{height:56,padding:'0 18px',border:'1.5px dashed #B0B8C1',background:'var(--paper)'}}><Icon name="plus"/>아이 추가</button></div></div>
   <div className="section"><div className="label">함께 가는 어른</div>
    <div className="row gap6 wrap">{['엄마','아빠','할머니·할아버지','친구 가족'].map(a=><Chip key={a} on={c.adults.includes(a)} onClick={()=>set(S=>tg(S.c.adults,a))}>{a}</Chip>)}</div></div>
   <div className="section"><div className="label">이동 수단</div>

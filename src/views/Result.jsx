@@ -1,5 +1,5 @@
 import {useStore} from '../store.jsx';
-import {HOME,FACE_TXT} from '../lib/data.js';
+import {HOME} from '../lib/data.js';
 import {buildCourse,hashtags,placeById} from '../lib/logic.js';
 import {fmtT,fmtShort,fmtDate,travelLabel,toast,go} from '../lib/utils.js';
 import {Thumb,Face,Icon,MapBox,BottomCta} from '../components/ui.jsx';
@@ -15,11 +15,11 @@ export default function Result(){
  const s=L.days[0].items[0].time,e=L.days[L.days.length-1].items.slice(-1)[0].time;
  const focus=id=>{setUI(u=>{u.mapSel=id;u.mapCat='fit'});go('map')};
  return (
-<div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,#fff 321px)'}}>
+<div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,var(--paper) 321px)'}}>
  <MapBox id="resultMap" pts={pts} opts={{route,padTop:80,padBottom:60}} style={{height:330,background:'transparent'}}/>
  <div className="row between" style={{position:'absolute',top:16,left:16,right:16,zIndex:5}}>
   <a className="iconbtn white" href="#/c5" aria-label="조건 다시 보기"><Icon name="back"/></a>
-  <a href="#/map" style={{height:40,padding:'0 14px',borderRadius:999,background:'#fff',boxShadow:'0 2px 10px rgba(31,58,95,.12)',color:'#333D4B',fontSize:13,fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center'}}>지도 크게 보기</a>
+  <a href="#/map" style={{height:40,padding:'0 14px',borderRadius:999,background:'var(--paper)',boxShadow:'0 2px 10px rgba(31,58,95,.12)',color:'#333D4B',fontSize:13,fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center'}}>지도 크게 보기</a>
  </div>
  <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>
@@ -42,7 +42,7 @@ export default function Result(){
       return <div key={i} className="tl"><span style={{fontSize:13,fontWeight:600,color:'var(--sub)'}}>{fmtShort(it.time)}</span><span style={{width:20,height:20,borderRadius:999,background:col,color:'var(--navy)',fontSize:11,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>{num}</span>
        <button type="button" onClick={()=>focus(p.id)} className="card row gap12" style={{padding:10,border:'none',textAlign:'left',width:'100%'}}><Thumb p={p} size={64}/>
         <span className="col" style={{flex:1,minWidth:0,gap:4}}><span className="row between gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontWeight:700,padding:'2px 8px',fontSize:11}}>새로운 발견</span>:it.meal?null:<Face level={it.level}/>}</span>
-        <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요{it.meal?'':' · '+FACE_TXT[it.level]}</span>
+        <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
         <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></button></div>;
      })}
     </div>

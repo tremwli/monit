@@ -2,6 +2,7 @@
    set(fn): fn(S) 안에서 S를 직접 고치면 복사본에 적용 → localStorage 저장 → 리렌더.
    setUI(fn): 저장하지 않는 임시 상태. */
 import {createContext,useCallback,useContext,useEffect,useState} from 'react';
+import {flushSync} from 'react-dom';
 import {load,save,defaults,clear} from './lib/state.js';
 
 const Ctx=createContext(null);
@@ -19,10 +20,15 @@ export function StoreProvider({children}){
 
 export function useStore(){return useContext(Ctx)}
 
-/* 해시 라우팅: #/home, #/c1 … 원본과 동일 */
+/* 해시 라우팅: #/home, #/c1 … 원본과 동일.
+   지원 브라우저에서는 View Transitions API로 화면을 부드럽게 바꾼다(애니메이션은 app.css). */
 export function useRoute(S){
  const [hash,setHash]=useState(()=>location.hash);
- useEffect(()=>{const f=()=>setHash(location.hash);window.addEventListener('hashchange',f);return()=>window.removeEventListener('hashchange',f)},[]);
+ useEffect(()=>{
+  const f=()=>{const h=location.hash;
+   if(!document.startViewTransition||matchMedia('(prefers-reduced-motion: reduce)').matches)return setHash(h);
+   document.startViewTransition(()=>flushSync(()=>setHash(h)))};
+  window.addEventListener('hashchange',f);return()=>window.removeEventListener('hashchange',f)},[]);
  let r=(hash.replace('#/','')||'').split('?')[0]||(S.onboarded?'home':'start');
  if(r!=='start'&&!S.onboarded&&r!=='kid')r='start';
  return r;

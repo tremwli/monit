@@ -18,31 +18,20 @@ export default function My(){
   <div className="col gap6" style={{flex:1}}><div className="row gap6" style={{alignItems:'baseline'}}><span style={{fontSize:22,fontWeight:700}}>{n}</span><span style={{fontSize:14,color:'#333D4B'}}>{S.child.age}살</span></div><div style={{fontSize:13,color:'#333D4B'}}>모은 순간 {S.history.length}개 · 다녀온 곳 {S.visited.length}곳</div></div>
  </div>
  <div className="pad col gap10" style={{marginTop:-20,position:'relative'}}>
-  <div className="col gap12" style={{background:'#fff',borderRadius:20,padding:16}}>
+  <div className="col gap12" style={{background:'var(--paper)',borderRadius:20,padding:16}}>
    <div className="row between"><div style={{fontSize:16,fontWeight:700}}>{n}가 직접 고른 것</div></div>
    {S.kidPicks.length?<div className="row gap6 wrap">{S.kidPicks.map(k=><span key={k} className="tag t-yellow" style={{fontSize:13,fontWeight:600,padding:'6px 14px'}}>{INTEREST[k]}</span>)}</div>:<div className="small">아직 {n}가 직접 고른 게 없어요</div>}
-   {S.kidQuote?<div className="row gap8" style={{background:'#FFF9EA',borderRadius:14,padding:'12px 14px'}}><span style={{fontFamily:'var(--deco)',fontSize:17,color:'var(--navy)'}}>"{S.kidQuote}"</span></div>:null}
+   {S.kidQuote?<div className="row gap8" style={{background:'#FFF9EA',borderRadius:20,padding:'12px 14px'}}><span style={{fontFamily:'var(--deco)',fontSize:17,color:'var(--navy)'}}>"{S.kidQuote}"</span></div>:null}
    <a className="btn btn-soft btn-sm" href="#/kid">{n}랑 {S.kidPicks.length?'다시 ':''}고르기</a>
   </div>
-  <div className="col gap12" style={{background:'#fff',borderRadius:20,padding:16}}>
+  <div className="col gap12" style={{background:'var(--paper)',borderRadius:20,padding:16}}>
    <div className="col" style={{gap:2}}><div style={{fontSize:16,fontWeight:700}}>기록으로 알게 된 {n}</div><div className="small">다녀온 곳의 반응을 모아 계속 업데이트돼요</div></div>
    {ks.map(k=>{const v=t[k],d=pt[k]!=null?v-pt[k]:0;const trend=d>.04?'요즘 쑥쑥 올라요':d<-.04?'요즘 시들해요':lab(v);return (
     <div key={k} style={{display:'grid',gridTemplateColumns:'58px minmax(0,1fr) 96px',alignItems:'center',gap:8}}><span style={{fontSize:13,fontWeight:600}}>{INTEREST[k]}</span><div style={{height:10,borderRadius:999,background:'var(--soft)'}}><div style={{width:Math.round(v*100)+'%',height:10,borderRadius:999,background:colr[k],transition:'width .6s'}}/></div><span style={{fontSize:12,textAlign:'right',...(d>.04?{fontWeight:700,color:'var(--primaryInk)'}:d<-.04?{fontWeight:700,color:'var(--redInk)'}:{color:'var(--sub)'})}}>{trend}</span></div>)})}
    {(liked||meh)?<div className="col gap6" style={{borderTop:'1px solid var(--soft)',paddingTop:12}}>{liked?<div style={{fontSize:13,color:'#333D4B'}}>· 최근에 좋아한 곳: {placeById(liked.id).name}</div>:null}{meh?<div style={{fontSize:13,color:'#333D4B'}}>· 시큰둥했던 곳: {placeById(meh.id).name}</div>:null}</div>:null}
   </div>
-  <div className="col gap12" style={{background:'#fff',borderRadius:20,padding:16}}>
-   <div className="row between"><div style={{fontSize:16,fontWeight:700}}>{n}의 이야기</div><span className="small">{S.diary.length}편</span></div>
-   {S.diary.length?[...S.diary].slice(-3).reverse().map((d,i)=>(
-    <a key={d.id||i} href={'#/entry?id='+d.id} className="col gap6" style={{borderTop:i?'1px solid var(--soft)':'none',paddingTop:i?10:0,textDecoration:'none',color:'inherit'}}>
-     <div className="small">{d.date} · {d.kind==='visit'?'다녀온 곳':'육아일기'}{d.photos?.length?' · 사진 '+d.photos.length:''}</div>
-     <div style={{fontSize:14,fontWeight:600}}>{d.analysis?.summary||d.title||(d.text||'').slice(0,40)||(d.placeId?placeById(d.placeId)?.name:'기록')}</div>
-     {d.analysis?<div className="row gap6 wrap">{(d.analysis.interests||[]).map((x,k)=><span key={k} className="tag t-yellow">{INTEREST[x.tag]}</span>)}{(d.analysis.styles||[]).map((x,k)=><span key={'s'+k} className="tag t-peri">{STYLE_TAGS[x.tag]}</span>)}</div>:null}
-    </a>)):<div className="small">아직 적은 이야기가 없어요</div>}
-   {Object.keys(S.styles||{}).length?<div className="small" style={{borderTop:'1px solid var(--soft)',paddingTop:10}}>노는 방식: {Object.entries(S.styles).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>STYLE_TAGS[k]+' '+Math.round(v*100)+'%').join(' · ')}</div>:null}
-   {S.avoid.length?<div className="small" style={{color:'var(--redInk)'}}>조심할 것: {S.avoid.join(', ')}</div>:null}
-   <a className="btn btn-soft btn-sm" href="#/diary">오늘 이야기 적기</a>
-  </div>
-  <div style={{background:'#fff',borderRadius:20,padding:'4px 16px'}}>
+  <div style={{background:'var(--paper)',borderRadius:20,padding:'4px 16px'}}>
+   <a href="#/courses" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>지난 코스</span><span className="small">{S.courses.length}개 ›</span></a>
    <a href="#/c4" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>부모님 기본 조건</span><span className="small">{S.c.fac.slice(0,3).map(f=>FAC[f]).join(' · ')} ›</span></a>
    <a href="#/c1" className="row between" style={{padding:'14px 0',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>{n}의 일정</span><span className="small">{S.c.schedules.map(s=>s.name).join(' · ')||'없음'} ›</span></a>
   </div>
