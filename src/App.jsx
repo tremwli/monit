@@ -1,4 +1,4 @@
-import {useEffect} from 'react';
+import {useLayoutEffect} from 'react';
 import {useStore,useRoute} from './store.jsx';
 import Start from './views/Start.jsx';
 import Home from './views/Home.jsx';
@@ -17,6 +17,7 @@ export default function App(){
  const {S,setUI}=useStore();
  const r=useRoute(S);
  const View=VIEWS[r]||(S.onboarded?Home:Start);
- useEffect(()=>{window.scrollTo(0,0);setUI(u=>{u.wheel=null});document.title='모닛'},[r]); // eslint-disable-line
+ /* 레이아웃 단계에서 스크롤을 올려야 화면 전환 스냅샷이 맨 위에서 찍힌다 */
+ useLayoutEffect(()=>{window.scrollTo(0,0);setUI(u=>{u.wheel=null});document.title='모닛'},[r]); // eslint-disable-line
  return <View/>;
 }

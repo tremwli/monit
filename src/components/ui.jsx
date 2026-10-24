@@ -36,7 +36,7 @@ export function TabBar({on}){
 export function StepHead({n,back,eyebrow,title,help}){return (<>
  <div className="pad row gap12" style={{paddingTop:20}}>
   <a className="iconbtn" href={'#/'+back} aria-label={n===1?'닫기':'이전 단계'}><Icon name={n===1?'close':'back'}/></a>
-  <div className="progress"><i style={{width:n*20+'%'}}/></div><span className="small">{n} / 5</span>
+  <div className="progress"><i style={{width:n*20+'%','--from':(n-1)*20+'%'}}/></div><span className="small">{n} / 5</span>
  </div>
  <div className="pad col gap6" style={{paddingTop:22}}>
   <div className="eyebrow">코스 만들기 · {eyebrow}</div>

@@ -15,11 +15,11 @@ export default function Result(){
  const s=L.days[0].items[0].time,e=L.days[L.days.length-1].items.slice(-1)[0].time;
  const focus=id=>{setUI(u=>{u.mapSel=id;u.mapCat='fit'});go('map')};
  return (
-<div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,#fff 321px)'}}>
+<div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,var(--paper) 321px)'}}>
  <MapBox id="resultMap" pts={pts} opts={{route,padTop:80,padBottom:60}} style={{height:330,background:'transparent'}}/>
  <div className="row between" style={{position:'absolute',top:16,left:16,right:16,zIndex:5}}>
   <a className="iconbtn white" href="#/c5" aria-label="조건 다시 보기"><Icon name="back"/></a>
-  <a href="#/map" style={{height:40,padding:'0 14px',borderRadius:999,background:'#fff',boxShadow:'0 2px 10px rgba(31,58,95,.12)',color:'#333D4B',fontSize:13,fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center'}}>지도 크게 보기</a>
+  <a href="#/map" style={{height:40,padding:'0 14px',borderRadius:999,background:'var(--paper)',boxShadow:'0 2px 10px rgba(31,58,95,.12)',color:'#333D4B',fontSize:13,fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center'}}>지도 크게 보기</a>
  </div>
  <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>
