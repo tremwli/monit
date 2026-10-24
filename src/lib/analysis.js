@@ -9,12 +9,13 @@ export const STYLE_TAGS={hands:'직접 해보기',watch:'구경하기',outdoor:'
 export function ageGroupOf(age){const n=Number(age)||0;return n>=7?'7-9':'4-6'}
 
 /* Claude에게 보낼 시스템 프롬프트. 연령대에 따라 "누가 쓴 글인지"와 "무엇을 신호로 볼지"가 다르다 */
-/* 토큰 절약: 태그 설명은 스키마의 enum이 이미 제한하므로 한글 이름만 짧게 준다. 약 250토큰. */
+/* 일기는 항상 부모가 쓴다 (육아일기). 연령대에 따라 어떤 신호를 더 볼지만 다르다.
+   토큰 절약: 태그 설명은 스키마의 enum이 이미 제한하므로 한글 이름만 짧게 준다. 약 250토큰. */
 export function systemPrompt(ageGroup,childName){
  const who=ageGroup==='7-9'
-  ?`${childName}(7~9세)가 쓴 일기 또는 부모와의 대화. 맞춤법 무시. "재밌었다·또 하고 싶다·싫었다" 같은 감정 표현이 가장 강한 신호.`
-  :`부모가 적은 ${childName}(4~6세)의 하루 관찰 기록. 오래 머문 것·반복한 것·울거나 피한 것 같은 행동이 가장 강한 신호.`;
- return `아이 기록에서 관심사와 활동 성향을 추출한다. ${who}
+  ?`부모가 쓴 ${childName}(7~9세)의 육아일기. 아이가 한 말("또 가고 싶다", "싫어")을 인용한 부분과 아이가 스스로 고른 활동이 가장 강한 신호.`
+  :`부모가 쓴 ${childName}(4~6세)의 육아일기. 오래 머문 것·반복한 것·울거나 피한 것 같은 행동이 가장 강한 신호.`;
+ return `부모의 육아일기에서 아이의 관심사와 활동 성향을 추출한다. ${who}
 태그: ${Object.entries(INTEREST_TAGS).map(([k,v])=>`${k}=${v}`).join(' ')}
 성향: ${Object.entries(STYLE_TAGS).map(([k,v])=>`${k}=${v}`).join(' ')}
 score 0~1 (좋아함≥0.6, 싫어함≤0.3, 언급만 0.5). quote는 원문에서 그대로 20자 이내. 근거 없는 태그 금지, 추측 금지.

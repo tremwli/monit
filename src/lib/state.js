@@ -19,6 +19,11 @@ export function defaults(){const sat=nextSat();return {
 }}
 
 /* 예전 저장본에 새 필드가 없을 수 있으니 기본값 위에 덮어쓴다 */
-export function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));return saved?{...defaults(),...saved}:defaults()}catch(e){return defaults()}}
+export function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));if(!saved)return defaults();const S={...defaults(),...saved};
+ /* 이전 버전 일기 항목에 id·photos·kind가 없으면 채워준다 */
+ let migrated=false;
+ S.diary=(S.diary||[]).map((e,i)=>{if(e.id&&e.photos)return e;migrated=true;return {id:e.id||('e-old-'+i+'-'+(e.createdAt||0)),kind:e.kind||'diary',title:e.title||'',photos:e.photos||[],placeId:e.placeId||null,reaction:e.reaction||null,...e}});
+ if(migrated)save(S);
+ return S}catch(e){return defaults()}}
 export function save(S){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
 export function clear(){try{localStorage.removeItem(KEY)}catch(e){}}

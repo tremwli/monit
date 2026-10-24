@@ -33,11 +33,11 @@ export default function My(){
   <div className="col gap12" style={{background:'#fff',borderRadius:20,padding:16}}>
    <div className="row between"><div style={{fontSize:16,fontWeight:700}}>{n}의 이야기</div><span className="small">{S.diary.length}편</span></div>
    {S.diary.length?[...S.diary].slice(-3).reverse().map((d,i)=>(
-    <div key={i} className="col gap6" style={{borderTop:i?'1px solid var(--soft)':'none',paddingTop:i?10:0}}>
-     <div className="small">{d.date} · {d.ageGroup==='7-9'?'아이가 직접':'부모님 관찰'}</div>
-     <div style={{fontSize:14,fontWeight:600}}>{d.analysis.summary}</div>
-     <div className="row gap6 wrap">{d.analysis.interests.map((x,k)=><span key={k} className="tag t-yellow">{INTEREST[x.tag]}</span>)}{d.analysis.styles.map((x,k)=><span key={'s'+k} className="tag t-peri">{STYLE_TAGS[x.tag]}</span>)}</div>
-    </div>)):<div className="small">아직 적은 이야기가 없어요</div>}
+    <a key={d.id||i} href={'#/entry?id='+d.id} className="col gap6" style={{borderTop:i?'1px solid var(--soft)':'none',paddingTop:i?10:0,textDecoration:'none',color:'inherit'}}>
+     <div className="small">{d.date} · {d.kind==='visit'?'다녀온 곳':'육아일기'}{d.photos?.length?' · 사진 '+d.photos.length:''}</div>
+     <div style={{fontSize:14,fontWeight:600}}>{d.analysis?.summary||d.title||(d.text||'').slice(0,40)||(d.placeId?placeById(d.placeId)?.name:'기록')}</div>
+     {d.analysis?<div className="row gap6 wrap">{(d.analysis.interests||[]).map((x,k)=><span key={k} className="tag t-yellow">{INTEREST[x.tag]}</span>)}{(d.analysis.styles||[]).map((x,k)=><span key={'s'+k} className="tag t-peri">{STYLE_TAGS[x.tag]}</span>)}</div>:null}
+    </a>)):<div className="small">아직 적은 이야기가 없어요</div>}
    {Object.keys(S.styles||{}).length?<div className="small" style={{borderTop:'1px solid var(--soft)',paddingTop:10}}>노는 방식: {Object.entries(S.styles).sort((a,b)=>b[1]-a[1]).slice(0,3).map(([k,v])=>STYLE_TAGS[k]+' '+Math.round(v*100)+'%').join(' · ')}</div>:null}
    {S.avoid.length?<div className="small" style={{color:'var(--redInk)'}}>조심할 것: {S.avoid.join(', ')}</div>:null}
    <a className="btn btn-soft btn-sm" href="#/diary">오늘 이야기 적기</a>
