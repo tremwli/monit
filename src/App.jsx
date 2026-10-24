@@ -15,8 +15,9 @@ import Courses from './views/Courses.jsx';
 import Diary from './views/Diary.jsx';
 import Entry from './views/Entry.jsx';
 import Place from './views/Place.jsx';
+import Report from './views/Report.jsx';
 
-const VIEWS={start:Start,home:Home,c1:C1,c2:C2,c3:C3,c4:C4,c5:C5,result:Result,record:Record,my:My,kid:Kid,map:MapView,community:Community,calendar:Calendar,cat:Category,courses:Courses,diary:Diary,entry:Entry,place:Place};
+const VIEWS={start:Start,home:Home,c1:C1,c2:C2,c3:C3,c4:C4,c5:C5,result:Result,record:Record,my:My,kid:Kid,map:MapView,community:Community,calendar:Calendar,cat:Category,courses:Courses,diary:Diary,entry:Entry,place:Place,report:Report};
 
 export default function App(){
  const {S,setUI}=useStore();

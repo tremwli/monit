@@ -43,6 +43,7 @@ export default function My(){
    <a className="btn btn-soft btn-sm" href="#/diary">오늘 이야기 적기</a>
   </div>
   <div style={{background:'var(--paper)',borderRadius:20,padding:'4px 16px'}}>
+   <a href="#/report" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15,fontWeight:600}}>분기 리포트 보기</span><span className="small">{n}의 성장 결과지 ›</span></a>
    <a href="#/courses" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>지난 코스</span><span className="small">{S.courses.length}개 ›</span></a>
    <a href="#/c4" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>부모님 기본 조건</span><span className="small">{S.c.fac.slice(0,3).map(f=>FAC[f]).join(' · ')} ›</span></a>
    <a href="#/c1" className="row between" style={{padding:'14px 0',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>{n}의 일정</span><span className="small">{S.c.schedules.map(s=>s.name).join(' · ')||'없음'} ›</span></a>
