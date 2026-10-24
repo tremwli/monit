@@ -6,13 +6,16 @@ import {entriesInMonth,entriesOnDay,monthTopTags,entryTitle,entryTint,fmtMd} fro
 import {TabBar,Icon} from '../components/ui.jsx';
 import Photo from '../components/Photo.jsx';
 
-function Postcard({e,size=108}){return (
- <a href={'#/entry?id='+e.id} style={{width:size,flexShrink:0,textDecoration:'none',color:'inherit',scrollSnapAlign:'start'}}>
-  <div style={{position:'relative',width:size,height:size,borderRadius:14,overflow:'hidden',boxShadow:'0 2px 8px rgba(31,58,95,.10)'}}>
-   <Photo id={e.photos?.[0]} tint={entryTint(e)} alt={entryTitle(e)} style={{width:size,height:size}}/>
-   <div style={{position:'absolute',left:0,right:0,bottom:0,padding:'18px 8px 7px',background:'linear-gradient(rgba(0,0,0,0),rgba(0,0,0,.45))'}}>
-    <div style={{fontFamily:'var(--deco)',fontSize:13,color:'#fff',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{entryTitle(e)}</div>
-    <div style={{fontSize:10,color:'rgba(255,255,255,.85)'}}>{fmtMd(e.date)}</div>
+/* 폴라로이드: 흰 테두리 안에 사진, 아래 넓은 여백에 손글씨 제목과 날짜, 카드마다 살짝 기울임 */
+function Postcard({e,i=0,size=124}){const photoH=Math.round(size*.68);const tilt=[-1.6,1.2,-0.8,1.8][i%4];return (
+ <a href={'#/entry?id='+e.id} style={{width:size,flexShrink:0,textDecoration:'none',color:'inherit',scrollSnapAlign:'start',padding:'6px 2px'}}>
+  <div style={{background:'#fff',borderRadius:6,padding:'8px 8px 10px',boxShadow:'0 3px 12px rgba(31,58,95,.14), 0 0 0 1px #EEF0F3',transform:`rotate(${tilt}deg)`}}>
+   <div style={{height:photoH,borderRadius:3,overflow:'hidden',background:entryTint(e)}}>
+    <Photo id={e.photos?.[0]} tint={entryTint(e)} alt={entryTitle(e)} style={{width:'100%',height:photoH}}/>
+   </div>
+   <div style={{paddingTop:9,minHeight:34}}>
+    <div style={{fontFamily:'var(--deco)',fontSize:14,lineHeight:1.2,color:'var(--navy)',whiteSpace:'nowrap',overflow:'hidden',textOverflow:'ellipsis'}}>{entryTitle(e)}</div>
+    <div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>{fmtMd(e.date)}</div>
    </div>
   </div>
  </a>)}
@@ -42,11 +45,11 @@ export default function Calendar(){
  </div></div>
 
  <div className="pad row between" style={{paddingTop:22,paddingBottom:10,alignItems:'baseline'}}>
-  <div style={{fontSize:17,fontWeight:700}}>{sel?Number(sel.slice(8))+'일 기록':'엽서 컬렉션'}</div>
-  {sel?<button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>전체 보기</button>:<a href="#/diary" style={{fontSize:13,color:'var(--primaryInk)',textDecoration:'none',fontWeight:600}}>+ 오늘 기록</a>}
+  <div style={{fontSize:17,fontWeight:700}}>엽서 컬렉션</div>
+  {sel?<button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>{Number(sel.slice(8))}일 기록 보는 중 · 전체 보기</button>:<a href="#/diary" style={{fontSize:13,color:'var(--sub)',textDecoration:'none'}}>+ 오늘 기록</a>}
  </div>
- {list.length?<div className="row gap10" style={{overflowX:'auto',padding:'0 20px 6px',scrollSnapType:'x mandatory',scrollbarWidth:'none'}}>{list.map(e=><Postcard key={e.id} e={e}/>)}</div>
- :<div className="pad"><a href="#/diary" className="card col gap6" style={{padding:'18px 16px',textDecoration:'none',color:'inherit',alignItems:'center',border:'1.5px dashed #B0B8C1',background:'#fff'}}><span style={{fontSize:15,fontWeight:700}}>{sel?'이 날은 기록이 없어요':'아직 엽서가 없어요'}</span><span className="small">사진 한 장과 한 줄이면 엽서가 돼요</span></a></div>}
+ {list.length?<div className="row gap8" style={{overflowX:'auto',padding:'4px 18px 10px',scrollSnapType:'x mandatory',scrollbarWidth:'none',alignItems:'flex-start'}}>{list.map((e,i)=><Postcard key={e.id} e={e} i={i}/>)}</div>
+ :<div className="pad"><a href="#/diary" style={{display:'block',width:124,margin:'4px 0',padding:'8px 8px 10px',background:'#fff',borderRadius:6,boxShadow:'0 3px 12px rgba(31,58,95,.10), 0 0 0 1px #EEF0F3',transform:'rotate(-1.2deg)',textDecoration:'none',color:'inherit'}}><div style={{height:84,borderRadius:3,border:'1.5px dashed #C9CED6',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--mute)',fontSize:22}}>+</div><div style={{paddingTop:9,fontFamily:'var(--deco)',fontSize:14,color:'var(--navy)'}}>{sel?'이 날은 비어 있어요':'첫 엽서 만들기'}</div><div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>사진 한 장이면 돼요</div></a></div>}
 
  {tops.length?<div className="pad" style={{paddingTop:16}}><div className="card row between" style={{padding:'14px 16px',background:'#fff'}}><span style={{fontSize:14,fontWeight:600}}>이번 달 {n}가 제일 좋아한 것</span><span className="row gap6">{tops.map(t=><span key={t.tag} className="tag t-yellow" style={{fontWeight:700}}>{t.label}</span>)}</span></div></div>:null}
  <TabBar on="calendar"/>
