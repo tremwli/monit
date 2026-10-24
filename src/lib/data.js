@@ -47,6 +47,9 @@ const SAMPLE_PLACES = [
  P('m3','한식 가정식','식당',[],['babychair','kidsmenu','parking'],true,10000,40,-0.016,0.004,0.75,false,'meal'),
  P('m4','국수집','식당',[],['babychair'],true,8000,30,-0.004,-0.018,0.65,false,'meal')
 ];
+/* 실제 데이터가 있으면 그것, 없으면 샘플 (머지 때 빠졌던 줄 복구) */
+export const PLACES = DATA_SOURCE==='tourapi'?REAL.places:SAMPLE_PLACES;
+export const DATA_INFO = DATA_SOURCE==='tourapi'?{source:REAL.source,generatedAt:REAL.generatedAt,count:REAL.places.length}:null;
 /* 분류 안의 세부 테마 (분류별 모아보기 화면의 칩) */
 export const CAT_THEMES = {'박물관':['자연사','과학','한국사','세계사','전쟁·평화','탈것'],'키즈카페':['대형 놀이형','트램펄린','역할놀이','아기 전용'],'식물원':['온실','수목원','숲 체험'],'물놀이':['실내 워터파크','바닥분수','계곡'],'동물원':['동물원','아쿠아리움','체험 농장','곤충관'],'놀이터·공원':['숲 놀이터','모래 놀이','테마 공원'],'체험 공방':['미술','요리','도예','과학 실험'],'도서관':['어린이 도서관','그림책','북카페'],'식당':['키즈 식당','카페·브런치','한식','면 요리']};
 const THEME_OF = {p1:'자연사',p2:'자연사',p9:'탈것',p15:'과학',p16:'한국사',p17:'세계사',p18:'전쟁·평화',
