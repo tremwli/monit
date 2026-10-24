@@ -20,7 +20,7 @@ export default function My(){
   <div className="col gap12" style={{background:'var(--paper)',borderRadius:20,padding:16}}>
    <div className="row between"><div style={{fontSize:16,fontWeight:700}}>{n}가 직접 고른 것</div></div>
    {S.kidPicks.length?<div className="row gap6 wrap">{S.kidPicks.map(k=><span key={k} className="tag t-yellow" style={{fontSize:13,fontWeight:600,padding:'6px 14px'}}>{INTEREST[k]}</span>)}</div>:<div className="small">아직 {n}가 직접 고른 게 없어요</div>}
-   {S.kidQuote?<div className="row gap8" style={{background:'#FFF9EA',borderRadius:14,padding:'12px 14px'}}><span style={{fontFamily:'var(--deco)',fontSize:17,color:'var(--navy)'}}>"{S.kidQuote}"</span></div>:null}
+   {S.kidQuote?<div className="row gap8" style={{background:'#FFF9EA',borderRadius:20,padding:'12px 14px'}}><span style={{fontFamily:'var(--deco)',fontSize:17,color:'var(--navy)'}}>"{S.kidQuote}"</span></div>:null}
    <a className="btn btn-soft btn-sm" href="#/kid">{n}랑 {S.kidPicks.length?'다시 ':''}고르기</a>
   </div>
   <div className="col gap12" style={{background:'var(--paper)',borderRadius:20,padding:16}}>
