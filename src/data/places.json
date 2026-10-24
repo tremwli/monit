@@ -1,0 +1,4531 @@
+{
+ "generatedAt": "2026-10-24T11:13:10.993Z",
+ "source": "한국관광공사 TourAPI (공공데이터포털)",
+ "center": {
+  "lat": 37.534,
+  "lng": 126.994
+ },
+ "radius": 20000,
+ "places": [
+  {
+   "id": "t3456336",
+   "name": "배봉산숲속도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "plant",
+    "play"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.578496,
+   "lng": 127.062752,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/97/3455797_image2_1.jpg",
+   "addr": "서울특별시 동대문구 전농로16길 97 (전농동)",
+   "tel": "0222151959",
+   "summary": "서울 배봉산숲속도서관은 서울의 중심에 위치한 자연과 도서관이 결합된 독특한 공간으로, 도심 속에서 숲의 여유로움을 느끼며 책을 즐길 수 있는 특별한 장소이다. 이 도서관은 배봉산의 자연경관을 보존하면서, 책과 함께하",
+   "contentId": "3456336"
+  },
+  {
+   "id": "t3451241",
+   "name": "내를건너서숲으로도서관",
+   "cat": "도서관",
+   "ints": [
+    "plant",
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.59175,
+   "lng": 126.908063,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1320,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/73/3450473_image2_1.jpg",
+   "addr": "서울특별시 은평구 증산로17길 50 (신사동)",
+   "tel": "02-307-6701",
+   "summary": "내를건너서숲으로도서관은 서울특별시 은평구에 위치한 공공 도서관으로, 윤동주 시인의 시 '새로운 길'에서 영감을 받아 설립된 문화 공간이다.",
+   "contentId": "3451241"
+  },
+  {
+   "id": "t3442142",
+   "name": "서울숲 곤충식물원",
+   "cat": "동물원",
+   "ints": [
+    "plant",
+    "animal"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 90,
+   "lat": 37.543125,
+   "lng": 127.041813,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1020,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/17/3442117_image2_1.JPG",
+   "addr": "서울특별시 성동구 뚝섬로 273 (성수동1가)",
+   "tel": "02-460-2905",
+   "summary": "서울숲 곤충식물원은 서울숲 내에 위치한 자연 학습 공간으로, 열대 식물과 다양한 곤충을 관찰할 수 있다. 테마식물원, 표본전시실, 나비생태관 등이 있어 가족 단위 방문객들에게 교육적이고 즐거운 경험을 제공한다. 입장",
+   "contentId": "3442142"
+  },
+  {
+   "id": "t3441464",
+   "name": "국립항공박물관 항공도서관",
+   "cat": "도서관",
+   "ints": [
+    "train",
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.556922,
+   "lng": 126.808887,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1020,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/71/3441671_image2_1.JPG",
+   "addr": "서울특별시 강서구 하늘길 177 (공항동)",
+   "tel": "02-6940-3175",
+   "summary": "국립항공박물관 항공도서관은 항공역사, 항공산업, 항공 전문 정보의 국내외 전문도서, 학술지 및 디지털 매체 등을 수집, 정리하여 제공한다. 또한 박물관학, 고고학, 도서관학 관련 자료를 제공하고 있다. 항공 전문 정",
+   "contentId": "3441464"
+  },
+  {
+   "id": "t2591870",
+   "name": "안양천 물놀이장",
+   "cat": "물놀이",
+   "ints": [
+    "water",
+    "play",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 80,
+   "lat": 37.507154,
+   "lng": 126.874516,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/80/3526880_image2_1.jpg",
+   "addr": "서울특별시 구로구 신도림동",
+   "tel": "",
+   "summary": "무더운 여름철, 어린이들과 가족단위 구민이 시원하고 즐거운 여름을 보낼 수 있도록 도심 속 피서지인 안양천 물놀이장을 개장한다. 넓은 수영장과 다양한 물놀이 시설을 갖추고 있어 어린이부터 성인까지 모두 즐길 수 있다",
+   "contentId": "2591870"
+  },
+  {
+   "id": "t130352",
+   "name": "서울특별시교육청 남산도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.552453,
+   "lng": 126.981366,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1200,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/73/3466473_image2_1.JPG",
+   "addr": "서울특별시 용산구 소월로 109 (후암동)",
+   "tel": "0507-1478-7339",
+   "summary": "서울특별시교육청 남산도서관은 서울시 최초의 공립공공도서관으로, 1922년에 개관하여 1964년 현 위치에 건물을 신축으로 이전하였고, 이듬해인 1965년 도서관 명칭을 현재와 같이 남산도서관으로 개칭하였다. 1964",
+   "contentId": "130352"
+  },
+  {
+   "id": "t130355",
+   "name": "서울특별시교육청 용산도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "draw",
+    "plant"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.551989,
+   "lng": 126.980127,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1200,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/01/3514601_image2_1.jpg",
+   "addr": "서울특별시 용산구 두텁바위로 160",
+   "tel": "02-6902-7777",
+   "summary": "서울특별시교육청 용산도서관은 남산 자락에 위치한 후암동 두텁바위 마을에 1981년 4월 개관하였다. 지하 1층부터 지상 5층까지의 건물로, 문헌정보실, 디지털·간행물실, 어린이실, 자율학습실 등 다양한 시설을 갖추고",
+   "contentId": "130355"
+  },
+  {
+   "id": "t2904906",
+   "name": "손기정문화도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "plant"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.555975,
+   "lng": 126.964553,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1320,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/14/3458214_image2_1.JPG",
+   "addr": "서울특별시 중구 손기정로 101-3 손기정공원",
+   "tel": "02-2230-2950",
+   "summary": "손기정문화도서관은 손기정기념관 뒤편에 위치한 도서관이다. 붉은 벽돌로 지어진 건물로, 감성적이고 아름다운 외관 덕분에 많은 사람이 찾는다. 붉은 벽을 감싸는 담쟁이덩굴과 작품들로 꾸며진 정원과 외관은 구경하는 재미를",
+   "contentId": "2904906"
+  },
+  {
+   "id": "t3432213",
+   "name": "논현문화마루도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "plant",
+    "play"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.5139,
+   "lng": 127.027121,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/56/3431756_image2_1.jpg",
+   "addr": "서울특별시 강남구 논현로131길 40 (논현동)",
+   "tel": "02-512-8580",
+   "summary": "논현문화마루도서관은 서울 강남구에 위치한 전국 최초의 예술 특화 도서관으로, 지역 주민들에게 책과 예술을 융합한 독창적 경험을 제공한다. 자연광이 가득한 현대적 건축과 아늑한 독서 공간, 어린이부터 성인까지 즐길 수",
+   "contentId": "3432213"
+  },
+  {
+   "id": "t3447439",
+   "name": "장자호수공원생태체험관",
+   "cat": "박물관",
+   "ints": [
+    "plant",
+    "play",
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 70,
+   "lat": 37.583177,
+   "lng": 127.138603,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1020,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/06/3447406_image2_1.jpg",
+   "addr": "경기도 구리시 장자호수길 76-42 (교문동)",
+   "tel": "031-550-8317",
+   "summary": "장자호수생태체험관은 경기도 구리시 장자호수공원 내에 위치한 생태 교육 및 체험 공간이다. 2012년에 개관되어, 다양한 환경 교육 프로그램과 체험 활동을 제공한다. 전시관에서는 호수의 동식물과 오염 복구 과정을 보여",
+   "contentId": "3447439"
+  },
+  {
+   "id": "t1019294",
+   "name": "서울특별시교육청 정독도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "plant"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.579761,
+   "lng": 126.983237,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1200,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/66/3510466_image2_1.jpg",
+   "addr": "서울특별시 종로구 북촌로5길 48",
+   "tel": "정독도서관 02-2011-5799",
+   "summary": "정독도서관은 서울 종로구 북촌에 위치한 옛 경기고등학교 자리에 1977년 1월에 개관한 서울시립공공도서관이다. 49만 여권의 장서와 16,300여 점의 비도서 자료를 소장하고 있으며, 부설 서울교육사료관에는 12,0",
+   "contentId": "1019294"
+  },
+  {
+   "id": "t3423015",
+   "name": "역삼도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "train",
+    "play"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.495397,
+   "lng": 127.033243,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/90/3457790_image2_1.JPG",
+   "addr": "서울특별시 강남구 역삼로7길 16 (역삼동)",
+   "tel": "025081139 , @yeoksamlibrary",
+   "summary": "역삼도서관은 서울특별시 강남구 역삼동에 위치한 공공도서관으로, 지역 주민들에게 다양한 독서와 문화 활동의 기회를 제공하는 공간이다. 이 도서관은 편리한 교통 접근성과 다양한 자료를 갖추고 있어 학생, 직장인, 가족 ",
+   "contentId": "3423015"
+  },
+  {
+   "id": "t699241",
+   "name": "김대중도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 60,
+   "lat": 37.556993,
+   "lng": 126.929576,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 960,
+   "closedDays": [
+    0,
+    6
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/53/3393053_image2_1.JPG",
+   "addr": "서울특별시 마포구 신촌로4길 5-26",
+   "tel": "02-2123-6890",
+   "summary": "김대중도서관은 2003년 11월 아시아 최초의 대통령도서관으로 개관하였다. 대한민국 제15대 대통령이자 노벨평화상을 수상한 김대중 전 대통령이 도서관 건물과 1만 6,000여 건의 자료, 10,000여 권의 장서, ",
+   "contentId": "699241"
+  },
+  {
+   "id": "t2692866",
+   "name": "청운문학도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.590432,
+   "lng": 126.965933,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1260,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3531837_image2_1.jpg",
+   "addr": "서울특별시 종로구 자하문로36길 40 (청운동)",
+   "tel": "070-4680-4032",
+   "summary": "청운문학도서관은 한옥의 고즈넉한 맛이 풍기는 문화특화 도서관이다. 독서와 사색, 휴식의 공간을 제공하고 주민을 위한 다양한 독서·문화예술프로그램을 운영하고 있다. 시, 소설, 수필 위주의 다양한 문학도서를 소장하고 ",
+   "contentId": "2692866"
+  },
+  {
+   "id": "t3080852",
+   "name": "한생연 실험누리과학관",
+   "cat": "박물관",
+   "ints": [
+    "play",
+    "draw"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 3000,
+   "stay": 70,
+   "lat": 37.496664,
+   "lng": 127.05526,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/50/3080850_image2_1.JPG",
+   "addr": "서울특별시 강남구 도곡로 408 (대치동)",
+   "tel": "02-552-3166",
+   "summary": "대치동에 위치한 실험누리과학관은 2010년 개관한 곳으로 다양한 실험을 체험해 볼 수 있는 체험형 사립 과학관이다. 생명과학, 화학, 물리 분야의 전문 실험기계가 갖추어져 있어 초등, 중등, 고등 수준에 맞는 실험 ",
+   "contentId": "3080852"
+  },
+  {
+   "id": "t3452874",
+   "name": "폭포책방 아름인도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.581349,
+   "lng": 126.937035,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/74/3452674_image2_1.jpg",
+   "addr": "서울특별시 서대문구 연희로 262-24 (홍은동)",
+   "tel": "02-3217-0693",
+   "summary": "자연과 책을 사랑하는 사람들에게 특별한 경험을 선사하는 곳이며 시원하게 쏟아지는 폭포 소리를 배경 삼아 책을 읽으며 여유로운 시간을 보낼 수 있는 도서관이다.",
+   "contentId": "3452874"
+  },
+  {
+   "id": "t131318",
+   "name": "잠실한강공원 잠실물놀이장",
+   "cat": "물놀이",
+   "ints": [
+    "water",
+    "play",
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 80,
+   "lat": 37.517681,
+   "lng": 127.086751,
+   "base": 0.65,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1320,
+   "image": "",
+   "addr": "서울특별시 송파구 한가람로 65 (잠실동)",
+   "tel": "02-3431-8475~6",
+   "summary": "뚝섬, 여의도, 잠원한강공원에는 수영장이, 잠실, 난지, 양화한강공원에는 물놀이장이 매년 여름마다 운영되고 있다. 이용요금은 저렴하며, 철저한 수질관리로 안심하고 이용할 수 있다. 잠실물놀이장은 기존의 노후화된 잠실",
+   "contentId": "131318"
+  },
+  {
+   "id": "t3455122",
+   "name": "구로미래도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "plant"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.507051,
+   "lng": 126.891478,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1200,
+   "closedDays": [
+    2
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/75/3453375_image2_1.jpg",
+   "addr": "서울특별시 구로구 새말로 111 (구로동)",
+   "tel": "02-854-7466",
+   "summary": "구로미래도서관은 구로구 주민들의 지식 탐구와 문화 향유를 위한 새로운 공간이다. 단순한 도서관을 넘어, 미래 지향적인 시설과 다양한 프로그램을 통해 지역 사회의 문화적 허브 역할을 수행하고 있다. 또한 다양한 활동을",
+   "contentId": "3455122"
+  },
+  {
+   "id": "t3449373",
+   "name": "어깨동무도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "play"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.575035,
+   "lng": 126.886307,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/70/3449270_image2_1.jpg",
+   "addr": "서울특별시 마포구 월드컵로 386 (상암동)",
+   "tel": "02-716-9345",
+   "summary": "어린이 전문 도서관으로, 박정희대통령기념관 내에 자리하고 있다. 다양한 어린이 도서와 독서 공간을 제공하며, 아이들이 책과 친해질 수 있는 환경을 조성하고 있다. 책과 놀이를 통해 어린이들이 즐거운 시간을 보낼 수 ",
+   "contentId": "3449373"
+  },
+  {
+   "id": "t1604580",
+   "name": "국립중앙박물관 전통염료식물원",
+   "cat": "식물원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.521171,
+   "lng": 126.979128,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 420,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/52/3505552_image2_1.jpg",
+   "addr": "서울특별시 용산구 서빙고로 137 (용산동6가)",
+   "tel": "02-2077-9000",
+   "summary": "전통염료식물원은 국립중앙박물관 후원에 위치한 식물원으로, 한국 전통 염료문화의 소중함을 되살리는 공간이다. 국립중앙박물관에서는 우리 조상들이 색채를 연출하기 위해 이용하였던 전통염료식물들을 이곳에 심고 가꿈으로써 전",
+   "contentId": "1604580"
+  },
+  {
+   "id": "t3447859",
+   "name": "남산인권숲",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.558894,
+   "lng": 126.989804,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/70/3455270_image2_1.jpg",
+   "addr": "서울특별시 중구 퇴계로26가길 6 (예장동)",
+   "tel": "",
+   "summary": "남산인권숲은 본래 중앙정보부가 위치하던 곳이다. 지금은 터만 남기고 숲으로 되어 있으며 민주주의를 상징하는 기념비와 안내판이 설치되어 있다. 단순히 휴식 공간을 넘어 교육에 도움이 되는 장소이다.",
+   "contentId": "3447859"
+  },
+  {
+   "id": "t3442973",
+   "name": "김영삼 도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.505527,
+   "lng": 126.949981,
+   "base": 0.62,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1320,
+   "closedDays": [
+    1
+   ],
+   "image": "",
+   "addr": "서울특별시 동작구 매봉로 1 (상도1동)",
+   "tel": "02-827-0557",
+   "summary": "김영삼 도서관은 대한민국 전직 대통령 김영삼의 업적과 민주화 정신을 기리기 위해 설립된 공간이다. 서울 동작구 상도동에 위치하며, 그의 생애와 민주화 운동 자료를 아카이브화하여 보관하고 있다. 도서관에는 전시관, 열",
+   "contentId": "3442973"
+  },
+  {
+   "id": "t3429640",
+   "name": "성동책마루도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.563475,
+   "lng": 127.03698,
+   "base": 0.62,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1260,
+   "image": "",
+   "addr": "서울특별시 성동구 고산자로 270 (행당동)",
+   "tel": "02-2286-6025",
+   "summary": "성동책마루는 북카페 형식의 휴게공간으로 소장된 자료는 열람만 가능하다.",
+   "contentId": "3429640"
+  },
+  {
+   "id": "t3351814",
+   "name": "부천시수주도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.524378,
+   "lng": 126.816956,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/85/3408785_image2_1.jpg",
+   "addr": "경기도 부천시 오정구 고리울로8번길 77 (고강동)",
+   "tel": "032-625-4330",
+   "summary": "수주도서관은 경기도 부천시에 있는 도서관으로 2022년 7월에 개관했다. 부천시립도서관은 15개의 특성화된 도서관을 운영하는데 그 중 수주도서관은 '역사(고고학)'을 주제로 하고 있으며 다양한 역사 소재의 책과 만화",
+   "contentId": "3351814"
+  },
+  {
+   "id": "t3012716",
+   "name": "한생연융합교육과학관",
+   "cat": "박물관",
+   "ints": [
+    "play"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 70,
+   "lat": 37.58928,
+   "lng": 126.996835,
+   "base": 0.65,
+   "crowd": false,
+   "type": "play",
+   "open": 630,
+   "close": 960,
+   "closedDays": [
+    1
+   ],
+   "image": "",
+   "addr": "서울특별시 종로구 성균관로15길 32 (명륜1가)",
+   "tel": "070-7605-5200",
+   "summary": "한생연융합교육과학관은 아동과 청소년의 과학교육연구와 과학문화 확산을 위한 전문과학교육기관이다. 1993년 10월 18일 창립하여 전문 워크숍을 시작으로 청소년 전문과학교육을 시작했다. 종로에서 시작하여 목동, 반포,",
+   "contentId": "3012716"
+  },
+  {
+   "id": "t775883",
+   "name": "한강시민공원 뚝섬수영장(실외)",
+   "cat": "물놀이",
+   "ints": [
+    "water",
+    "play"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 80,
+   "lat": 37.529652,
+   "lng": 127.067117,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/45/2612845_image2_1.bmp",
+   "addr": "서울특별시 광진구 자양동",
+   "tel": "",
+   "summary": "뚝섬수영장은 서울시민들의 대표적인 휴식처인 뚝섬한강공원 내에 위치한 야외수영장이다. 약 3,500명 정도의 인원을 수용할 수 있는 대형 수영장이다. 이곳은 성인풀과 어린이풀, 유아풀로 나뉘어 있으며, 흐르는 물에 튜",
+   "contentId": "775883"
+  },
+  {
+   "id": "t809596",
+   "name": "여의도샛강생태공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "animal",
+    "train"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.518773,
+   "lng": 126.921961,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/74/3569374_image2_1.jpg",
+   "addr": "서울특별시 영등포구 여의동로 48 (여의도동)",
+   "tel": "여의도샛강생태공원 02-3780-0570",
+   "summary": "여의도샛강생태공원은 여의도 국회 뒤 샛강에서 가양대교 중앙까지로, 버드나무, 갈대, 억새 등의 군락을 이루고 있는 자연환경을 최대한 활용한 곳이다. 인근 지하철에서 발생하는 지하수를 이용하여 계류 폭포와 연못을 조성",
+   "contentId": "809596"
+  },
+  {
+   "id": "t130813",
+   "name": "성남시 수정도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "play"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.45244,
+   "lng": 127.152892,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 420,
+   "close": 1380,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/35/3053835_image2_1.jpg",
+   "addr": "경기도 성남시 수정구 수정로332번길 32 (산성동)",
+   "tel": "031-743-9600",
+   "summary": "성남시 수정도서관은 원도심 지역거점 도서관으로, 두텁고 촘촘한 맞춤형 독서 복지 구현을 위한 복합문화공간으로 시민 만족도를 향상하고자 노력하는 곳이다. 원도심 독서율 증진사업으로 지역 간 지식 정보 불균형을 해소하고",
+   "contentId": "130813"
+  },
+  {
+   "id": "t130830",
+   "name": "경기도교육청성남도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.446682,
+   "lng": 127.150056,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/71/3584771_image2_1.jpg",
+   "addr": "경기도 성남시 수정구 공원로370번길 26 (신흥동)",
+   "tel": "031-730-3500",
+   "summary": "경기도교육청성남도서관은 교육청 소속 도서관으로서 경기미래교육을 위한 책임을 다하고 있다. 1983년 처음 도서관 문을 열었으며, 40여 년을 성남시민들과 함께 하고 있다. 학교현장을 발로 뛰며 학생성장을 돕는 독서문",
+   "contentId": "130830"
+  },
+  {
+   "id": "t250470",
+   "name": "서울 고려대학교 중앙도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "draw",
+    "train"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.588247,
+   "lng": 127.03404,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/47/2953247_image2_1.jpg",
+   "addr": "서울특별시 성북구 안암로 145 (안암동5가)",
+   "tel": "02-3290-1492",
+   "summary": "이 건물은 고려대학교의 전신인 보성전문학교가 개교 30주년을 기념하여 세운 중앙도서관이다. 본관과 마찬가지로 한국인 건축가 박동진(1899~1982)이 설계하였고, 건축의 양식과 구조는 당시 교수로 있던 오천석의 모",
+   "contentId": "250470"
+  },
+  {
+   "id": "t3351748",
+   "name": "부천시립 별빛마루도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.466771,
+   "lng": 126.821169,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    0,
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/64/3408764_image2_1.jpg",
+   "addr": "경기도 부천시 소사구 옥길로 105 (옥길동)",
+   "tel": "032-625-9780",
+   "summary": "별빛마루도서관은 경기도 부천시에 있는 도서관으로 2020년 7월에 개관했다. 부천시립도서관은 15개의 특성화된 도서관을 운영하는데 그 중 별빛마루 도서관은 '놀자창의'를 주제로 하고 있으며 다양한 만화와 문학전집, ",
+   "contentId": "3351748"
+  },
+  {
+   "id": "t130815",
+   "name": "성남시 중원도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "draw",
+    "play"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.430281,
+   "lng": 127.140182,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1320,
+   "closedDays": [
+    5
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/74/3053774_image2_1.jpg",
+   "addr": "경기도 성남시 중원구 원터로17번길 46 (성남동)",
+   "tel": "031-752-3913",
+   "summary": "성남시 중원도서관은 2000년 5월 2일 개관한 도서관으로 다양한 정보자료의 축적 및 이용 활성화를 도모하고, 생애 주기별 평생학습 프로그램, 지식 정보취약계층 서비스, 여행 및 다문화 특성화 서비스 등 다양한 문화",
+   "contentId": "130815"
+  },
+  {
+   "id": "t753850",
+   "name": "키즈오토파크",
+   "cat": "체험 공방",
+   "ints": [
+    "play",
+    "train"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.549361,
+   "lng": 127.076293,
+   "base": 0.81,
+   "crowd": false,
+   "type": "play",
+   "open": 630,
+   "close": 930,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/03/3567303_image2_1.jpg",
+   "addr": "서울특별시 광진구 능동로 216",
+   "tel": "02-455-7119",
+   "summary": "키즈오토파크는 서울 어린이대공원 내 상상나라 뒤편에 있는 어린이교통안전체험관이다. 어린이들이 체험을 통해 교통안전을 쉽고 재미있게 배울 수 있도록 교육함으로 선진 교통 시민을 육성하고자 NGO(한국생활안전연합)와 기",
+   "contentId": "753850"
+  },
+  {
+   "id": "t2743740",
+   "name": "육영재단 어린이회관",
+   "cat": "키즈카페",
+   "ints": [
+    "play"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 90,
+   "lat": 37.547053,
+   "lng": 127.07819,
+   "base": 0.81,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    0,
+    6
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3393937_image2_1.JPG",
+   "addr": "서울특별시 광진구 광나루로 441",
+   "tel": "02-2204-6028",
+   "summary": "어린이회관은 어린이들의 복지 증진과 보육 환경을 조성하는 것을 목적으로 재단법인 육영재단이 설립한 복지 회관이다. 어린이를 위한 다양한 교육, 전시, 문화, 체육 시설들이 갖춰져 있으며, 10,000㎡ 규모의 과학관",
+   "contentId": "2743740"
+  },
+  {
+   "id": "t130822",
+   "name": "부천시립북부도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "train"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 45,
+   "lat": 37.520442,
+   "lng": 126.795086,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    0,
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/89/3335789_image2_1.JPG",
+   "addr": "경기도 부천시 원미구 삼작로301번길 5 (도당동)",
+   "tel": "032-625-4605",
+   "summary": "부천시립북부도서관은 도당동에 위치한 도서관으로 1999년 6월 1일 개관하였다. 총 3층 규모로 총 480석의 열람석을 갖추고 있다. 1층에는 다양한 책을 빌릴 수 있는 종합자료실을 마련하였고 2층에는 부천시민이 무",
+   "contentId": "130822"
+  },
+  {
+   "id": "t1131275",
+   "name": "매헌시민의 숲",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "play",
+    "water"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.469161,
+   "lng": 127.036838,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/02/3571602_image2_1.jpg",
+   "addr": "서울특별시 서초구 매헌로 99 (양재동)",
+   "tel": "02-575-3895",
+   "summary": "매헌시민의 숲은 우리나라 최초로 숲 개념을 도입한 공원으로 도심에서 보기 힘든 울창한 숲을 이루고 있는 공원이다. 86아시안 게임과 88올림픽을 앞두고 당시 서울의 관문이었던 양재 톨게이트 주변 환경을 개선하고자 1",
+   "contentId": "1131275"
+  },
+  {
+   "id": "t130817",
+   "name": "성남시 중앙도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.407187,
+   "lng": 127.134017,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 420,
+   "close": 1380,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/29/3062529_image2_1.jpg",
+   "addr": "경기도 성남시 분당구 판교로 546 (야탑동)",
+   "tel": "031-729-4500",
+   "summary": "성남시 중앙도서관은 경기도 성남시 분당구 야탑동 소재의 도서관으로 2001년 11월 13일 개관한 성남시 대표 도서관이다. 그동안 지역사회의 독서문화 환경 조성과 시민들의 독서 생활화를 위해 다양한 사업들을 추진해 ",
+   "contentId": "130817"
+  },
+  {
+   "id": "t3351807",
+   "name": "부천시립 한울빛도서관",
+   "cat": "도서관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.467996,
+   "lng": 126.796657,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    0,
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/73/3408773_image2_1.jpg",
+   "addr": "경기도 부천시 소사구 소사로 107 (소사본동)",
+   "tel": "032-625-9780",
+   "summary": "한울빛도서관은 경기도 부천시에 있는 도서관으로 2008년 9월에 개관했다. 부천시립도서관은 15개의 특성화된 도서관을 운영하는데 그 중 한울빛 도서관은 '자연과학'을 주제로 하고 있으며 다양한 과학 소재의 만화를 소",
+   "contentId": "3351807"
+  },
+  {
+   "id": "t2753103",
+   "name": "대림어린이공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.491123,
+   "lng": 126.903224,
+   "base": 0.81,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/93/3399393_image2_1.JPG",
+   "addr": "서울특별시 영등포구 대림로 106 (대림동)",
+   "tel": "영등포구청 정원도시과 02-2670-4091",
+   "summary": "영등포구 대림동에 위치한 공원으로, 어린이 놀이시설과 다양한 운동시설, 휴식공간이 갖춰져 있다. 또한 다양한 문화, 여가를 즐길 수 있는 공간으로 많은 시민들이 찾는 곳이다. 지역단체와 연계한 활동, 마을축제 등을 ",
+   "contentId": "2753103"
+  },
+  {
+   "id": "t130819",
+   "name": "부천시립심곡도서관",
+   "cat": "도서관",
+   "ints": [
+    "book",
+    "draw"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 45,
+   "lat": 37.480964,
+   "lng": 126.784302,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    0,
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/27/3565827_image2_1.JPG",
+   "addr": "경기도 부천시 소사구 성무로 24 (심곡본동)",
+   "tel": "032-625-4588",
+   "summary": "부천시립심곡도서관은 1985년 개관한 부천시 최초의 도서관으로 연면적 2,450㎡, 지상 4층 규모로 조성되었다. 2025년 9월 리모델링을 통해 새롭게 재개관한 도서관의 주요 시설로는 아동자료실, 일반자료실, 전자",
+   "contentId": "130819"
+  },
+  {
+   "id": "t2773287",
+   "name": "삼각어린이공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.501452,
+   "lng": 126.892014,
+   "base": 0.81,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3558637_image2_1.jpg",
+   "addr": "서울특별시 구로구 구로동",
+   "tel": "구로구청 공원녹지과 02-860-3165",
+   "summary": "서울 구로구 구로동에 위치한 삼각어린이공원은 지역 내 아이들이 넓고 쾌적한 공간에서 안심하고 마음껏 뛰어놀 수 있도록 만들어졌다. 공원은 지구 주위에 있는 태양, 달, 혜성 등의 놀이 행성으로 모험을 떠나는 주제로 ",
+   "contentId": "2773287"
+  },
+  {
+   "id": "t2476731",
+   "name": "롯데월드 아쿠아리움",
+   "cat": "동물원",
+   "ints": [
+    "animal",
+    "plant"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 90,
+   "lat": 37.514165,
+   "lng": 127.104075,
+   "base": 0.71,
+   "crowd": true,
+   "type": "play",
+   "open": 600,
+   "close": 1200,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/45/2384845_image2_1.jpg",
+   "addr": "서울특별시 송파구 올림픽로 300 (신천동)",
+   "tel": "1661-2000",
+   "summary": "전 세계 5대양을 그대로 옮겨놓은 13개의 다양한 테마존에서 해양생물과의 특별한 만남을 가질 수 있다. 강에서 연안으로, 연안에서 바다로 생태계의 흐름을 따라 걸으며 자연의 경이로움을 경험할 수 있다. 25m 넓이의",
+   "contentId": "2476731"
+  },
+  {
+   "id": "t2733981",
+   "name": "구로리어린이공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.491431,
+   "lng": 126.891845,
+   "base": 0.78,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/43/3468043_image2_1.jpg",
+   "addr": "서울특별시 구로구 구로중앙로 13 (구로동)",
+   "tel": "구로구 공원녹지과 02-860-2396",
+   "summary": "구로리공원은 서울시 구로구 구로동에 위치한 어린이 공원이다. 기존의 단조롭고 노후된 어린이 공원을 창의력을 키울 수 있는 공원으로 새롭게 단장하여 조성되었다. 어린이가 이용할 수 있는 다양한 시설과 조경을 갖추고 있",
+   "contentId": "2733981"
+  },
+  {
+   "id": "t822384",
+   "name": "북서울꿈의숲",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "draw"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.619724,
+   "lng": 127.044544,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/44/3540144_image2_1.jpg",
+   "addr": "서울특별시 강북구 월계로 173 (번동)",
+   "tel": "02-2289-4000",
+   "summary": "서울 강북과 도봉 등 6개 구에 둘러싸여 있는 초대형 공원인 북서울꿈의숲은 과거 드림랜드가 있던 자리 68만여㎡에 조성된 녹지공원으로 월드컵공원과 올림픽공원에 이어 서울에서 3번째로 큰 공원이다. 숲이 울창해 아름다",
+   "contentId": "822384"
+  },
+  {
+   "id": "t2756153",
+   "name": "쌈지 어린이공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.470297,
+   "lng": 126.897056,
+   "base": 0.78,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/29/3468029_image2_1.jpg",
+   "addr": "서울특별시 금천구 독산로76길 47",
+   "tel": "금천구 공원녹지과 02-2627-1654",
+   "summary": "쌈지 어린이공원은 서울 금천구 독산4동 주택가 가운데 위치한 982㎡ 면적의 어린이 전용 공원으로 상상 공원이라고도 불린다. 미끄럼틀에 붙은 작은 시설부터 계단 옆에 마련된 대형 암벽 등반대까지 어린이들의 근육 단련",
+   "contentId": "2756153"
+  },
+  {
+   "id": "t2591792",
+   "name": "개봉유수지 생태공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "play",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.492452,
+   "lng": 126.863214,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/55/3558655_image2_1.jpg",
+   "addr": "서울특별시 구로구 개봉동",
+   "tel": "구로구청 공원녹지과 02-860-2395",
+   "summary": "개봉유수지 생태공원은 유수지의 특성을 고려한 안정적인 생태기반환경 복원으로 조성하였다. 주변 주거지역과 연계한 다양한 서식공간 조성으로 종다양성을 증진하고 목감천의 하천생태축과 연계한 도시생태 네트워크를 구축했다. ",
+   "contentId": "2591792"
+  },
+  {
+   "id": "t128167",
+   "name": "신구대학교식물원",
+   "cat": "식물원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.433719,
+   "lng": 127.081165,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3020837_image2_1.jpg",
+   "addr": "경기도 성남시 수정구 적푸리로 9 (상적동)",
+   "tel": "031-724-1600",
+   "summary": "성남시 수정구 적푸리로에 위치한 신구대학교식물원은 식물자원을 개발하고 연구할 목적으로 2003년 5월 개원하여, 국내외 식물을 체계적으로 수집, 보존, 전시하고 있다. 식물연구 외에도 관련학과 실습교육장 역할은 물론",
+   "contentId": "128167"
+  },
+  {
+   "id": "t2733412",
+   "name": "안터생태공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "animal"
+   ],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.459384,
+   "lng": 126.869837,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/79/3527179_image2_1.jpg",
+   "addr": "경기도 광명시 안재로1번길 27 (하안동)",
+   "tel": "02-2619-1050",
+   "summary": "안터생태공원은 환경부의 생태계 보전 협력금 사업으로 금개구리의 서식처를 보호하기 위해 복원된 도심 속의 내륙 습지이다. 생태적 수질정화시스템을 통해 점 비점오염원을 처리하여 수질환경을 개선하고 건강한 생태계로 유도한",
+   "contentId": "2733412"
+  },
+  {
+   "id": "t2453996",
+   "name": "수도박물관",
+   "cat": "박물관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "stroller",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 70,
+   "lat": 37.539881,
+   "lng": 127.042277,
+   "base": 0.75,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/76/3309176_image2_1.jpg",
+   "addr": "서울특별시 성동구 왕십리로 27 (성수동1가)",
+   "tel": "02-3146-5921",
+   "summary": "수도박물관이 있는 이곳 뚝섬 지역에 우리나라 최초 정수장인 뚝도수원지 제1정수장이 들어섰다. 1903년 12월 9일 미국 기업인 콜브란(C.H.Collbran)과 보스트위크(H.R.Bostwick)는 고종황제로부터 ",
+   "contentId": "2453996"
+  },
+  {
+   "id": "t3442375",
+   "name": "어린이꿈공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "water"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.558534,
+   "lng": 127.036113,
+   "base": 0.72,
+   "crowd": false,
+   "type": "play",
+   "image": "",
+   "addr": "서울특별시 성동구 고산자로10길 18 (행당동)",
+   "tel": "02-2286-5664",
+   "summary": "어린이꿈공원은 서울 성동구 행당동에 위치한 어린이 맞춤형 놀이공원으로, 다양한 놀이시설을 갖추고 있다. 짚라인, 트램펄린, 모래놀이터, 암벽타기, 물놀이 시설 등 아이들이 창의력과 모험심을 키울 수 있는 공간으로, ",
+   "contentId": "3442375"
+  },
+  {
+   "id": "t2591809",
+   "name": "궁동저수지 생태공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "play",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.501218,
+   "lng": 126.82932,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/02/3570402_image2_1.jpg",
+   "addr": "서울특별시 구로구 궁동",
+   "tel": "구로구 공원녹지과 02-860-3177",
+   "summary": "궁동저수지생태공원은 옛 궁동저수지의 열악한 환경 개선과 더불어 친환경적인 공간을 조성하여 구로구 지역 주민에게 휴식 공간을 제공하고자 조성되었다. 이곳은 생태탐방로, 산책로, 전통 한식 정자, 휴게시설, 체육시설 등",
+   "contentId": "2591809"
+  },
+  {
+   "id": "t126495",
+   "name": "우이령 숲속문화마을(구 우이동 먹거리마을)",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.671701,
+   "lng": 127.006227,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/31/3393931_image2_1.JPG",
+   "addr": "서울특별시 강북구 삼양로181길 202 (우이동)",
+   "tel": "서울시 강북구 문화관광과 02-901-6202",
+   "summary": "우이령 숲속문화마을은 북한산 자락에 자리하고 있어 수려한 자연환경과 옛 정취를 간직한 곳이다. 우이동과 우이동공원유원지 일대를 말하는데, 이 일대에 많은 음식점들이 즐비해 있다. 우이신설경전철 종점인 북한산 우이역에",
+   "contentId": "126495"
+  },
+  {
+   "id": "t2781609",
+   "name": "무릉도원수목원",
+   "cat": "식물원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.503353,
+   "lng": 126.818215,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 570,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/06/2782006_image2_1.jpg",
+   "addr": "경기도 부천시 춘의동",
+   "tel": "032-625-3503, 4877",
+   "summary": "천무릉도원수목원은 2012년 10월 개원하였으며, 총면적은 210,298㎡에 1,334종의 수목을 보유하고 있다. 수목원 입구에 있는 오리연못에는 무릉도원수목원의 상징인 절리석의 기암절벽과 폭포가 있으며, 현실의 온",
+   "contentId": "2781609"
+  },
+  {
+   "id": "t2372228",
+   "name": "우리옛돌박물관",
+   "cat": "박물관",
+   "ints": [
+    "draw",
+    "plant"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 1000,
+   "stay": 70,
+   "lat": 37.60095,
+   "lng": 126.99015,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1020,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/15/3503215_image2_1.jpg",
+   "addr": "서울특별시 성북구 대사관로13길 66 (성북동)",
+   "tel": "02-986-1001",
+   "summary": "우리옛돌박물관은 전통과 현대가 공존하는 소통의 공간이다. 국내외에 흩어져 있던 한국 석조 유물을 한자리에 모아 설립한 석조 전문 박물관으로, 일본에서 환수한 유물을 포함해 문인석, 장군석, 동자석, 벅수, 석탑, 불",
+   "contentId": "2372228"
+  },
+  {
+   "id": "t129839",
+   "name": "서울대학교 박물관",
+   "cat": "박물관",
+   "ints": [
+    "draw"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 120,
+   "lat": 37.466351,
+   "lng": 126.948385,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1020,
+   "closedDays": [
+    0,
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/99/3574499_image2_1.jpg",
+   "addr": "서울특별시 관악구 관악로 1 서울대학교",
+   "tel": "02-880-5333",
+   "summary": "서울대학교박물관은 1946년 서울대학교의 개교와 함께 설립된 대학박물관으로서, 지속적인 연구와 보존, 발굴, 수집 활동 등을 이어가고 있다. 고고역사, 전통미술, 인류민속 등 다양한 분야의 소장품 약 8,000여 점",
+   "contentId": "129839"
+  },
+  {
+   "id": "t1916296",
+   "name": "한성백제박물관",
+   "cat": "박물관",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 70,
+   "lat": 37.515499,
+   "lng": 127.120665,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1140,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/55/3502855_image2_1.jpg",
+   "addr": "서울특별시 송파구 위례성대로 71 (방이동)",
+   "tel": "02-2152-5800",
+   "summary": "한성백제박물관은 서울이 2천 년 역사 도시라는 사실을 널리 알리기 위해 백제왕도 역사와 관련 깊은 유적들을 직접 보호·관리하면서 조사, 연구, 전시, 교육하고 있다. 서울의 고대 역사·문화를 조명하고, 문화유산의 의",
+   "contentId": "1916296"
+  },
+  {
+   "id": "t126499",
+   "name": "용산가족공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.520046,
+   "lng": 126.983266,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/49/3507949_image2_1.jpg",
+   "addr": "서울특별시 용산구 서빙고로 185 (용산동6가)",
+   "tel": "02-792-5661",
+   "summary": "용산가족공원은 넓은 잔디밭과 연못을 중심으로 서구풍의 분위기를 갖춘 공원이다. 역사적으로는 임진왜란, 임오군란, 갑신정변, 러일전쟁, 그리고 1906년부터 1945년까지의 기간 동안 왜군, 청나라 군사, 일본인들이 ",
+   "contentId": "126499"
+  },
+  {
+   "id": "t3067314",
+   "name": "남산예장공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book",
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.560522,
+   "lng": 126.988887,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/98/3067298_image2_1.JPG",
+   "addr": "서울특별시 중구 주자동",
+   "tel": "중구청 공원녹지과 02-3396-5852",
+   "summary": "조선시대 군사들의 훈련장이었던 남산예장자락을 복원한 공원으로, 지상과 지하로 나뉘어 있다. 지상에는 중앙정보부의 고문실을 재현한 ‘기억6’, 조선총독부 관사 터를 그대로 보존한 ‘유구터’, 남산의 역사와 문화를 소개",
+   "contentId": "3067314"
+  },
+  {
+   "id": "t1605966",
+   "name": "훈련원공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.567091,
+   "lng": 127.003435,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/83/3077783_image2_1.JPG",
+   "addr": "서울특별시 중구 을지로 227 (을지로5가)",
+   "tel": "서울 중구청 공원녹지과 02-3396-5852",
+   "summary": "이곳 훈련원 터는 병사의 무술훈련 및 병서전투대형 등의 강습을 맡았던 훈련원이 있었다. 훈련원은 조선 태조 원년(1392)에 설치되어 처음에는 훈련관으로 불렀는데, 태종 때 이곳으로 옮겨 청사 남쪽에 활쏘기 등 무예",
+   "contentId": "1605966"
+  },
+  {
+   "id": "t1906334",
+   "name": "동대문역사문화공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "train"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.566108,
+   "lng": 127.009571,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3566337_image2_1.jpg",
+   "addr": "서울특별시 중구 을지로 281 (을지로7가)",
+   "tel": "02-2153-0000",
+   "summary": "동대문역사문화공원은 서울특별시 중구의 옛 동대문운동장 자리에 조성한 공원이다. 서울의 옛 역사와 문화를 보여주는 테마공원이자, 현대의 디자인과 문화를 경험할 수 있는 전시관 및 행사장, 시민들의 휴식공간이다. 200",
+   "contentId": "1906334"
+  },
+  {
+   "id": "t753981",
+   "name": "몽마르뜨공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "plant",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.497682,
+   "lng": 127.004548,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/12/3456312_image2_1.jpg",
+   "addr": "서울특별시 서초구 반포대로 201 (반포동)",
+   "tel": "서초구청 푸른도시과 02-2155-5483",
+   "summary": "몽마르뜨공원은 서래마을 위쪽에 위치한 공원이다. 공원 인근에는 서래마을이 위치하고 있는데, 이곳에는 프랑스인들이 많이 거주하고 있어 공원의 이름을 몽마르뜨공원으로 명명하게 되었다. 몽마르뜨공원은 명칭만큼이나 예술과 ",
+   "contentId": "753981"
+  },
+  {
+   "id": "t2763685",
+   "name": "노들나루공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water",
+    "plant",
+    "play"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.513046,
+   "lng": 126.953491,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3458537_image2_1.JPG",
+   "addr": "서울특별시 동작구 노량진로 247 (본동)",
+   "tel": "02-826-1395",
+   "summary": "서울 동작구 노량진에 있는 노들나루공원은 노량진 배수지공원이라 불리다가 지금은 노들나루공원으로 명칭이 바뀐 근린공원이다. 바닥분수와 야외무대, 여러 가지 운동 시설이 갖춰져 있다. 푸른 잔디와 함께 장미꽃 광장도 조",
+   "contentId": "2763685"
+  },
+  {
+   "id": "t1604824",
+   "name": "경희궁공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.569898,
+   "lng": 126.970777,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/98/3531398_image2_1.jpg",
+   "addr": "서울특별시 종로구 새문안로 55 (신문로2가)",
+   "tel": "종로구청 도시녹지과 02-2148-2842",
+   "summary": "경희궁공원은 서울의 역사와 자연이 어우러진 아름다운 공간이다. 이곳은 조선 시대의 경희궁을 중심으로 조성되었으며, 고풍스러운 건축물과 함께 다양한 식물들이 조화를 이루고 있다. 공원 내에는 산책로와 잔디밭이 마련되어",
+   "contentId": "1604824"
+  },
+  {
+   "id": "t1604697",
+   "name": "세종로공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.573484,
+   "lng": 126.975977,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/51/3412051_image2_1.JPG",
+   "addr": "서울특별시 종로구 세종대로 지하189 (세종로)",
+   "tel": "02-2148-2843",
+   "summary": "세종로공원은 우리나라의 중심인 세종로 가로(경복궁-광화문-세종문화회관-청계천-서울광장)에 조성된 녹지공간이다. 노후되고 폐쇄되어 시민 이용에 한계가 있던 곳을 광화문광장과 연계하여 개방형 공원으로 탈바꿈하여 새로운 ",
+   "contentId": "1604697"
+  },
+  {
+   "id": "t3456362",
+   "name": "대현문화공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.557699,
+   "lng": 126.94493,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/80/3456380_image2_1.jpg",
+   "addr": "서울특별시 서대문구 이화여대1길 10 (대현동)",
+   "tel": "",
+   "summary": "서울에 있는 대현문화공원은 서울특별시 서대문구 대현동에 위치한 공원이다. 이 공원은 지역 주민들에게 자연과 여가 공간을 제공하며, 주변 도심 속에서 휴식을 취할 수 있는 장소로 사랑받고 있다. 대현문화공원은 다양한 ",
+   "contentId": "3456362"
+  },
+  {
+   "id": "t127942",
+   "name": "사직공원(서울)",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.575845,
+   "lng": 126.968722,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/83/3400583_image2_1.JPG",
+   "addr": "서울특별시 종로구 사직로 89 (사직동)",
+   "tel": "종로구청 공원조성팀 02-2148-2836",
+   "summary": "종로구에는 이름난 공원이 세 개 있다. 탑골공원, 사직공원, 삼청공원 등이 그것이다. 정부종합청사 서쪽, 인왕산 남동쪽 기슭에 있는 총넓이 188,710㎡의 사직공원은 조선 태조 이성계가 1395년에 종묘와 함께 맨",
+   "contentId": "127942"
+  },
+  {
+   "id": "t126487",
+   "name": "마로니에공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "water",
+    "draw"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.580242,
+   "lng": 127.002724,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/35/3506735_image2_1.jpg",
+   "addr": "서울특별시 종로구 대학로 104",
+   "tel": "02-2148-4158",
+   "summary": "마로니에공원은 서울 시민들을 위한 문화예술의 터전으로 옛 서울대학교 문리대, 법대 자리에 있다. 이곳에는 마로니에나무가 자라고 있는데 1929년 4월 5일 서울대학교의 전신인 경성제국대학 시절에 심은 것으로, 이 나",
+   "contentId": "126487"
+  },
+  {
+   "id": "t1604733",
+   "name": "숭인근린공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.577254,
+   "lng": 127.017914,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/45/3384845_image2_1.JPG",
+   "addr": "서울특별시 종로구 숭인동",
+   "tel": "02-2148-4152",
+   "summary": "숭인근린공원은 서울특별시 종로구 숭인동 동망산에 있는 공원이다. 동망산공원이라고도 한다. 1980년에 개원한 도시공원으로 주민들이 휴식과 산책, 가벼운 운동을 할 수 있도록 조성되었다. 면적 45,615㎡로서 주민들",
+   "contentId": "1604733"
+  },
+  {
+   "id": "t127269",
+   "name": "청담근린공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.521352,
+   "lng": 127.052616,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/32/3397532_image2_1.JPG",
+   "addr": "서울특별시 강남구 청담동",
+   "tel": "강남구청 공원녹지과 02-3423-6244",
+   "summary": "청담근린공원은 지극히 도시적인 청담동에 위치한 작고 아담한 공원이다. 대부분의 근린공원이 평지에 조성된 것과 달리 야산의 원형을 훼손하지 않고 산책길과 쉼터 등 인공 설치물과 자연스럽게 조화를 이루도록 조성되었다. ",
+   "contentId": "127269"
+  },
+  {
+   "id": "t1059479",
+   "name": "여의도한강공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water",
+    "train",
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.5264,
+   "lng": 126.93361,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/89/3544389_image2_1.jpg",
+   "addr": "서울특별시 영등포구 여의동로 330 (여의도동)",
+   "tel": "02-3780-0561~6",
+   "summary": "여의도한강공원은 정치, 금융, 언론의 중심지인 여의도에 자리하고 있으며, 지하철, 버스 등 대중교통으로 접근성이 좋아 직장인과 일반시민들이 즐겨 찾는 명소이다. 특히, 여의도 한강공원에서는 봄에는 벚꽃축제가, 가을에",
+   "contentId": "1059479"
+  },
+  {
+   "id": "t3456475",
+   "name": "창천근린공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "plant",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.557568,
+   "lng": 126.940316,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/50/3456450_image2_1.jpg",
+   "addr": "서울특별시 서대문구 연세로2라길 19 (창천동)",
+   "tel": "",
+   "summary": "창천근린공원은 서울특별시 서대문구 창천동에 위치한 도심 속 공원이다. 이 공원은 창천동 주민들의 휴식과 여가를 위해 조성된 녹지 공간이다. 공원은 다양한 나무와 잔디밭이 있어 자연 속에서 산책하거나 피크닉을 즐길 수",
+   "contentId": "3456475"
+  },
+  {
+   "id": "t753994",
+   "name": "살곶이체육공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water",
+    "play"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.554029,
+   "lng": 127.050465,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/42/3564942_image2_1.jpg",
+   "addr": "서울특별시 성동구 중랑천서자전거길 209 (사근동)",
+   "tel": "02-2286-6090",
+   "summary": "살곶이체육공원은 청계천이 중랑천과 만나는 자리 부근으로 한양대학교에서도 내려다보면 바로 보인다. 이곳은 인라인 전용 스케이트장, 축구장, 농구장, 배드민턴장 등 다목적 체육시설이 마련되어 있다. 공원 주변으로 자전거",
+   "contentId": "753994"
+  },
+  {
+   "id": "t2752545",
+   "name": "역삼개나리공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.497647,
+   "lng": 127.036284,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/86/3463086_image2_1.jpg",
+   "addr": "서울특별시 강남구 논현로79길 24 (역삼동)",
+   "tel": "강남구청 공원녹지과 02-3423-6248",
+   "summary": "역삼역 3번 출구 근처에 있는 도심 속 근린공원으로 어린이들을 위한 놀이터와 남녀노소가 모두 이용할 수 있는 운동 기구가 설치되어 있으며, 휴식을 위한 정자와 벤치가 있다. 인근 직장인들이 점심시간에 산책 및 쉼터로",
+   "contentId": "2752545"
+  },
+  {
+   "id": "t2760268",
+   "name": "여의도한강공원 멀티프라자",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.528269,
+   "lng": 126.931601,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/84/3544384_image2_1.jpg",
+   "addr": "서울특별시 영등포구 여의도동 84-4",
+   "tel": "여의도한강공원 02-3780-0561~6",
+   "summary": "여의도한강공원 멀티프라자는 여의도 한강공원에 내에 위치한 잔디 광장으로, 서울의 대표적인 여가 공간 중 하나이다. 한강의 아름다운 경치를 배경으로 다양한 문화와 여가 활동을 즐길 수 있는 복합 공간이다. 서울 불꽃축",
+   "contentId": "2760268"
+  },
+  {
+   "id": "t126488",
+   "name": "삼청공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.588927,
+   "lng": 126.98282,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/72/3400072_image2_1.JPG",
+   "addr": "서울특별시 종로구 삼청로 156 (삼청동)",
+   "tel": "02-2148-2842",
+   "summary": "삼청공원은 서울 종로구 삼청동에 있는 공원으로 1940년 3월에 도시계획공원 제1호로 지정된 공원이다. 서울 시내 중심부에 위치해 있으며 주변에 화랑가, 별미 맛집들이 많아 시민들의 산책 코스로 사랑받고 있다. 호젓",
+   "contentId": "126488"
+  },
+  {
+   "id": "t1019041",
+   "name": "와룡공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.591227,
+   "lng": 126.990158,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/93/1395493_image2_1.jpg",
+   "addr": "서울특별시 종로구 와룡공원길 192",
+   "tel": "종로구청 도시녹지과 02-2148-2832",
+   "summary": "와룡공원은 삼청근린공원, 창경근린공원, 북악산 도시자연공원이 연접해 있다. 토심이 얕아 수목생육이 어렵고, 아카시나무 등으로 산림이 조성되었으나 주민들이 생명의 나무 천만 그루 심기 행사에 스스로 참여하여 수목을 심",
+   "contentId": "1019041"
+  },
+  {
+   "id": "t2774305",
+   "name": "여의도공원 문화의마당",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "train"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.524753,
+   "lng": 126.920214,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/00/3399700_image2_1.JPG",
+   "addr": "서울특별시 영등포구 여의도동",
+   "tel": "02-761-4078~9",
+   "summary": "1971년 활주로가 있던 자리에 여의도 광장으로 문을 연 여의도공원은 다양한 국가 행사와 휴식의 여가를 담당하는 공간으로 자리 잡았다. 1999년 1월 검은 아스팔트를 걷어내고 녹색 쉼터로 새롭게 태어난 여의도공원은",
+   "contentId": "2774305"
+  },
+  {
+   "id": "t2742135",
+   "name": "뿌리깊은나무숲",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "play",
+    "animal"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.384465,
+   "lng": 127.013126,
+   "base": 0.65,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "",
+   "addr": "경기도 의왕시 학의동 474-1",
+   "tel": "0507-1352-1026",
+   "summary": "뿌리깊은나무숲은 경기도 의왕시 학의동에 있는 어린이를 위한 자연학습장이다. 동물 먹이 주기, 어린이 미로공원, 계절별 수확 활동(감자, 고구마 캐기 등) 같은 체험 활동이 가능하다. 여름에는 미니풀장이 마련되고, 그",
+   "contentId": "2742135"
+  },
+  {
+   "id": "t2756578",
+   "name": "뚝섬한강공원 벽천마당",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water",
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.529152,
+   "lng": 127.071316,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/65/3539865_image2_1.jpg",
+   "addr": "서울특별시 광진구 자양동",
+   "tel": "02-3780-0521~4",
+   "summary": "뚝섬한강공원에는 바닥에서 솟아오르는 시원한 물줄기를 감상할 수 있는 분수와 암벽 등반을 즐길 수 있는 벽천마당이 있다. 여의도한강공원 수상분수, 난지한강공원 거울분수와 함께 서울 3대 한강 분수공원 명소 중의 한 곳",
+   "contentId": "2756578"
+  },
+  {
+   "id": "t1030763",
+   "name": "뚝섬한강공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "play",
+    "draw"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.529419,
+   "lng": 127.073994,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/61/3534561_image2_1.jpg",
+   "addr": "서울특별시 광진구 강변북로 2273 (자양동)",
+   "tel": "02-3780-0521~4",
+   "summary": "뚝섬한강공원은 한강공원으로 새 단장하기 이전부터 강변유원지로 유명했던 곳이다. 공원 내에는 수변광장, 장미정원, 자연학습장, 어린이 놀이터 등이 조성되어 있다. 봄과 가을에는 카페테리아와 계절 꽃전시장으로, 여름에는",
+   "contentId": "1030763"
+  },
+  {
+   "id": "t1603175",
+   "name": "아시아공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.510082,
+   "lng": 127.076703,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3401537_image2_1.JPG",
+   "addr": "서울특별시 송파구 올림픽로 44",
+   "tel": "송파구청 공원녹지과 02-2147-3392",
+   "summary": "아시아공원은 1986년 아시안 게임을 대비하여 선수촌 및 기자촌 아파트 단지 건립과 함께 조성된 곳으로, 서울종합운동장 등 각종 경기시설이 인접해 있다. 소나무, 대추나무 등 다양한 나무 및 꽃들로 가득 찬 넓은 녹",
+   "contentId": "1603175"
+  },
+  {
+   "id": "t2752525",
+   "name": "마루공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "train",
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.496553,
+   "lng": 127.080816,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/61/3467561_image2_1.jpg",
+   "addr": "서울특별시 강남구 일원동",
+   "tel": "02-3411-9890",
+   "summary": "강남구 일원동에 있는 마루공원은 주차가 가능한 공원으로 반려견과 함께 산책하기 좋은 곳이다. 날씨가 좋을 때는 다수의 방문객이 공원에 설치된 그늘막 아래쪽에서 텐트와 의자를 펼치고 쉬는 모습을 볼 수 있다. 공원 내",
+   "contentId": "2752525"
+  },
+  {
+   "id": "t130726",
+   "name": "하남역사박물관",
+   "cat": "박물관",
+   "ints": [
+    "play"
+   ],
+   "fac": [
+    "parking",
+    "shade"
+   ],
+   "facKnown": [
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "stay": 70,
+   "lat": 37.545514,
+   "lng": 127.206101,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/40/3078540_image2_1.jpg",
+   "addr": "경기도 하남시 덕풍동로 30 (덕풍동)",
+   "tel": "031-790-7990",
+   "summary": "하남역사박물관은 하남시 대표 공립박물관으로 하남시의 역사와 문화를 시민들과 소통·공유하고자 개관하였다. 지역과 관련한 전시와 소장품 수집·관리, 시민들을 위한 교육프로그램 운영, 관내 문화재조사 등을 통해 지역민들과",
+   "contentId": "130726"
+  },
+  {
+   "id": "t2756575",
+   "name": "긴고랑공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water",
+    "draw",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.558907,
+   "lng": 127.091036,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/3468037_image2_1.jpg",
+   "addr": "서울특별시 광진구 긴고랑로 143 (중곡동)",
+   "tel": "광진구 공원녹지과 02-450-7770",
+   "summary": "서울 광진구 아차산 인근에 위치한 근린공원으로 긴고랑길, 주몽교 등 여러 산책코스로 구성되어 있다. 아차산 안심 둘레길 구간으로 인근 주민 및 등산객들이 많이 이용하는 공원이다. 아차산과 용마산 계곡 길이 만나는 곳",
+   "contentId": "2756575"
+  },
+  {
+   "id": "t3447960",
+   "name": "신도림테크노근린공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.508171,
+   "lng": 126.890886,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/31/3455931_image2_1.jpg",
+   "addr": "서울특별시 구로구 새말로 107-32 (구로동)",
+   "tel": "02-860-2114",
+   "summary": "지역 주민들에게 휴식과 여가 공간을 제공하는 중요한 시설이다. 신도림역 인근에 위치하여 접근성이 뛰어나며, 주변의 주거 및 상업 지역과 조화를 이루고 있다. 공원 내에는 어린이 놀이터, 쉼터 등이 있어 가족 단위 방",
+   "contentId": "3447960"
+  },
+  {
+   "id": "t2749064",
+   "name": "용마골소공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.446852,
+   "lng": 126.993315,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/04/2768904_image2_1.jpg",
+   "addr": "경기도 과천시 과천동",
+   "tel": "과천시 공원녹지과 02-3677-2363",
+   "summary": "용마골소공원은 경기도 과천시 과천동에 있는 산책하기 좋은 코스를 가진 소공원이다. 관악산 자락의 둘레길과 이어져 등산객들이 오며 가며 많이 들러 쉬는 공간이기도 하다. 주변에 공원 주차장이 있어 주차 걱정 없이 무료",
+   "contentId": "2749064"
+  },
+  {
+   "id": "t1602451",
+   "name": "대모산도시자연공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.480052,
+   "lng": 127.081014,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/45/3589845_image2_1.jpg",
+   "addr": "서울특별시 강남구 일원동",
+   "tel": "강남구청 공원녹지과 02-3423-6283",
+   "summary": "강남구에 위치한 대모산은 국수봉이라고도 불렸던 높이 293m의 나지막한 산이다. 산 모양이 늙은 할미와 같다 하여 할미산으로 불리다가 태종의 헌릉을 모신 후 어명으로 대모산으로 고쳤다고 한다. 산 입구에는 각종 희귀",
+   "contentId": "1602451"
+  },
+  {
+   "id": "t2733966",
+   "name": "거리공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "plant",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.499552,
+   "lng": 126.891614,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/42/3558642_image2_1.jpg",
+   "addr": "서울특별시 구로구 구로동",
+   "tel": "구로구청 공원녹지과 02-860-3090",
+   "summary": "구로거리공원은 서울 구로구에 위치한 공원으로, 지역 주민들의 여가와 휴식을 위한 공간이다. 구로구 거리공원오거리에서 신도림역에 이르는 보조 간 선급 가로를 거리공원길이라고 하는데, 구로 거리공원을 따라 이어진 길이라",
+   "contentId": "2733966"
+  },
+  {
+   "id": "t3453040",
+   "name": "녹번서공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.605518,
+   "lng": 126.923989,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/96/3452496_image2_1.jpg",
+   "addr": "서울특별시 은평구 서오릉로 52 (녹번동)",
+   "tel": "02-351-8002",
+   "summary": "녹번서공원은 서울 은평구 녹번동에 위치한 자연친화적인 공원으로, 다양한 식물과 나무들이 자생하는 공간입니다. 특히 봄과 가을에는 꽃과 단풍을 감상할 수 있으며, 자연학습장, 운동기구, 도서관 등 다양한 시설이 마련되",
+   "contentId": "3453040"
+  },
+  {
+   "id": "t2591829",
+   "name": "구로근린공원(이씨레물리노공원)",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book",
+    "water",
+    "draw"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.497172,
+   "lng": 126.889992,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/77/3399877_image2_1.JPG",
+   "addr": "서울특별시 구로구 가마산로25길 21 (구로동)",
+   "tel": "구로구청 공원녹지과 02-860-3086",
+   "summary": "구로근린공원은 2008년 8월 지역 주민들을 위한 휴식 공간으로 건립되었다. 이곳은 구로구민회관 등의 다양한 문화 예술 공간을 끼고 있어 가족들의 문화 나들이 공간으로 적합하다. 공원 입구에는 구로구와 자매도시인 프",
+   "contentId": "2591829"
+  },
+  {
+   "id": "t3448217",
+   "name": "디큐브시티 해바라기 공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water"
+   ],
+   "fac": [],
+   "facKnown": [],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.50629,
+   "lng": 126.885406,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/42/3452942_image2_1.jpg",
+   "addr": "서울특별시 구로구 경인로 624 (신도림동)",
+   "tel": "02-860-2114",
+   "summary": "신도림역과 직접 연결되어 있어 접근성이 우수하며, 도심 속에서 자연과 휴식을 즐길 수 있는 공간이다. 약 6,000평 규모로, 해바라기 광장, 야생화 계곡, 장미터널, 770석 규모의 야외극장 등 다양한 시설을 갖추",
+   "contentId": "3448217"
+  },
+  {
+   "id": "t127859",
+   "name": "난지한강공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "water",
+    "plant",
+    "animal"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.563025,
+   "lng": 126.885155,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/63/3571763_image2_1.jpg",
+   "addr": "서울특별시 마포구 한강난지로 162 (상암동)",
+   "tel": "02-3780-0611~3",
+   "summary": "난지한강공원은 홍제천교에서 난지천교 사이에 위치해 있다. 한강르네상스 사업으로 새롭게 조성된 난지한강공원은 노을공원, 하늘공원과 연결되는 중앙연결브릿지, 평화의 공원 연결브릿지, 복합연결통로 완공으로 공원을 이용하는",
+   "contentId": "127859"
+  },
+  {
+   "id": "t2611735",
+   "name": "오목공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "water",
+    "draw"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.527654,
+   "lng": 126.873643,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/78/3384678_image2_1.JPG",
+   "addr": "서울특별시 양천구 목동서로 159-2 (목동)",
+   "tel": "양천구청 공원녹지과 02-2620-3576",
+   "summary": "오목공원은 양천구청 목동에 위치한 근린공원으로, 1989년에 개원하였다. 공원 이름은 ‘오목하게 골이 파인 하천’이라는 뜻을 가진 ‘오목내’로부터 유래했다. 주변에 방송국을 비롯해 고층 오피스빌딩, 아파트들이 자리 ",
+   "contentId": "2611735"
+  },
+  {
+   "id": "t2761797",
+   "name": "올림픽공원피크닉장",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.520609,
+   "lng": 127.115068,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/93/3467493_image2_1.jpg",
+   "addr": "서울특별시 송파구 올림픽로 424 (방이동)",
+   "tel": "02-410-1114",
+   "summary": "서울 송파구 올림픽공원 몽촌 토성을 올라가는 길에 조성된 넓은 잔디광장이다. 올림픽공원은 어디든 산책하고 쉴 수 있는 곳이지만 이곳은 돗자리를 깔고 아이들과 마음껏 뛰어놀 수 있는 공간이다. 가족 단위 나들이객과 야",
+   "contentId": "2761797"
+  },
+  {
+   "id": "t866393",
+   "name": "오동근린공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "plant"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.629553,
+   "lng": 127.033414,
+   "base": 0.68,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/56/3540156_image2_1.jpg",
+   "addr": "서울특별시 강북구 번동",
+   "tel": "강북구청 공원녹지과 02-901-6929 성북구청 공원녹지과 02-224",
+   "summary": "오동근린공원은 서울시 강북구와 성북구에 걸쳐 있다. 강북구 번동, 미아동 외 5개 동과 성북구 월곡동에 걸쳐 있는 대단위 공원이다. 공원에 수림이 잘 형성되어 있고, 체력단련시설과 배드민턴장, 유아숲체험장, 놀이터,",
+   "contentId": "866393"
+  },
+  {
+   "id": "t2758809",
+   "name": "한양공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "water",
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.504064,
+   "lng": 127.115549,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/69/3401469_image2_1.JPG",
+   "addr": "서울특별시 송파구 송파동 152",
+   "tel": "송파구청 공원녹지과 02-2147-3394",
+   "summary": "한양공원은 서울 송파구 송파2동에 위치한 곳으로, 송파한양 2차 아파트 옆으로 길게 조성된 공원이다. 이곳은 30년 넘게 한 자리를 지키며 인근 시민들에게 휴식 공간을 제공한다. 공원의 규모는 근린공원 중 소형에 속",
+   "contentId": "2758809"
+  },
+  {
+   "id": "t2783339",
+   "name": "별책부록",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.544985,
+   "lng": 126.987013,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 840,
+   "close": 1140,
+   "closedDays": [
+    1,
+    2
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/61/2794361_image2_1.jpg",
+   "addr": "서울특별시 용산구 신흥로16길 7 (용산동2가)",
+   "tel": "070-4007-6690",
+   "summary": "서울시 용산구 해방촌 조용한 주택가 한편에 위치한 독립서점으로, 특유의 따스한 분위기가 매력적이다. 화이트와 우드 톤으로 꾸며진 인테리어는 화사하면서도 책 한 권 한 권의 매력을 오롯이 드러낸다. 이곳에선 국내외의 ",
+   "contentId": "2783339"
+  },
+  {
+   "id": "t1116925",
+   "name": "갈산공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "train",
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.506118,
+   "lng": 126.868411,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/90/3467490_image2_1.jpg",
+   "addr": "서울특별시 양천구 신정동 162-56",
+   "tel": "양천구 공원녹지과 02-2620-4569",
+   "summary": "대체로 산세가 둥근 양천구의 다른 산들과는 달리 갈산은 동쪽 부분이 벼랑처럼 깎인 절경을 뽐낸다. 안양천의 오랜 침식작용으로 산 정상이 칼날처럼 변한 것으로 ‘칼산’이라는 이름으로 불리다가 ‘갈산’으로 순화되었다. ",
+   "contentId": "1116925"
+  },
+  {
+   "id": "t2611575",
+   "name": "양천생활안전체험교육관",
+   "cat": "박물관",
+   "ints": [
+    "play"
+   ],
+   "fac": [
+    "shade"
+   ],
+   "facKnown": [
+    "stroller",
+    "shade"
+   ],
+   "indoor": true,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 70,
+   "lat": 37.51678,
+   "lng": 126.863744,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "open": 600,
+   "close": 720,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/69/2611569_image2_1.bmp",
+   "addr": "서울특별시 양천구 목동서로 363 (신정동)",
+   "tel": "02-2620-4397~9",
+   "summary": "양천문화회관 옆에 위치한 양천생활안전체험교육관은 2016년 8월25일에 개관하였다. 양천구는 일상생활 속 안전사고의 위험을 사전에 예방하고, 다양한 체험교육을 통해 응급상황에 대한 대처능력을 키우고자 공간을 조성했다",
+   "contentId": "2611575"
+  },
+  {
+   "id": "t127376",
+   "name": "천호공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "book"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.544723,
+   "lng": 127.126936,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/30/3393830_image2_1.JPG",
+   "addr": "서울특별시 강동구 올림픽로 702",
+   "tel": "02-489-2776",
+   "summary": "천호공원은 서울시 강동구 천호동에 위치하고 있으며, 1998년 6월 20일에 조성되었다. 이곳은 과거 만년필로 유명한 파이롯트 회사의 공장부지를 서울시가 매입하여 조성한 공원이다. 공원 내에는 2008년 6월 26일",
+   "contentId": "127376"
+  },
+  {
+   "id": "t2751890",
+   "name": "은곡마을공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "water",
+    "plant"
+   ],
+   "fac": [],
+   "facKnown": [
+    "stroller",
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.468112,
+   "lng": 127.100482,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/60/3397460_image2_1.JPG",
+   "addr": "서울특별시 강남구 세곡동 369-3",
+   "tel": "강남구청 공원녹지과 02-3423-6247",
+   "summary": "서울 강남구 세곡동 자연마을인 은곡마을에 위치한 근린공원으로, 어린이 놀이시설과 다양한 운동시설, 분수가 있다. 은곡마을은 과거에 막은골이라고 한 것에서 유래했는데, 막은골은 나무를 심어서 마을 입구를 막은 데서 유",
+   "contentId": "2751890"
+  },
+  {
+   "id": "t1115299",
+   "name": "봉화산근린공원",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.61061,
+   "lng": 127.092246,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/96/3568496_image2_1.jpg",
+   "addr": "서울특별시 중랑구 봉화산로45길",
+   "tel": "중랑구 공원녹지과 02-2094-2357",
+   "summary": "봉화산근린공원은 점토벽돌로 포장된 110평 규모의 진입광장을 비롯해 어린이 놀이터, 전통놀이마당, 주민건강마당, 야외무대 및 주민 쉼터 등으로 꾸며져 있다. 또한 공원을 따라 순환하며 조깅과 산책을 즐길 수 있는 6",
+   "contentId": "1115299"
+  },
+  {
+   "id": "t2748983",
+   "name": "서울대공원 산림욕장",
+   "cat": "놀이터·공원",
+   "ints": [
+    "plant",
+    "animal"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.425252,
+   "lng": 127.015616,
+   "base": 0.71,
+   "crowd": true,
+   "type": "play",
+   "open": 540,
+   "close": 1080,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/81/3537381_image2_1.jpg",
+   "addr": "경기도 과천시 막계동",
+   "tel": "서울대공원 조경과 02-500-7541",
+   "summary": "서울대공원 산림욕장길은 동물원 관리도로로 들어와 호주관 입구 또는 북문입구를 통해 이용할 수 있다. 총 7㎞로 약 2시간 30분 정도 소요된다. 산림욕장길은 호주관 입구에서 시작해서 선녀못이 있는 숲, 아까시나무 숲",
+   "contentId": "2748983"
+  },
+  {
+   "id": "t2611887",
+   "name": "신트리공원(서울)",
+   "cat": "놀이터·공원",
+   "ints": [
+    "play",
+    "plant",
+    "book"
+   ],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": false,
+   "fee": 0,
+   "feeUnknown": true,
+   "stay": 60,
+   "lat": 37.514653,
+   "lng": 126.856514,
+   "base": 0.71,
+   "crowd": false,
+   "type": "play",
+   "image": "https://tong.visitkorea.or.kr/cms/resource/43/3551343_image2_1.jpg",
+   "addr": "서울특별시 양천구 신정동",
+   "tel": "양천구청 공원녹지과 02-2620-3576",
+   "summary": "신트리공원은 일상의 여유와 자연의 숨결이 공존하는 양천구의 대표 근린공원이다. 2025년 실내 놀이터 건립과 함께 공원 리노베이션을 통해 누구나 편안하게 머물고, 함께 어울리며 자연을 느낄 수 있는 열린 공간으로 새",
+   "contentId": "2611887"
+  },
+  {
+   "id": "t2842714",
+   "name": "늘봄해물찜&손칼국수 답십리본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.568614,
+   "lng": 127.056822,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/09/2842709_image2_1.jpg",
+   "addr": "서울특별시 동대문구 전농로 39 (답십리동)",
+   "tel": "02-2215-5051",
+   "summary": "늘봄 해물찜&손칼국수 답십리 본점은 서울특별시 동대문구 답십리동에 위치하고 있다. 갈비해물찜과 아귀찜 등의 찜메뉴와 바지락칼국수, 해물낙지칼국수, 들깨칼국수, 팥새알죽 등의 식사류도 맛볼 수 있다. 식당 주변에 답십",
+   "contentId": "2842714"
+  },
+  {
+   "id": "t2899312",
+   "name": "아방베이커리 서울숲점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.544536,
+   "lng": 127.043288,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1290,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/01/2899301_image2_1.JPG",
+   "addr": "서울특별시 성동구 왕십리로 83-21 아크로 서울포레스트",
+   "tel": "02-6233-7625",
+   "summary": "아방베이커리 서울숲점은 수인 분당선 서울숲역 4번 출구 아크로서울포레스트 지하 1층 상가에 있다. 자가용 이용 시 주차할 수 있고 버스나 지하철 등 대중교통을 이용할 수 있다. 매장 입구에는 바로 카운터가 있고 중앙",
+   "contentId": "2899312"
+  },
+  {
+   "id": "t3444607",
+   "name": "남산도서관 구내식당",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.552453,
+   "lng": 126.981366,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 570,
+   "close": 1170,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/49/3444449_image2_1.png",
+   "addr": "서울특별시 용산구 소월로 109 (후암동)",
+   "tel": "02-733-3674",
+   "summary": "서울 남산도서관 구내식당은 도서관을 이용하는 방문객들에게 편리하고 저렴한 식사를 제공하는 공간이다. 남산의 자연과 어우러진 도서관의 조용한 분위기 속에서 휴식과 식사를 즐길 수 있다. 식사 옵션: 일반적으로 한식 중",
+   "contentId": "3444607"
+  },
+  {
+   "id": "t2808041",
+   "name": "후암편백",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.551064,
+   "lng": 126.976905,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1410,
+   "closedDays": [
+    6
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/96/3578196_image2_1.jpg",
+   "addr": "서울특별시 용산구 후암로 57-1",
+   "tel": "02-318-2208",
+   "summary": "용산구 후암동에 위치한 후암편백은 세계 사대진미로 꼽히는 이베리코 흑돼지로 편백나무틀로 건강하게 기름기를 뺀 찜요리 전문점이다. 편백 찜뿐만 아니라 이베리코 철판요리, 샤부샤부, 밀푀유나베, 김치우동 등을 맛볼 수 ",
+   "contentId": "2808041"
+  },
+  {
+   "id": "t3458089",
+   "name": "서울로PH",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.556361,
+   "lng": 126.968175,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 540,
+   "close": 1320,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/06/3455306_image2_1.jpg",
+   "addr": "서울특별시 중구 만리재로 211 (만리동1가)",
+   "tel": "0507-1417-2111",
+   "summary": "서울로PH는 서울 중구 만리동에 위치한 복합 문화 공간으로, 서울역과 서울로7017을 한눈에 조망할 수 있는 탁 트인 전망과 다양한 문화 프로그램을 즐길 수 있는 곳이다. 11층부터 13층까지 이어지는 넓은 공간에는",
+   "contentId": "3458089"
+  },
+  {
+   "id": "t2870803",
+   "name": "알라프리마",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.513603,
+   "lng": 127.02604,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 720,
+   "close": 1320,
+   "closedDays": [
+    2
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/85/2870785_image2_1.jpg",
+   "addr": "서울특별시 강남구 학동로17길 13 (논현동, 인본)",
+   "tel": "02-511-2555",
+   "summary": "알라프리마는 코스요리 전문 레스토랑이다. 7호선 학동역 6번 출구 논현 1동 파출소 인근 논현가구거리 초입에 있다. 발레파킹 서비스(유료)를 받을 수 있는 이곳은 유러피안 아시안이 결합된 컨템퍼러리 레스토랑이다. 미",
+   "contentId": "2870803"
+  },
+  {
+   "id": "t3446417",
+   "name": "오설록 티하우스 북촌점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.581067,
+   "lng": 126.984587,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1260,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/84/3446384_image2_1.JPG",
+   "addr": "서울특별시 종로구 북촌로 45 (가회동)",
+   "tel": "070-4121-2019",
+   "summary": "오설록 티하우스 북촌점은 서울 북촌에 위치한 전통적인 차와 현대적인 감각이 결합된 티하우스이다. 북촌의 고즈넉한 분위기와 어울리는 아늑한 인테리어가 특징이며, 차와 함께 제공되는 디저트는 고유의 맛을 강조한 메뉴로 ",
+   "contentId": "3446417"
+  },
+  {
+   "id": "t2789667",
+   "name": "구스아일랜드 브루하우스",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.493483,
+   "lng": 127.032196,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1440,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/57/2796157_image2_1.jpg",
+   "addr": "서울특별시 강남구 역삼로 118 (역삼동)",
+   "tel": "02-6205-1785",
+   "summary": "구스 아일랜드 브루하우스는 시카고 딥디쉬 피자와 오리지널 버팔로윙이 인기 메뉴인 브루하우스이다. 피자는 치즈가 가득하고 두꺼운 정통 시카고 스타일이며, BBQ 랜치 치킨 샐러드는 수비드 닭가슴살과 신선한 채소가 조화",
+   "contentId": "2789667"
+  },
+  {
+   "id": "t2814649",
+   "name": "온정텐동",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.559357,
+   "lng": 126.925787,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1380,
+   "image": "",
+   "addr": "서울특별시 마포구 양화로23길 10-10",
+   "tel": "02-6408-1750",
+   "summary": "홍대입구역에 위치한 온정텐동은 텐동을 전문으로 하는 유명한 곳이다. 특히 바삭바삭한 튀김이 사람들에게 인기를 끌고 있다. 대표 메뉴로는 제일 기본적인 온정 텐동이다. 또한 야사이텐동, 에비텐동, 니쿠니쿠텐동, 수제가",
+   "contentId": "2814649"
+  },
+  {
+   "id": "t403407",
+   "name": "까델루뽀",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.5818,
+   "lng": 126.971349,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 720,
+   "close": 1290,
+   "closedDays": [
+    0
+   ],
+   "image": "",
+   "addr": "서울특별시 종로구 자하문로16길 5-5",
+   "tel": "0507-1412-5233",
+   "summary": "까델루뽀는 종로구 효자동에 위치한 이탈리아 레스토랑이다. 까델루뽀는 이탈리아 레스토랑이지만, 음식점은 한옥으로 되어있는 것이 특징이다. 사람의 고정관념을 깨듯 동서양의 조화가 잘 이루어진다. 동양의 온화함과 서양의 ",
+   "contentId": "403407"
+  },
+  {
+   "id": "t2870343",
+   "name": "뽕나무쟁이 선릉본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.503252,
+   "lng": 127.052016,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 720,
+   "close": 1370,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/37/2870337_image2_1.jpg",
+   "addr": "서울특별시 강남구 역삼로65길 31 (대치동)",
+   "tel": "02-558-9279",
+   "summary": "강남에서 일명 뽕족이라고 불리는 족발집이다. 매장이 주택 단지 내에 있어 주차장이 협소하다. 1층에 본관이 있고, 지하 1층 별관은 배달 전문 매장으로 구분되어 있다. 본관에 홀은 넓은 편이어서 동시 370석 수용이",
+   "contentId": "2870343"
+  },
+  {
+   "id": "t2900309",
+   "name": "고미정",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.572758,
+   "lng": 126.937039,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1260,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/06/2900306_image2_1.jpg",
+   "addr": "서울특별시 서대문구 연희로26길 28 (연희동)",
+   "tel": "0507-1384-0297",
+   "summary": "서대문구 연희동에 있는 한식 전문점이다. 연세대학교 북문 아래쪽에 있으며, 건물 2층과 3층을 사용하는 식당이다. 이천쌀밥정식, 고사리소불고기정식, 간장게장정식 등 정갈한 한식 메뉴를 제공한다. 특히 간장게장은 적당",
+   "contentId": "2900309"
+  },
+  {
+   "id": "t2856474",
+   "name": "스즈란테이",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.520001,
+   "lng": 126.974442,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1260,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/48/2856448_image2_1.jpg",
+   "addr": "서울특별시 용산구 이촌로 245 (이촌동, 로얄상가)",
+   "tel": "02-749-5324",
+   "summary": "스즈란테이 일식당은 4호선, 경의중앙선 이촌역 3-1번 출구 인근에 있다. 주차시설 따로 없고 주변 공영주차장을 이용해야 한다. 건물 외부에 작은 간판이 걸려 있고 지하로 내려가면 식당이 있다. 다양한 일본 가정식 ",
+   "contentId": "2856474"
+  },
+  {
+   "id": "t2853965",
+   "name": "미나미야마 본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.557303,
+   "lng": 126.985934,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1260,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/51/2853951_image2_1.jpg",
+   "addr": "서울특별시 중구 소파로 105",
+   "tel": "070-4007-6696",
+   "summary": "명동역에서 도보 10분 거리에 있는 경양식 돈가스 전문점이다. 왕돈가스가 대표 메뉴이다. 그 외에도 철판치즈돈가스, 생선가스, 짬뽕라멘, 사누끼우동 등 다양한 메뉴가 있다. 1층은 주차장이고 2층으로 올라가면 식사할",
+   "contentId": "2853965"
+  },
+  {
+   "id": "t3444919",
+   "name": "채홍",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.505178,
+   "lng": 126.951986,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1250,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/70/3444670_image2_1.jpg",
+   "addr": "서울특별시 동작구 강남초등길 24 (상도1동)",
+   "tel": "02-826-8885",
+   "summary": "동네 주민들과 중앙대학교 근처 학생들에게 인기 있는 중국 요리 전문점이다. 실내는 깔끔하고 2층 좌석이 있어 프라이빗한 식사가 가능하며 가성비 좋은 가격대로 회식이나 가족 외식에 적합한 식당이다.",
+   "contentId": "3444919"
+  },
+  {
+   "id": "t2845098",
+   "name": "스시도쿠 왕십리본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.561,
+   "lng": 127.036083,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/89/2845089_image2_1.jpg",
+   "addr": "서울특별시 성동구 왕십리광장로 6 (행당동)",
+   "tel": "0507-1320-3255",
+   "summary": "스시도쿠 왕십리 본점은 서울특별시 성동구 행당동에 있는 초밥 전문점이다. 대중교통을 이용한다면 지하철 2호선, 5호선, 경의중앙선, 수인분당선을 이용해 왕십리역 7번 출구로 나오면 바로 앞이다. 모든 음식은 주문과 ",
+   "contentId": "2845098"
+  },
+  {
+   "id": "t2839130",
+   "name": "문화식당",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.592827,
+   "lng": 126.99821,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/21/2839121_image2_1.jpg",
+   "addr": "서울특별시 성북구 혜화로 88",
+   "tel": "02-763-4644",
+   "summary": "문화식당은 4호선 한성대입구역 5번 출구 성북파출소 맞은편 경신고등학교 근처 오르막에 있다. 건물 2층에 있고 2층은 대기 공간과 테이블이 몇 개 있고 3층이 넓고 그림이 많이 걸려 있어 전시회장 같다. 반려동물 출",
+   "contentId": "2839130"
+  },
+  {
+   "id": "t2838417",
+   "name": "송화산시도삭면",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.537962,
+   "lng": 127.066528,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1380,
+   "closedDays": [
+    2
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/08/2838408_image2_1.jpg",
+   "addr": "서울특별시 광진구 뚝섬로27길 48 (자양동)",
+   "tel": "0507-1319-7828",
+   "summary": "송화산시도삭면은 지하철 2, 7호선 건대입구역 6번 출구에서 가깝다. 매장은 좁은 상가 거리에 있어 별도 주차장은 없다. 대표 메뉴인 도삭면은 밀가루 반죽을 통으로 썰어 만든 국수라 보통의 국수보다 면발이 길지 않다",
+   "contentId": "2838417"
+  },
+  {
+   "id": "t403995",
+   "name": "진주집",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.520845,
+   "lng": 126.926921,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1200,
+   "closedDays": [
+    0
+   ],
+   "image": "",
+   "addr": "서울특별시 영등포구 국제금융로6길 33 (여의도동)",
+   "tel": "02-780-6108",
+   "summary": "여의도백화점 지하상가에 위치한 진주집은 콩국수로 소문이 난 곳이다. 1974년에 개업하여 현재까지도 사람들에게 많은 사랑을 받아온 식당이다. 평일 점심시간에는 직장인들이 자주 찾는 곳이다. 진주집의 대표메뉴는 콩국수",
+   "contentId": "403995"
+  },
+  {
+   "id": "t2839061",
+   "name": "고른햇살",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.587058,
+   "lng": 127.029474,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 390,
+   "close": 1410,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/47/2839047_image2_1.jpg",
+   "addr": "서울특별시 성북구 개운사길 14",
+   "tel": "02-953-3394",
+   "summary": "고른햇살은 6호선 안암역 2번 출구 고려대학교 인근에 있는 분식점이다. 실내는 테이블마다 태블릿으로 주문하는 시스템으로 되어 있고 물, 단무지, 김치, 장국은 셀프로 가져다 먹게 되어 있다. 가장 인기 있는 주메뉴는",
+   "contentId": "2839061"
+  },
+  {
+   "id": "t2838508",
+   "name": "호야초밥참치 본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.543709,
+   "lng": 127.070149,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1320,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/05/2838505_image2_1.jpg",
+   "addr": "서울특별시 광진구 능동로13길 39 한아름건물",
+   "tel": "02-461-3739",
+   "summary": "호야초밥참치 본점은 지하철 2, 7호선 건대입구역 3번 출구 화양초등학교 부근에 있다. 상가 건물에 딸린 주차장이 있으나 협소하다. 매장에 들어서면 전체적으로 공간이 크지는 않다. 벽면에 참치 그림이 있고 아마다, ",
+   "contentId": "2838508"
+  },
+  {
+   "id": "t2840211",
+   "name": "남한강민물매운탕",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.545678,
+   "lng": 127.066225,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1350,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/07/2840207_image2_1.jpg",
+   "addr": "서울특별시 광진구 동일로 150 (화양동)",
+   "tel": "02-464-7568",
+   "summary": "남한강 민물매운탕은 건대입구역 1번 출구 성수초등학교 인근에 있다. 매장은 건대 먹자골목 끝자락에 있는 상가 건물이다. 민물새우튀김과 미꾸라지튀김 등 민물요리를 전문으로 하는 한식점이다. 시원하고 깊은 국물 맛과 바",
+   "contentId": "2840211"
+  },
+  {
+   "id": "t2860770",
+   "name": "갈비사랑",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.482532,
+   "lng": 127.036746,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1310,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/58/2860758_image2_1.jpg",
+   "addr": "서울특별시 서초구 강남대로 204 (양재동)",
+   "tel": "0507-1483-6800",
+   "summary": "갈비사랑은 지하철 3호선, 신분당선 양재역 8번 출구 서울행정법원 부근에 있다. 매장 단독 건물이고 자체 주차장을 갖추고 있으며 발렛파킹 서비스를 이용할 수 있다. 내부는 넓은 홀에 다양한 테이블에 개별 룸까지 갖추",
+   "contentId": "2860770"
+  },
+  {
+   "id": "t1489369",
+   "name": "오다리집",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.561485,
+   "lng": 126.983473,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 490,
+   "close": 1440,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/38/3474938_image2_1.jpg",
+   "addr": "서울특별시 중구 명동8나길 28 (충무로1가)",
+   "tel": "02-778-6767",
+   "summary": "오다리집은 간장게장과 양념갈비 등을 맛볼 수 있는 한식당이다. 다양한 메뉴를 제공하며, 한류문화공간이라는 주제로 가게를 꾸며놓은 것이 특징이다. 메뉴판에도 한국어뿐 아니라 중국어, 일본어, 영어로 표기되어 있다. 특",
+   "contentId": "1489369"
+  },
+  {
+   "id": "t133854",
+   "name": "고려삼계탕",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.563052,
+   "lng": 126.972927,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 630,
+   "close": 1260,
+   "image": "",
+   "addr": "서울특별시 중구 서소문로11길 1 (서소문동)",
+   "tel": "02-752-9376",
+   "summary": "고려삼계탕은 1960년 서소문동에 개점한 이래 40년 넘게 삼계탕 한 가지만을 고집해 온 삼계탕 전문점이다. 2대째 가업을 이어오고 있으며 삼계탕의 대명사로 미국, 일본, 동남아, 대만 등지의 관광객들에게도 알려진 ",
+   "contentId": "133854"
+  },
+  {
+   "id": "t2899012",
+   "name": "대흥정육식당",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.5391,
+   "lng": 127.043985,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1320,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/97/2898997_image2_1.jpg",
+   "addr": "서울특별시 성동구 왕십리로 16 (성수동1가, 트리마제)",
+   "tel": "02-464-2514",
+   "summary": "대흥정육식당은 질 좋은 소고기를 맛볼 수 있는 곳이다. 통창으로 깔끔한 외관이 눈길을 끌고, 식당 내부도 화이트 톤에 우드 스타일을 섞어 편안한 느낌이다. 표 메뉴이자 단일 메뉴는 소고기 모듬이다. 육즙이 많고 부드",
+   "contentId": "2899012"
+  },
+  {
+   "id": "t2845040",
+   "name": "땅코참숯구이 본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.560736,
+   "lng": 127.033044,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 870,
+   "close": 1380,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/23/2845023_image2_1.jpg",
+   "addr": "서울특별시 성동구 행당로17길 26 (행당동)",
+   "tel": "0507-1311-6908",
+   "summary": "땅코참숯구이 본점은 서울특별시 성동구 행당동에 있는 돼지구이 전문점이다. 지하철을 이용한다면 2호선, 5호선, 경의중앙선, 수인분당선, 왕십리역 10번 출구 성동우체국 부근에 있다. 식당 안 매장은 넓고 다양한 크기",
+   "contentId": "2845040"
+  },
+  {
+   "id": "t2495915",
+   "name": "성북동누룽지백숙",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.594635,
+   "lng": 126.99048,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1260,
+   "closedDays": [
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/70/2495170_image2_1.JPG",
+   "addr": "서울특별시 성북구 성북로31길 9 (성북동)",
+   "tel": "02-764-0707",
+   "summary": "성북동누룽지백숙은 성북동에 오랜 전통을 자랑하는 백숙 전문점이다. 높은 천장과 갤러리풍의 인테리어로 답답하지 않고 쾌적한 실내공간을 자랑하고 있다. 이곳의 메뉴는 누룽지 백숙과 메밀 들깨수제비, 메밀전 세 가지뿐이다",
+   "contentId": "2495915"
+  },
+  {
+   "id": "t2837902",
+   "name": "돈까스잔치 동빙고점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.521307,
+   "lng": 126.996429,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 630,
+   "close": 1290,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/00/2837900_image2_1.jpg",
+   "addr": "서울특별시 용산구 서빙고로 297",
+   "tel": "0507-1330-9969",
+   "summary": "돈까스잔치 동빙고점은 경의·중앙선 서빙고역 1번 출구 인근에 있다. 잔치국수, 왕돈가스 전문점으로 연예인이 방송에 출연하여 추천한 음식점이기도 하다. 매장이 넓어 단체 모임도 할 수 있고 대형버스가 주차할 수 있는 ",
+   "contentId": "2837902"
+  },
+  {
+   "id": "t2849404",
+   "name": "동빙고 본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.518016,
+   "lng": 126.982341,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 630,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/95/2849395_image2_1.jpg",
+   "addr": "서울특별시 용산구 이촌로 319 현대아파트",
+   "tel": "02-794-7171",
+   "summary": "동빙고 본점은 경의중앙선 서빙고역 1번 출구 인근에 있다. 동빙고는 규모가 작은 편이지만 입소문이 난 곳이라 많은 사람들이 찾는다. 웨이팅이 있을 수 있는데 대기표를 준다. 대표 메뉴는 단팥죽과 팥빙수이며 음료수는 ",
+   "contentId": "2849404"
+  },
+  {
+   "id": "t2854027",
+   "name": "서울다이닝",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.559319,
+   "lng": 127.003641,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1320,
+   "closedDays": [
+    0,
+    1
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/19/2854019_image2_1.jpg",
+   "addr": "서울특별시 중구 동호로 272 (장충동2가)",
+   "tel": "02-6325-6321",
+   "summary": "서울다이닝은 서울만의 미식 경험을 느낄 수 있는 공간이다. 제철 식재료와 셰프의 창의성이 결합되어 재치 있는 요리들이 손님 식탁에 오른다. 다양한 식문화가 공존하는 서울의 특징을 고려해 곳곳에 다양한 풍미를 느낄 수",
+   "contentId": "2854027"
+  },
+  {
+   "id": "t3094599",
+   "name": "동원집",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.563394,
+   "lng": 126.991362,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1320,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/97/3094597_image2_1.JPG",
+   "addr": "서울특별시 중구 퇴계로27길 48 (초동)",
+   "tel": "02-777-3536",
+   "summary": "서울 시청 인근 골목에 있은 감자탕, 순대국 전문점이다. 순대국은 얼큰 순대국과 순대만 들어있는 순대국, 순대국 3종류가 있다. 순대국은 국물이 맑고 안에 있는 고기는 탱글탱글하며 부드럽다. 새우젓에 순대와 고기를 ",
+   "contentId": "3094599"
+  },
+  {
+   "id": "t3094657",
+   "name": "서화",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.563052,
+   "lng": 126.973235,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 1020,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/54/3094654_image2_1.jpg",
+   "addr": "서울특별시 중구 서소문로 109 (서소문동)",
+   "tel": "0507-1399-1356",
+   "summary": "서화는 서울특별시 중구에 있는 화로구이 전문점이다. 두툼하게 제공되는 고기를 화로에 구워 먹는 이곳의 대표 요리는 항정살이다. 이 외에 목등심은 담백하게 즐길 수 있고, 오겹살은 고기의 육질이 좋기 때문에 더부룩함 ",
+   "contentId": "3094657"
+  },
+  {
+   "id": "t1885495",
+   "name": "은주정",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.568738,
+   "lng": 126.999783,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1320,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/72/3108772_image2_1.JPG",
+   "addr": "서울특별시 중구 창경궁로8길 32",
+   "tel": "0507-1406-4669",
+   "summary": "은주정은 청계천 방산시장에 위치한 한식 전문점이다. 쌈 싸 먹는 김치찌개와 된장찌개가 대표 요리이다. 고소한 삼겹살도 손님들에게 인기가 좋다. 언제나 맛있는 김치와 삼겹살을 먹으러 오는 손님들로 매장 안은 꽉 차 있",
+   "contentId": "1885495"
+  },
+  {
+   "id": "t697234",
+   "name": "삼대할먼네",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.563244,
+   "lng": 127.01479,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "image": "",
+   "addr": "서울특별시 중구 퇴계로76길 50 (신당동)",
+   "tel": "02-2233-1559",
+   "summary": "1972년 신당동 떡볶이 골목에서 시작하여 현재까지도 영업을 하고 잇는 삼대할먼네는 하굣길에 출출함을 달래고자 먹었던 70~80년대 추억이 가득한 신당동 떡볶이를 판매하는 곳이다. 신당동 떡볶이 타운과 함께한 50여",
+   "contentId": "697234"
+  },
+  {
+   "id": "t2629577",
+   "name": "장수촌 풍천장어",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.569362,
+   "lng": 126.987059,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/85/2629585_image2_1.jpg",
+   "addr": "서울특별시 종로구 삼일대로17길 8",
+   "tel": "02-722-3149",
+   "summary": "가게 앞에 주차를 할 수 있는 공간이 마련되어 있으며, 넓고 깔끔한 1층 건물의 장어 전문집이다. 단체나 가족끼리 오셔서 편안하게 식사를 하실 수 있게 푹신한 의자로 배치되어 있으며 다른 곳에서 잡은 장어와는 달리 ",
+   "contentId": "2629577"
+  },
+  {
+   "id": "t2789346",
+   "name": "빠우",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.567177,
+   "lng": 126.995464,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1140,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/90/2792090_image2_1.jpg",
+   "addr": "서울특별시 중구 을지로 157 (산림동)",
+   "tel": "0507-1374-9285",
+   "summary": "을지로에 자리한 도넛 전문점이다. 일명 ‘힙지로’로 불리는 을지로만의 뉴트로 한 감성이 이곳 외관에서도 고스란히 느껴진다. 패키지에도 이런 감각적인 디자인이 더해져 도넛을 들고 인증 사진을 찍는 이들이 많다. 이곳의",
+   "contentId": "2789346"
+  },
+  {
+   "id": "t2856652",
+   "name": "르지우",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.498374,
+   "lng": 126.998935,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/49/2856649_image2_1.jpg",
+   "addr": "서울특별시 서초구 사평대로26길 40 (반포동)",
+   "tel": "0507-1440-7048",
+   "summary": "르지우는 지하철 3호선, 7호선, 9호선 고속터미널역 5번 출구 부근에 있다. 매장이 있는 상가건물에 자체 주차장이 있어 방문 시 자동차로 이용하기 편리하다. 이곳은 이탈리안 요리를 베이스로 다양한 세계음식을 맛볼 ",
+   "contentId": "2856652"
+  },
+  {
+   "id": "t2834955",
+   "name": "더한강",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.512368,
+   "lng": 126.956994,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/33/2834933_image2_1.jpg",
+   "addr": "서울특별시 동작구 노량진로32길 29-6",
+   "tel": "070-7700-7757",
+   "summary": "더한강은 한강뷰와 함께 음료를 즐길 수 있는 서울 동작구 청년 카페이다. 1층과 2층 모두 넓은 통유리창을 통해 한강을 조망할 수 있게 좌석을 배치해 두었으며 날씨가 좋으면 한강 너머 남산까지 한눈에 볼 수 있다. ",
+   "contentId": "2834955"
+  },
+  {
+   "id": "t2895139",
+   "name": "라프레플루트",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.547305,
+   "lng": 127.039458,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 780,
+   "close": 1140,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/38/2894938_image2_1.JPG",
+   "addr": "서울특별시 성동구 서울숲2길 8-8",
+   "tel": "0507-1383-7415",
+   "summary": "라프레플루트는 서울지하철 2호선 뚝섬역 8번 출구 성수중학교 근처에 있다. 자가용 이용 시는 뚝섬 유수지 공영주차장에 주차할 수 있고, 버스나 지하철 등 대중교통을 이용하는 것이 편리하다. 매장의 테이블은 테라스 좌",
+   "contentId": "2895139"
+  },
+  {
+   "id": "t2543919",
+   "name": "광화문 세종클럽",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.572826,
+   "lng": 126.974052,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1440,
+   "image": "",
+   "addr": "서울특별시 종로구 새문안로5가길 7 (내수동)",
+   "tel": "0507-1341-0001",
+   "summary": "광화문 세종클럽은 종로구 내수동에 위치한 프라이빗 다이닝 공간들이 있는 곳이다. 고품격 외식과 비즈니스 그리고 커뮤니티 공간이 된다. 지하부터 9층까지 있으며 비비큐 파티를 즐길 수 있는 루프탑도 있고 고급스러운 한",
+   "contentId": "2543919"
+  },
+  {
+   "id": "t2789182",
+   "name": "동경우동",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.571434,
+   "lng": 126.975704,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 420,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/14/2789814_image2_1.jpg",
+   "addr": "서울특별시 종로구 새문안로9길 28 (도렴동)",
+   "tel": "02-737-7710",
+   "summary": "동경우동은 광화문 근처에서 우동과 돈까스를 맛볼 수 있는 곳으로, 특히 냉우동과 유부우동이 인기 메뉴다. 메뉴판에는 우동 종류뿐만 아니라 모밀, 회덮밥, 유부초밥 등 다양한 선택지가 있으며, 쫄깃한 면발과 바삭한 돈",
+   "contentId": "2789182"
+  },
+  {
+   "id": "t134708",
+   "name": "완차이",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.558713,
+   "lng": 126.939353,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1260,
+   "closedDays": [
+    1
+   ],
+   "image": "",
+   "addr": "서울특별시 서대문구 명물길 50-7",
+   "tel": "02-392-0302",
+   "summary": "서울시 서대문구 창천동에 위치한 중식당이다. 처음 개업할 때 신촌의 허름한 뒷골목에 위치했으며, 한국인의 입맛을 자극하는 매운 홍합요리로 입소문을 타고 유명해진 곳이다. 완차이라는 식당 이름은 매운 중국음식점이라 표",
+   "contentId": "134708"
+  },
+  {
+   "id": "t2717547",
+   "name": "내자상회",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.57585,
+   "lng": 126.970521,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1320,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/97/2716897_image2_1.jpg",
+   "addr": "서울특별시 종로구 사직로10길 3",
+   "tel": "070-7755-0142",
+   "summary": "서울 지하철 3호선 경복궁역 인근에 위치한 카페 내자상회는 조선 시대에 궁중 식품을 관장하던 ‘내자시’의 터에 들어선 카페이자 다양한 생활잡화를 선보이는 편집숍을 겸하기에 내자상회라는 이름이 붙었다. 카페 내부는 예",
+   "contentId": "2717547"
+  },
+  {
+   "id": "t2847996",
+   "name": "정돈 대학로본점",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.581867,
+   "lng": 127.001113,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1290,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/87/2847987_image2_1.jpg",
+   "addr": "서울특별시 종로구 대학로9길 12 (명륜4가)",
+   "tel": "0507-1408-0924",
+   "summary": "정돈 대학로본점은 지하철 4호선 혜화역 3번 출구 부근에 있다. 정돈 매장은 좁은 골목길에 있어 주차장은 따로 없다. 방문 시 대중교통을 이용하는 게 편리하다. 매장 안은 넓다. 테이블도 많고 공간 사이 여유가 있고",
+   "contentId": "2847996"
+  },
+  {
+   "id": "t232218",
+   "name": "궁나라냉면묵밥",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.576909,
+   "lng": 127.015867,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 600,
+   "close": 1200,
+   "image": "",
+   "addr": "서울특별시 종로구 지봉로12길 6",
+   "tel": "02-744-4701",
+   "summary": "2002년 안산에서 개업한 도토리묵밥과 냉면 전문점이다. 그 맛이 입에서 입으로 소문이 나면서 인기를 얻고 서울로 이전했다. 각종 TV프로그램이나 기타 월간지에 소개되었다. 무공해 식품이고 탄닌 성분이 많아 소화가 ",
+   "contentId": "232218"
+  },
+  {
+   "id": "t2544497",
+   "name": "스시 카이신(鮨海信)",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.523844,
+   "lng": 127.051754,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 1080,
+   "close": 1320,
+   "image": "",
+   "addr": "서울특별시 강남구 도산대로100길 12",
+   "tel": "02-515-9855",
+   "summary": "도쿄 5성급 특급 호텔(만다린 오리엔탈 도쿄) 출신 일본인 사토 쿄우스케 셰프가 직접 엄선한 자연산 생선만을 사용한 일본 고유 전통 에도마에 초밥을 포함하여 정성껏 준비한 오마카세를 제공한다. 일본 긴자에서 접할 수",
+   "contentId": "2544497"
+  },
+  {
+   "id": "t2667567",
+   "name": "청하",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.520928,
+   "lng": 126.931324,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 690,
+   "close": 1320,
+   "closedDays": [
+    0
+   ],
+   "image": "https://tong.visitkorea.or.kr/cms/resource/70/2667570_image2_1.jpg",
+   "addr": "서울특별시 영등포구 국제금융로 78",
+   "tel": "02-780-7721",
+   "summary": "30년 전통 횟집 ‘청하’는 주인이 직접 요리하며 제철에 따라 다양한 활어회를 제공한다. 두툼한 횟감과 푸짐하게 차려진 각종 요리로 입안 가득 깊은 풍미와 진한 맛을 느낄 수 있는 밑반찬 천국이다. 회의 쫄깃한 내공",
+   "contentId": "2667567"
+  },
+  {
+   "id": "t2851700",
+   "name": "꼬숑돈까스",
+   "cat": "식당",
+   "ints": [],
+   "fac": [
+    "parking"
+   ],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.557774,
+   "lng": 126.937372,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 660,
+   "close": 1140,
+   "image": "",
+   "addr": "서울특별시 서대문구 명물1길 2",
+   "tel": "",
+   "summary": "꼬숑돈가스는 아담한 한옥 분위기의 돈가스 전문점이다. 돈가스 1장과 샐러드, 장국, 밥, 단무지로 구성된 돈가스 메뉴는 가격이 택시 기본요금보다도 저렴하다. 엄청나게 저렴한 가격이라 물은 기본 제공이 되지 않고 별도",
+   "contentId": "2851700"
+  },
+  {
+   "id": "t2898994",
+   "name": "그라데이션커피",
+   "cat": "식당",
+   "ints": [],
+   "fac": [],
+   "facKnown": [
+    "parking"
+   ],
+   "indoor": true,
+   "fee": 12000,
+   "stay": 40,
+   "lat": 37.550599,
+   "lng": 127.050309,
+   "base": 0.7,
+   "crowd": false,
+   "type": "meal",
+   "open": 540,
+   "close": 1020,
+   "image": "https://tong.visitkorea.or.kr/cms/resource/82/2898982_image2_1.jpg",
+   "addr": "서울특별시 성동구 상원12길 24-1 (성수동1가)",
+   "tel": "02-499-1520",
+   "summary": "그라데이션커피는 서울지하철 2호선 뚝섬역 2번 출구 성원어린이공원 인근에 있다. 매장에 전용 주차장은 없다. 복잡한 도심 속에 있다 보니 자가용보다는 버스나 지하철 등 대중교통을 이용하는 것이 편리하다. 이곳은 붉은",
+   "contentId": "2898994"
+  }
+ ]
+}

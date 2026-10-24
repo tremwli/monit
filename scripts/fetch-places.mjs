@@ -118,6 +118,7 @@ async function detailCommon(contentId) {
   return r || null;
 }
 
+
 async function barrierFree(contentId) {
   try {
     return await one('KorWithService2', 'detailWithTour2', {contentId}, true) || null;
@@ -125,6 +126,7 @@ async function barrierFree(contentId) {
     return null;
   }
 }
+
 
 /* 결과 한 개만 필요한 상세 호출. quiet=true면 실패해도 undefined만 돌려줘요. */
 async function one(service, op, params, quiet) {
@@ -152,17 +154,22 @@ async function call(service, op, params) {
   // Decoding 키를 받는 게 기본. Encoding 키(%가 들어간 키)를 넣었으면 그대로 써요.
   const key = KEY.includes('%') ? KEY : encodeURIComponent(KEY);
   const url = `https://apis.data.go.kr/B551011/${service}/${op}?serviceKey=${key}&${sorted}`;
-  let res, text;
-  for (let attempt = 0; attempt < 3; attempt++) {
-    try {
-      res = await fetch(url);
-      text = await res.text();
-      break;
-    } catch (e) {
-      if (attempt === 2) throw new Error(`인터넷 연결 오류: ${e.message}`);
-      await sleep(800);
-    }
+let res, text;
+
+for (let attempt = 0; attempt < 3; attempt++) {
+  try {
+    res = await fetch(url);
+    text = await res.text();
+    break;
+  } catch (e) {
+    console.error(`연결 시도 ${attempt + 1}/3 실패`);
+    console.error("오류:", e.message);
+    console.error("상세 원인:", e.cause);
+
+    if (attempt === 2) throw e;
+    await sleep(800);
   }
+}
   calls++;
   await sleep(120); // 초당 호출 제한 피하기
 
