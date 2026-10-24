@@ -8,7 +8,7 @@ export const STYLE_TAGS={hands:'직접 해보기',watch:'구경하기',outdoor:'
 
 export function ageGroupOf(age){const n=Number(age)||0;return n>=7?'7-9':'4-6'}
 
-/* Claude에게 보낼 시스템 프롬프트. 연령대에 따라 "누가 쓴 글인지"와 "무엇을 신호로 볼지"가 다르다 */
+/* 분석 모델(Gemini)에 보낼 시스템 프롬프트. 연령대에 따라 "누가 쓴 글인지"와 "무엇을 신호로 볼지"가 다르다 */
 /* 일기는 항상 부모가 쓴다 (육아일기). 연령대에 따라 어떤 신호를 더 볼지만 다르다.
    토큰 절약: 태그 설명은 스키마의 enum이 이미 제한하므로 한글 이름만 짧게 준다. 약 250토큰. */
 export function systemPrompt(ageGroup,childName){

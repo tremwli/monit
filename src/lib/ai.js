@@ -19,7 +19,7 @@ export async function analyzeText({text,ageGroup,childName}){
  if(cache[key])return {...cache[key],cached:true};
  try{
   const r=await fetch('/api/analyze',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t,ageGroup,childName})});
-  if(r.ok){const data={...(await r.json()),source:'claude'};cache[key]=data;saveCache(cache);return data}
+  if(r.ok){const data={...(await r.json()),source:'gemini'};cache[key]=data;saveCache(cache);return data}
   const err=await r.json().catch(()=>({}));
   if(r.status===503||err.error==='no_key')return {...localAnalyze(t,childName),fallbackReason:'no_key'};
   return {...localAnalyze(t,childName),fallbackReason:err.message||('http_'+r.status)};

@@ -43,17 +43,17 @@ npm run build      # dist/
 
 장소 정보 출처: 한국관광공사 TourAPI. 화면 장소 시트 아래에 출처를 표시합니다.
 
-## 일기·대화 분석 (Claude API)
+## 일기·대화 분석 (Gemini API)
 
-`#/diary` 화면에서 오늘 기록을 적으면 Claude가 관심사·노는 방식·조심할 것을 뽑아 취향 점수에 섞습니다.
+`#/diary` 화면에서 오늘 기록을 적으면 Gemini(Flash-Lite)가 관심사·노는 방식·조심할 것을 뽑아 취향 점수에 섞습니다.
 
-- **서버**: `api/analyze.js` (Vercel 서버리스 함수). `ANTHROPIC_API_KEY`는 여기서만 읽고 브라우저로는 절대 안 나갑니다.
-- **로컬 개발**: `vite.config.js`의 미들웨어가 `/api/*`를 `api/*.js`로 연결하므로 `npm run dev`만으로 동작합니다. `.env`에 `ANTHROPIC_API_KEY=`를 넣으세요.
+- **서버**: `api/analyze.js` (Vercel 서버리스 함수). `GEMINI_API_KEY`는 여기서만 읽고 브라우저로는 절대 안 나갑니다.
+- **로컬 개발**: `vite.config.js`의 미들웨어가 `/api/*`를 `api/*.js`로 연결하므로 `npm run dev`만으로 동작합니다. `.env`에 `GEMINI_API_KEY=`를 넣으세요.
 - **키가 없으면**: 서버가 503을 주고 클라이언트가 키워드 기반 간단 분석(`localAnalyze`)으로 넘어갑니다. 데모가 멈추지 않습니다.
 - **연령 분기**: 4~6세는 부모 관찰 기록(행동 신호), 7~9세는 아이가 쓴 글·대화(감정 신호)로 프롬프트가 달라집니다 (`src/lib/analysis.js`).
 - **반영 규칙**: `새 점수 = 0.7 × 기존 + 0.3 × 신호`, 언급된 태그만. 원문·분석 결과는 `S.diary`에 쌓입니다.
 
-Vercel 배포 시 프로젝트 환경변수에 `ANTHROPIC_API_KEY`와 `VITE_KAKAO_MAP_KEY`를 넣고, 카카오 콘솔 사이트 도메인에 배포 주소를 추가하세요.
+Vercel 배포 시 프로젝트 환경변수에 `GEMINI_API_KEY`와 `VITE_KAKAO_MAP_KEY`를 넣고, 카카오 콘솔 사이트 도메인에 배포 주소를 추가하세요.
 
 ## 구조
 
@@ -75,7 +75,7 @@ src/
   views/              화면 하나당 파일 하나
     Start Home Course(C1~C5) Result Record My Kid MapView Community Calendar Diary
 api/
-  analyze.js          Vercel 서버리스: Claude로 일기 분석
+  analyze.js          Vercel 서버리스: Gemini로 일기 분석
 ```
 
 ### 상태 다루는 법

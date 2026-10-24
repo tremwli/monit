@@ -85,7 +85,7 @@ export default function Diary(){
  {result?(
  <div className="pad col gap12" style={{paddingTop:16}}>
   <div className="col gap10" style={{background:'var(--bg2)',borderRadius:20,padding:16}}>
-   <div className="row between"><div style={{fontSize:16,fontWeight:700}}>오늘 알게 된 것</div><span className="small">{result.source==='claude'?'AI 분석':'간단 분석'}{result.cached?' · 캐시':''}</span></div>
+   <div className="row between"><div style={{fontSize:16,fontWeight:700}}>오늘 알게 된 것</div><span className="small">{result.source==='gemini'?'AI 분석':'간단 분석'}{result.cached?' · 캐시':''}</span></div>
    <div style={{fontFamily:'var(--deco)',fontSize:19,color:'var(--navy)',lineHeight:1.4}}>{result.summary}</div>
    {result.fallbackReason&&result.fallbackReason!=='short'?<div className="small" style={{color:'var(--yellowInk)'}}>간단 분석으로 봤어요 ({result.fallbackReason==='no_key'?'API 키 없음':result.fallbackReason})</div>:null}
   </div>
