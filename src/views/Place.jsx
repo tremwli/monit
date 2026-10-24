@@ -1,6 +1,7 @@
 /* 장소 상세: 사진·좋아할 확률·기본 정보·카카오맵 버튼·우리 아이 기록·다른 부모님 리뷰 */
 import {useStore} from '../store.jsx';
-import {FAC,INTEREST} from '../lib/data.js';
+import {FAC} from '../lib/data.js';
+import {profileOf,AREAS} from '../lib/interests.js';
 import {placeById,scorePlace,levelOf,hashtags} from '../lib/logic.js';
 import {kakaoMapUrl,kakaoRouteUrl} from '../lib/map.js';
 import {fmtT,go} from '../lib/utils.js';
@@ -52,7 +53,7 @@ export default function Place(){
    <Row label="머무는 시간">약 {p.stay}분</Row>
    <Row label="요금">{p.feeUnknown?'현장 확인':p.fee?p.fee.toLocaleString()+'원':'무료'}</Row>
    {facs.length?<Row label="시설"><span className="row gap6 wrap">{facs.map(f=><span key={f} className="tag" style={{background:'var(--soft)',color:'#333D4B'}}>{FAC[f]}</span>)}</span></Row>:null}
-   {p.ints?.length?<Row label="관심사"><span className="row gap6 wrap">{p.ints.map(i=><span key={i} className="tag t-yellow">{INTEREST[i]}</span>)}</span></Row>:null}
+   {(()=>{const pr=profileOf(p);return pr.topics.length||pr.areas.length?<Row label="관심사"><span className="row gap6 wrap">{pr.topics.map(t=><span key={t} className="tag t-yellow">{t}</span>)}{pr.areas.map(a=><span key={a} className="tag t-peri">{AREAS[a]}</span>)}</span></Row>:null})()}
   </div>
   {p.summary?<div style={{fontSize:14,lineHeight:1.6,color:'#333D4B',padding:'0 2px'}}>{p.summary}</div>:null}
  </div>

@@ -1,8 +1,9 @@
 /* Vercel 서버리스 함수: POST /api/analyze
    body: {text, ageGroup: '4-6'|'7-9', childName}
-   → {interests, styles, avoid, summary, source:'gemini'}
+   → {interests:[{tag,score,quote}], styles, avoid, summary, source:'gemini'}
+   interests의 tag는 흥미 유형('a:키') 또는 관심 주제(낱말) — src/lib/interests.js
    API 키는 서버 환경변수 GEMINI_API_KEY에서만 읽는다. 프론트에 절대 넣지 않는다. */
-import {systemPrompt,OUTPUT_SCHEMA,INTEREST_TAGS,STYLE_TAGS} from '../src/lib/analysis.js';
+import {systemPrompt,OUTPUT_SCHEMA,STYLE_TAGS,toInterests} from '../src/lib/analysis.js';
 
 /* 태그 고르기는 Flash-Lite로 충분. 호출 1회 ≈ 입력 290 + 출력 160 토큰, 1원 미만.
    2.5 Flash-Lite는 신규 키에 막혀 있어서(404) 3.5를 쓴다. */
@@ -71,9 +72,10 @@ export default async function handler(req,res){
   if(!cand||cand.finishReason==='SAFETY'||cand.finishReason==='PROHIBITED_CONTENT'){res.statusCode=422;return res.end(JSON.stringify({error:'refusal'}))}
   const raw=(cand.content?.parts||[]).map(p=>p.text||'').join('');
   const parsed=JSON.parse(raw||'{}');
-  /* 목록 밖 태그는 버린다 (스키마가 막지만 한 번 더). quote는 원문 구절로 되돌린다 (Flash-Lite가 가끔 바꿔 씀) */
+  /* 흥미 유형은 목록 밖이면 버리고(스키마가 막지만 한 번 더), 주제는 같은 뜻끼리 묶는다(toInterests).
+     quote는 원문 구절로 되돌린다 (Flash-Lite가 가끔 바꿔 씀) */
   const snap=x=>({...x,quote:snapQuote(text,x.quote)});
-  parsed.interests=(parsed.interests||[]).filter(i=>i.tag in INTEREST_TAGS).map(snap);
+  parsed.interests=toInterests(parsed).map(snap);delete parsed.areas;delete parsed.topics;
   parsed.styles=(parsed.styles||[]).filter(i=>i.tag in STYLE_TAGS).map(snap);
   parsed.avoid=(parsed.avoid||[]).map(snap);
   parsed.source='gemini';

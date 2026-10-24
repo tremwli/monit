@@ -1,7 +1,8 @@
 /* 코스 만들기 5단계 (원본 V.c1~V.c5) + 시간 휠 */
 import {useEffect,useRef} from 'react';
 import {useStore} from '../store.jsx';
-import {INTEREST,FAC,ICON} from '../lib/data.js';
+import {FAC,ICON} from '../lib/data.js';
+import {STARTER_REFS,isArea,label} from '../lib/interests.js';
 import {buildCourse,rememberCourse} from '../lib/logic.js';
 import {fmtT,fmtShort,fmtDate,demo,go} from '../lib/utils.js';
 import {StepHead,BottomCta,Chip,Seg,Switch,Icon,Face,Html} from '../components/ui.jsx';
@@ -131,13 +132,16 @@ export function C5(){
  const {S,set,setUI}=useStore();const c=S.c;const n=S.child.name;
  const faces=[['high','A','쌩쌩해요'],['mid','B','보통이에요'],['low','C','금방 지쳐요']];
  const tg=(arr,v)=>{const i=arr.indexOf(v);if(i>=0)arr.splice(i,1);else arr.push(v)};
+ /* 아이가 요즘 좋아하는 주제(기본 목록에 없는 것 포함)를 앞에, 그다음 기본 선택지 */
+ const mine=Object.entries(S.taste).filter(([k,v])=>!isArea(k)&&v>=.55).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
+ const wantOpts=[...new Set([...c.wants,...mine,...STARTER_REFS])];
  const build=()=>{set(S=>{S.lastCourse=buildCourse(S);rememberCourse(S)});setUI(u=>{u.rec={};u.photos={}});go('result')};
  return (
 <div className="screen">
  <StepHead n={5} back="c4" eyebrow={n+' 맞춤'} title={n+'에게 맞춰볼까요?'} help={'이번 코스를 '+n+'가 좋아할 것들로 채워요'}/>
  <div className="pad col" style={{paddingTop:18,gap:22}}>
   <div className="section"><div className="row between"><div className="label">하고 싶은 것</div><a href="#/kid" style={{fontSize:13,fontWeight:600,textDecoration:'none'}}>{n}에게 물어보기</a></div>
-   <div className="row gap6 wrap">{Object.keys(INTEREST).map(k=><Chip key={k} on={c.wants.includes(k)} onClick={()=>set(S=>tg(S.c.wants,k))}>{INTEREST[k]}</Chip>)}</div></div>
+   <div className="row gap6 wrap">{wantOpts.map(k=><Chip key={k} on={c.wants.includes(k)} onClick={()=>set(S=>tg(S.c.wants,k))}>{label(k)}</Chip>)}</div></div>
   <div className="section"><div className="label">요즘 {n} 체력</div>
    <div style={{display:'grid',gridTemplateColumns:'repeat(3,minmax(0,1fr))',gap:8}}>{faces.map(([v,f,l])=><button type="button" key={v} className={'optcard '+(c.energy===v?'on':'')} aria-pressed={c.energy===v} onClick={()=>set(S=>{S.c.energy=v})}><span className="ic"><Face level={f} size={26}/></span>{l}</button>)}</div></div>
   <div className="section"><div className="label">얼마나 모험해볼까요?</div><Seg opts={[['none','익숙한 곳'],['one','반반'],['many','새로운 곳']]} cur={c.novelty} onPick={v=>set(S=>{S.c.novelty=v})}/></div>

@@ -1,12 +1,13 @@
 import {useStore} from '../store.jsx';
 import {CAT_INT,TINT,IC} from '../lib/data.js';
+import {CAT_REFS} from '../lib/interests.js';
 import {toggle,go} from '../lib/utils.js';
 import {Logo,BottomCta} from '../components/ui.jsx';
 
 export default function Start(){
  const {S,set,UI,setUI}=useStore();
  const sel=UI.startSel;const cats=Object.keys(CAT_INT);
- const done=()=>{set(S=>{if(sel.length){const picked=new Set();sel.forEach(cat=>CAT_INT[cat].forEach(i=>picked.add(i)));Object.keys(S.taste).forEach(k=>S.taste[k]=picked.has(k)?.68:.34);S.c.wants=[...picked].slice(0,3)}S.onboarded=true});go('home')};
+ const done=()=>{set(S=>{if(sel.length){const picked=new Set();sel.forEach(cat=>CAT_REFS[cat].forEach(r=>picked.add(r)));Object.keys(S.taste).forEach(k=>S.taste[k]=.34);picked.forEach(r=>{S.taste[r]=.68});S.c.wants=[...picked].filter(r=>!r.startsWith('a:')).slice(0,3)}S.onboarded=true});go('home')};
  return (
 <div className="screen">
  <div className="pad" style={{paddingTop:28}}><Logo/></div>

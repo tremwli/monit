@@ -1,6 +1,7 @@
 /* 분기 리포트 계산. 화면(Report.jsx)은 여기서 만든 객체를 그리기만 한다.
    비교 대상은 언제나 '과거의 우리 아이'뿐 — 또래 비교는 하지 않는다. */
-import {PLACES,INTEREST} from './data.js';
+import {PLACES} from './data.js';
+import {label,migrateRef,profileOf} from './interests.js';
 import {STYLE_TAGS} from './analysis.js';
 import {placeById,scorePlace} from './logic.js';
 
@@ -21,7 +22,9 @@ const TYPE_BY_STYLE={
  hands:'직접 만져봐야 아는 탐험가',watch:'눈으로 오래 담는 관찰가',outdoor:'밖에서 더 신나는 모험가',
  indoor:'아늑한 곳에서 집중하는 탐구가',quiet:'조용히 깊게 파고드는 몰입가',lively:'북적일수록 신나는 사교가',
 };
-const TYPE_BY_INT={dino:'공룡이라면 달려가는 꼬마 박사',water:'물만 보면 뛰어드는 물개',animal:'동물 친구를 찾아다니는 탐험가',draw:'손끝으로 세상을 그리는 화가',train:'바퀴 달린 건 다 좋아하는 기관사',plant:'작은 잎도 들여다보는 식물 박사',play:'온몸으로 노는 에너자이저',book:'이야기 속으로 들어가는 독서가'};
+/* 가장 좋아하는 관심사로 유형 이름 (원본 8개 태그 이름을 새 이름으로 옮김). 목록에 없는 주제는 typeOf에서 만든다 */
+const TYPE_BY_INT={'공룡':'공룡이라면 달려가는 꼬마 박사','물놀이':'물만 보면 뛰어드는 물개','동물':'동물 친구를 찾아다니는 탐험가','a:create':'손끝으로 세상을 그리는 화가','기차':'바퀴 달린 건 다 좋아하는 기관사','식물':'작은 잎도 들여다보는 식물 박사','a:outdoor':'온몸으로 노는 에너자이저','a:literacy':'이야기 속으로 들어가는 독서가'};
+const typeOf=ref=>TYPE_BY_INT[ref]||(label(ref)+' 이야기라면 눈이 반짝이는 꼬마 탐험가');
 
 const REACT_SCORE={like:.85,meh:.25};
 
@@ -33,31 +36,33 @@ export function buildReport(S,q){
  const analyzed=diaries.filter(d=>d.analysis);
 
  /* 이번 분기 관심사 신호: 일기 분석 + 다녀온 반응 */
- const sig={};const add=(tag,s)=>{if(!(tag in INTEREST))return;(sig[tag]=sig[tag]||[]).push(s)};
+ const sig={};const add=(tag,s)=>{tag=migrateRef(tag);(sig[tag]=sig[tag]||[]).push(s)};
+ /* 장소가 다루는 주제·흥미 유형 */
+ const refsOf=p=>{const pr=profileOf(p);return [...pr.topics,...pr.areas.map(a=>'a:'+a)]};
  analyzed.forEach(d=>(d.analysis.interests||[]).forEach(x=>add(x.tag,x.score)));
- hist.forEach(h=>{const p=placeById(h.id);if(p&&h.v)p.ints.forEach(t=>add(t,REACT_SCORE[h.v]))});
+ hist.forEach(h=>{const p=placeById(h.id);if(p&&h.v)refsOf(p).forEach(t=>add(t,REACT_SCORE[h.v]))});
  const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
 
  /* 이전 분기에 한 번이라도 나온 태그 */
  const seenBefore=new Set();
- (S.diary||[]).filter(d=>before(d.date)&&d.analysis).forEach(d=>(d.analysis.interests||[]).forEach(x=>seenBefore.add(x.tag)));
- (S.history||[]).filter(h=>before(h.date)&&h.v).forEach(h=>{const p=placeById(h.id);if(p)p.ints.forEach(t=>seenBefore.add(t))});
+ (S.diary||[]).filter(d=>before(d.date)&&d.analysis).forEach(d=>(d.analysis.interests||[]).forEach(x=>seenBefore.add(migrateRef(x.tag))));
+ (S.history||[]).filter(h=>before(h.date)&&h.v).forEach(h=>{const p=placeById(h.id);if(p)refsOf(p).forEach(t=>seenBefore.add(t))});
  const hadPast=seenBefore.size>0;
 
  /* 관심사 변화: 현재 취향 vs 직전 취향. 이번 분기 신호가 있고 전에 안 보였으면 '새로' */
  const prev=S.prevTaste||S.taste;
- const changes=Object.keys(INTEREST).map(tag=>{
-  const after=S.taste[tag],bef=prev[tag]??after;
+ const changes=[...new Set([...Object.keys(S.taste),...Object.keys(sig)])].map(tag=>{
+  const after=S.taste[tag]??.5,bef=prev[tag]??after;
   const isNew=sig[tag]&&!seenBefore.has(tag)&&hadPast&&avg(sig[tag])>=.6;
-  return {tag,label:INTEREST[tag],before:Math.round(bef*100),after:Math.round(after*100),delta:Math.round((after-bef)*100),isNew};
+  return {tag,label:label(tag),before:Math.round(bef*100),after:Math.round(after*100),delta:Math.round((after-bef)*100),isNew};
  }).filter(c=>c.isNew||Math.abs(c.delta)>=3||sig[c.tag]).sort((a,b)=>(b.isNew-a.isNew)||(Math.abs(b.delta)-Math.abs(a.delta))).slice(0,5);
  const newTags=changes.filter(c=>c.isNew);
 
  /* 유형 */
  const styleTop=Object.entries(S.styles||{}).sort((a,b)=>b[1]-a[1]);
  const intTop=Object.entries(S.taste).sort((a,b)=>b[1]-a[1]);
- const type=styleTop[0]?TYPE_BY_STYLE[styleTop[0][0]]:TYPE_BY_INT[intTop[0][0]];
- const subtitle=[styleTop[0]&&STYLE_TAGS[styleTop[0][0]]+'형',INTEREST[intTop[0][0]]+' 좋아함',styleTop[1]&&STYLE_TAGS[styleTop[1][0]]+'파'].filter(Boolean).join(' · ');
+ const type=styleTop[0]?TYPE_BY_STYLE[styleTop[0][0]]:typeOf(intTop[0][0]);
+ const subtitle=[styleTop[0]&&STYLE_TAGS[styleTop[0][0]]+'형',label(intTop[0][0])+' 좋아함',styleTop[1]&&STYLE_TAGS[styleTop[1][0]]+'파'].filter(Boolean).join(' · ');
 
  /* 장면: 다녀온 곳마다 예상 vs 실제 */
  const scenes=hist.filter(h=>h.v||h.note).map(h=>{const p=placeById(h.id);if(!p)return null;const s=scorePlace(S,p);
@@ -89,7 +94,7 @@ export function sampleReport(n){return {
  stats:[{v:'89%',l:'직접 해보기'},{v:'4/5',l:'예상 적중'},{v:'+1',l:'새 관심사'}],
  compare:[{t:'동물',h:true},{t:' 관심이 더 커졌고, 처음으로 '},{t:'식물',h:true},{t:' 태그가 나타났어요.'}],
  scenes:[{id:'s1',name:'공룡 박물관',date:'',pred:87,v:'like',note:'뼈 앞에서 12분. "진짜 크다"를 세 번.',hit:true},{id:'s2',name:'동물원',date:'',pred:72,v:'meh',note:'보는 건 금방 질렸어요. 먹이주기만 기억해요.',hit:false},{id:'s3',name:'숲 체험 공원',date:'',pred:64,v:'like',note:'나뭇잎 주워서 집까지 들고 왔어요.',hit:true}],
- changes:[{tag:'play',label:'뛰어놀기',before:50,after:89,delta:39},{tag:'animal',label:'동물',before:70,after:80,delta:10},{tag:'plant',label:'식물',before:30,after:58,delta:28,isNew:true},{tag:'book',label:'책',before:30,after:15,delta:-15}],
+ changes:[{tag:'a:outdoor',label:'바깥 놀이',before:50,after:89,delta:39},{tag:'동물',label:'동물',before:70,after:80,delta:10},{tag:'식물',label:'식물',before:30,after:58,delta:28,isNew:true},{tag:'a:literacy',label:'책·이야기',before:30,after:15,delta:-15}],
  next:[{id:'n1',name:'공룡 화석 발굴 체험관',prob:91},{id:'n2',name:'양떼 먹이주기 농장',prob:86}],
  thin:false,sample:true};
 }

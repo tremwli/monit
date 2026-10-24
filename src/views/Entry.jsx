@@ -1,6 +1,6 @@
 /* 엽서 한 장 = 블로그 글. 사진 크게, 날짜, 제목, 글, 태그 */
 import {useStore} from '../store.jsx';
-import {INTEREST_TAGS,STYLE_TAGS} from '../lib/analysis.js';
+import {STYLE_TAGS,label} from '../lib/analysis.js';
 import {placeById} from '../lib/logic.js';
 import {entryTitle,entryTint} from '../lib/journal.js';
 import {deletePhotos} from '../lib/photos.js';
@@ -36,7 +36,7 @@ export default function Entry(){
   {a?<div className="card col gap10" style={{padding:16,marginTop:6}}>
    <div className="small">이 일기에서 알게 된 것</div>
    {a.summary?<div style={{fontSize:15,fontWeight:600}}>{a.summary}</div>:null}
-   <div className="row gap6 wrap">{(a.interests||[]).map((x,k)=><span key={k} className="tag t-yellow">{INTEREST_TAGS[x.tag]} {Math.round(x.score*100)}%</span>)}{(a.styles||[]).map((x,k)=><span key={'s'+k} className="tag t-peri">{STYLE_TAGS[x.tag]}</span>)}{(a.avoid||[]).map((x,k)=><span key={'a'+k} className="tag t-red">{x.item}</span>)}</div>
+   <div className="row gap6 wrap">{(a.interests||[]).map((x,k)=><span key={k} className="tag t-yellow">{label(x.tag)} {Math.round(x.score*100)}%</span>)}{(a.styles||[]).map((x,k)=><span key={'s'+k} className="tag t-peri">{STYLE_TAGS[x.tag]}</span>)}{(a.avoid||[]).map((x,k)=><span key={'a'+k} className="tag t-red">{x.item}</span>)}</div>
   </div>:null}
  </div>
 </div>)}
