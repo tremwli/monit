@@ -3,7 +3,7 @@
    분석·엽서·예전 화면이 그대로 동작하게 한다. */
 import {useEffect,useRef,useState} from 'react';
 import {useStore} from '../store.jsx';
-import {INTEREST_TAGS,STYLE_TAGS,ageGroupOf,mergeTaste,mergeStyles} from '../lib/analysis.js';
+import {STYLE_TAGS,ageGroupOf,mergeTaste,mergeStyles,label} from '../lib/analysis.js';
 import {analyzeText} from '../lib/ai.js';
 import {savePhoto,cachedPhoto} from '../lib/photos.js';
 import {newEntryId} from '../lib/journal.js';
@@ -57,7 +57,7 @@ export default function Diary(){
  const save=()=>{
   const analysis=result?{interests:result.interests,styles:result.styles,avoid:result.avoid,summary:result.summary,source:result.source}:null;
   const cleanBlocks=blocks.filter(b=>b.type==='photo'||b.text.trim()).map(b=>b.type==='text'?{type:'text',text:b.text.trim()}:{type:'photo',id:b.id});
-  set(S=>{if(analysis){S.prevTaste={...S.taste};S.taste=mergeTaste(S.taste,analysis);S.styles=mergeStyles(S.styles,analysis);(analysis.avoid||[]).forEach(a=>{if(a.item&&!S.avoid.includes(a.item))S.avoid.push(a.item)})}
+  set(S=>{if(analysis){S.prevTaste={...S.taste};S.taste=mergeTaste(S.taste,analysis);S.styles=mergeStyles(S.styles,analysis);(analysis.avoid||[]).forEach(a=>{const it=a.topic||a.item;if(it&&!S.avoid.includes(it))S.avoid.push(it)})}
    S.diary.push({id:newEntryId(),date,createdAt:Date.now(),kind:'diary',title:title.trim(),text,blocks:cleanBlocks,placeId:placeId||null,reaction:null,photos:photoIds,ageGroup:ag,analysis})});
   go('calendar');setTimeout(()=>toast(analysis?n+' 취향에 반영했어요':'저장했어요'),150);
  };
@@ -91,7 +91,7 @@ export default function Diary(){
   </div>
   {result.interests.length?<div className="col gap10" style={{background:'var(--bg2)',borderRadius:20,padding:16}}>
    <div style={{fontSize:15,fontWeight:700}}>관심사</div>
-   {result.interests.map((i,k)=><div key={k} className="col gap6"><div className="row gap8"><span className={'tag '+SCORE_CLS(i.score)} style={{fontWeight:700,fontSize:13,padding:'5px 12px'}}>{INTEREST_TAGS[i.tag]}</span><span className="small">{SCORE_TXT(i.score)} · {Math.round(i.score*100)}%</span></div><div style={{fontSize:13,color:'var(--sub)',paddingLeft:4}}>“{i.quote}”</div></div>)}
+   {result.interests.map((i,k)=><div key={k} className="col gap6"><div className="row gap8"><span className={'tag '+SCORE_CLS(i.score)} style={{fontWeight:700,fontSize:13,padding:'5px 12px'}}>{label(i.tag)}</span><span className="small">{SCORE_TXT(i.score)} · {Math.round(i.score*100)}%</span></div><div style={{fontSize:13,color:'var(--sub)',paddingLeft:4}}>“{i.quote}”</div></div>)}
   </div>:null}
   {result.styles.length?<div className="col gap10" style={{background:'var(--bg2)',borderRadius:20,padding:16}}>
    <div style={{fontSize:15,fontWeight:700}}>노는 방식</div>

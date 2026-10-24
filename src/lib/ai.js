@@ -4,7 +4,8 @@
 import {localAnalyze} from './analysis.js';
 
 const MIN_LEN_FOR_LLM=15;
-const CACHE_KEY='monit-analyze-cache-v1';
+/* v2: 관심사가 흥미 유형 + 열린 주제로 바뀌어서 예전 캐시는 쓰지 않는다 */
+const CACHE_KEY='monit-analyze-cache-v2';
 const CACHE_MAX=50;
 
 function hash(s){let h=0;for(let i=0;i<s.length;i++)h=(Math.imul(31,h)+s.charCodeAt(i))|0;return (h>>>0).toString(36)}

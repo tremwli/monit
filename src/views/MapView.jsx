@@ -1,5 +1,6 @@
 import {useStore} from '../store.jsx';
-import {HOME,PLACES,INTEREST,FAC,ICON} from '../lib/data.js';
+import {HOME,PLACES,FAC,ICON} from '../lib/data.js';
+import {profileOf} from '../lib/interests.js';
 import {scorePlace,levelOf,placeById} from '../lib/logic.js';
 import {travel,travelLabel,demo} from '../lib/utils.js';
 import {Thumb,MoodRow,Icon,Html,MapBox,TabBar} from '../components/ui.jsx';
@@ -8,7 +9,7 @@ import NearbyCare from '../components/NearbyCare.jsx';
 
 function PlaceSheet({p}){
  const {S,setUI}=useStore();const lv=levelOf(scorePlace(S,p));const tr=travel(HOME,p,S.c.mode);
- const tags=[...p.ints.map(i=>['t-yellow','#'+INTEREST[i]]),...p.fac.map(f=>[f==='pediatric'?'t-red':'t-peri','#'+FAC[f].replace(/ /g,'').replace('가능','OK')]),...(p.indoor?[['t-mint','#실내']]:[]),...(p.fee===0?[['t-mint','#무료']]:[])];
+ const tags=[...profileOf(p).topics.map(t=>['t-yellow','#'+t]),...p.fac.map(f=>[f==='pediatric'?'t-red':'t-peri','#'+FAC[f].replace(/ /g,'').replace('가능','OK')]),...(p.indoor?[['t-mint','#실내']]:[]),...(p.fee===0?[['t-mint','#무료']]:[])];
  return (
  <div className="sheet pad col gap12" style={{position:'fixed',left:'50%',transform:'translateX(-50%)',width:'100%',maxWidth:430,bottom:'calc(64px + env(safe-area-inset-bottom))',paddingTop:10,paddingBottom:16,boxShadow:'0 -4px 20px rgba(31,58,95,.1)',zIndex:25}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>

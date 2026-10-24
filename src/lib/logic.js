@@ -1,19 +1,62 @@
-/* 원본 MVP 추천 로직. 전역 S 대신 첫 인자로 S를 받는다.
-   실제 데이터(TourAPI)용으로 더한 것: 모르는 편의시설은 통과(facKnown), 운영시간·휴무일 확인(openOk). */
-import {HOME,PLACES,MEAL_FAC,INTEREST,FAC} from './data.js';
-import {travel,ymd} from './utils.js';
+/* 추천 로직. 전역 S 대신 첫 인자로 S를 받는다.
+   실제 데이터(TourAPI)용으로 더한 것: 모르는 편의시설은 통과(facKnown), 운영시간·휴무일 확인(openOk).
+   관심사는 흥미 유형 + 열린 주제 두 층(lib/interests.js). 일기에서 뽑은 노는 방식(S.styles)·조심할 것(S.avoid)도 점수에 쓴다. */
+import {HOME,PLACES,MEAL_FAC,FAC} from './data.js';
+import {travel,ymd,clamp} from './utils.js';
+import {profileOf,mentions,matchesRef,isArea,migrateRef,normalizeTopic,label} from './interests.js';
 
-export function avgTaste(S,p){if(!p.ints.length)return .5;return p.ints.reduce((a,i)=>a+(S.taste[i]||.3),0)/p.ints.length}
+const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
+/* 직접 해보는 유형 (노는 방식 '직접 해보기' ↔ '구경하기'와 맞춰 본다) */
+const HANDS_ON=['create','build','skill','sport','pretend'];
+
+/* 아이 취향과 장소가 얼마나 맞는지 (0~1).
+   주제: 아이가 가진 주제 중 이 장소가 다루는 것들의 점수 평균. 하나도 안 겹치면 0.45(모름, 중립보다 살짝 아래).
+   유형: 장소가 주는 흥미 유형들의 아이 점수 평균. 기록이 없는 유형은 0.5.
+   주제가 겹치면 주제 55% + 유형 45%, 안 겹치면 유형 위주로 본다. */
+export function fitOf(S,p){
+ const pr=profileOf(p),T=S.taste||{};
+ const tScores=Object.keys(T).filter(k=>!isArea(k)&&mentions(p,k)).map(k=>T[k]);
+ const aScores=pr.areas.map(a=>T['a:'+a]??.5);
+ const area=aScores.length?avg(aScores):.5;
+ if(!tScores.length)return .45*.4+area*.6;
+ return .55*avg(tScores)+.45*area;
+}
+/* 예전 이름 유지 (리포트 등에서 사용) */
+export const avgTaste=fitOf;
+
+/* 일기에서 나온 '조심할 것'(주제 낱말로 저장, 예: 물놀이)이 이 장소와 겹치는지 */
+function avoidHit(S,p){return (S.avoid||[]).some(item=>{const t=normalizeTopic(item);return t.length>=2&&mentions(p,t)})}
+
 export function scorePlace(S,p){
- const c=S.c;let s=.62*avgTaste(S,p)+.26*p.base;
- if(p.ints.some(i=>c.wants.includes(i)))s+=.12;
+ const c=S.c,pr=profileOf(p),st=S.styles||{};let s=.62*fitOf(S,p)+.26*p.base;
+ if((c.wants||[]).some(r=>matchesRef(p,r)))s+=.12;
  if(c.avoidCrowd&&p.crowd)s-=.1;
  if(c.energy==='low'){if(p.stay>55)s-=.08;if(!p.indoor)s-=.06}
- if(c.energy==='high'&&p.ints.includes('play'))s+=.04;
+ if(c.energy==='high'&&pr.areas.some(a=>a==='sport'||a==='outdoor'))s+=.04;
+ /* 노는 방식(일기 분석): 기록이 있을 때만. 각각 최대 ±0.06 */
+ if(st.outdoor!=null||st.indoor!=null)s+=.06*((st.outdoor??.5)-(st.indoor??.5))*(p.indoor?-1:1);
+ if(st.lively!=null||st.quiet!=null)s+=.06*((st.lively??.5)-(st.quiet??.5))*(p.crowd?1:-1);
+ if(st.hands!=null||st.watch!=null)s+=.06*((st.hands??.5)-(st.watch??.5))*(pr.areas.some(a=>HANDS_ON.includes(a))?1:-1);
+ if(avoidHit(S,p))s-=.2;
  /* 실제 데이터: 꼭 필요하다고 고른 시설인데 정보가 없는 곳은 살짝 뒤로 (확인된 곳 먼저) */
  if(p.facKnown)s-=.05*c.fac.filter(f=>!p.facKnown.includes(f)&&f!=='pediatric'&&f!=='er').length;
  return Math.max(0,Math.min(1,s))}
-export function isNewCandidate(S,p){return avgTaste(S,p)<.42&&p.base>=.7&&!S.visited.includes(p.id)}
+
+/* 다녀온 반응을 취향에 반영. 주제는 크게(±0.14~0.16), 흥미 유형은 넓은 범주라 그 절반만 */
+export function learnFromVisit(S,p,v){
+ const pr=profileOf(p),d=v==='like'?1:-1;
+ const bump=(ref,amt)=>{S.taste[ref]=clamp((S.taste[ref]??.5)+amt)};
+ pr.topics.forEach(t=>bump(t,d>0?.14:-.16));
+ pr.areas.forEach(a=>bump('a:'+a,d>0?.07:-.08));
+ return pr.topics.length+pr.areas.length;
+}
+
+/* 예전 8개 태그로 저장된 취향을 새 모델로 옮긴다 */
+export function migrateTaste(taste){
+ const out={};Object.entries(taste||{}).forEach(([k,v])=>{out[migrateRef(k)]=v});return out;
+}
+export {label};
+export function isNewCandidate(S,p){return fitOf(S,p)<.42&&p.base>=.7&&!S.visited.includes(p.id)}
 export function levelOf(s,isNew){if(isNew)return 'C';return s>=.72?'A':s>=.52?'B':'C'}
 export function passFilters(S,p,relax){
  const c=S.c;
@@ -100,7 +143,7 @@ export function buildCourse(S){
  const allIndoor=ids.every(id=>PLACES.find(p=>p.id===id).indoor);
  return {days,fee,move:mv,relaxed,allIndoor,createdAt:Date.now()};
 }
-export function hashtags(p){const tg=p.theme?[p.theme]:[];p.ints.forEach(i=>{if(INTEREST[i]!==p.theme)tg.push(INTEREST[i])});['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
+export function hashtags(p){const tg=p.theme?[p.theme]:[];profileOf(p).topics.forEach(t=>{if(t!==p.theme&&!tg.includes(t))tg.push(t)});['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
 export function placeById(id){return PLACES.find(p=>p.id===id)}
 
 /* 코스를 만들면 바로 '지난 코스'에 넣는다 (done:false = 아직 안 다녀옴).
