@@ -15,3 +15,5 @@ export function demo(){toast('MVP에서는 보기만 가능한 기능이에요')
 export function go(r){location.hash='#/'+r}
 /* "a:b;c:d" 형태의 인라인 스타일 문자열을 React style 객체로 */
 export function css(str){const o={};String(str||'').split(';').forEach(p=>{const i=p.indexOf(':');if(i<0)return;const k=p.slice(0,i).trim(),v=p.slice(i+1).trim();if(!k)return;o[k.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v});return o}
+/* 카카오맵에서 그 장소를 핀으로 보여주는 링크. 폰에서는 카카오맵 앱이 열린다 */
+export function kakaoMapUrl(p){return 'https://map.kakao.com/link/map/'+encodeURIComponent(p.name)+','+p.lat+','+p.lng}
