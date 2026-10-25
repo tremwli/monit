@@ -10,7 +10,7 @@ export default function My(){
  const {S,UI,setUI,reset}=useStore();const n=S.child.name;const t=S.taste,pt=S.prevTaste||{};const ks=Object.keys(t).sort((a,b)=>t[b]-t[a]);
  /* 주제는 많아질 수 있어서 위 8개만, 흥미 유형은 기록이 있는 것만 */
  const topicKs=ks.filter(k=>!isArea(k)).slice(0,8),areaKs=ks.filter(isArea);
- const lab=v=>v>=.75?'푹 빠졌어요':v>=.55?'좋아해요':v>=.4?'관심 있어요':'아직 시큰둥';
+ const lab=v=>v>=.75?'푹 빠졌어요':v>=.55?'좋아해요':v>=.45?'아직 몰라요':'아직 시큰둥';
  const liked=S.history.filter(h=>h.v==='like').slice(-1)[0];const meh=S.history.filter(h=>h.v==='meh').slice(-1)[0];
  const onReset=()=>{if(!UI.resetArm){setUI(u=>{u.resetArm=true});setTimeout(()=>setUI(u=>{u.resetArm=false}),4000);return}reset();go('start')};
  return (

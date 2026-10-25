@@ -10,7 +10,8 @@ const avg=a=>a.reduce((x,y)=>x+y,0)/a.length;
 const HANDS_ON=['create','build','skill','sport','pretend'];
 
 /* 아이 취향과 장소가 얼마나 맞는지 (0~1).
-   주제: 아이가 가진 주제 중 이 장소가 다루는 것들의 점수 평균. 하나도 안 겹치면 0.45(모름, 중립보다 살짝 아래).
+   주제: 아이가 가진 주제 중 이 장소가 다루는 것들. 가장 강한 신호가 주도한다(최고점 75% + 평균 25%) —
+        곤충을 좋아하는 아이에게 곤충식물원은, 식물·동물에 관심이 없어도 '좋아해요'여야 하니까. 하나도 안 겹치면 0.45(모름).
    유형: 장소가 주는 흥미 유형들의 아이 점수 평균. 기록이 없는 유형은 0.5.
    주제가 겹치면 주제 55% + 유형 45%, 안 겹치면 유형 위주로 본다. */
 export function fitOf(S,p){
@@ -19,7 +20,8 @@ export function fitOf(S,p){
  const aScores=pr.areas.map(a=>T['a:'+a]??.5);
  const area=aScores.length?avg(aScores):.5;
  if(!tScores.length)return .45*.4+area*.6;
- return .55*avg(tScores)+.45*area;
+ const hi=Math.max(...tScores),topic=hi>=.5?.75*hi+.25*avg(tScores):avg(tScores);
+ return .55*topic+.45*area;
 }
 /* 예전 이름 유지 (리포트 등에서 사용) */
 export const avgTaste=fitOf;
