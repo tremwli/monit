@@ -193,7 +193,7 @@ a{color:var(--primary)}
 .trail .ride svg{width:16px;height:16px}
 .trail .ride-t{font-size:12px;color:var(--mute);font-weight:600}
 /* 폴라로이드: 흰 종이 위에 사진, 아래 여백에 손글씨 이름. 그림자 없음, 압정으로 고정 */
-.stop{position:relative;background-color:#fff;background-image:var(--grain);border:1px solid #E9E4DA;border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:8px;transition:transform var(--fast) var(--ease);animation:rise .35s var(--ease) both;max-width:280px}
+.stop{position:relative;background-color:#fff;background-image:var(--grain);border:1.5px solid #C9CFD8;border-radius:8px;padding:10px 10px 14px;display:flex;flex-direction:column;gap:8px;transition:transform var(--fast) var(--ease);animation:rise .35s var(--ease) both;max-width:280px}
 .stop.odd{transform:rotate(-1.4deg)}.stop.even{transform:rotate(1.1deg)}
 .stop:active{transform:rotate(0) scale(.985)}
 .stop .body{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit}
