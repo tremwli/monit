@@ -44,7 +44,7 @@ export function Seg({opts,cur,onPick}){return (
 export function Switch({on,label,onToggle}){return <button type="button" className={'switch '+(on?'on':'')} role="switch" aria-checked={!!on} aria-label={label} onClick={onToggle}/>}
 
 export function TabBar({on}){
- const it=[['home','홈','<path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/>'],['map','지도','<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>'],['community','커뮤니티','<path d="M4 5h16v11H9l-5 4z"/>'],['calendar','캘린더','<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>'],['my','우리 아이','<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>']];
+ const it=[['home','홈','<path d="M3 11l9-7 9 7v10h-6v-6H9v6H3z"/>'],['map','지도','<path d="M9 4L3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>'],['saved','저장한 코스','<path d="M6.5 3.5h11a1 1 0 0 1 1 1V21l-6.5-4.5L5.5 21V4.5a1 1 0 0 1 1-1z"/>'],['calendar','캘린더','<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/>'],['my','우리 아이','<circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/>']];
  return (<nav className="tabbar" aria-label="하단 메뉴">
   {it.map(([k,l,p])=><a key={k} href={'#/'+k} className={on===k?'on':''} aria-current={on===k?'page':undefined}>
    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke={on===k?'#191F28':'#8B95A1'} strokeWidth={on===k?2:1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" dangerouslySetInnerHTML={{__html:p}}/>{l}</a>)}
