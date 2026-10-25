@@ -1,7 +1,63 @@
 /* TourAPI 응답 → 모닛 추천 로직이 쓰는 장소 모양으로 바꾸기.
    규칙은 전부 여기 있어요. 태그가 이상하면 아래 키워드 표만 고치면 돼요. */
 
-/* ---------- 취향 태그 키워드 ---------- */
+import {tagText, AREA_KEYS} from '../../src/lib/interests.js';
+
+/* ---------- 흥미 유형 + 관심 주제 (새 모델, src/lib/interests.js) ----------
+   TourAPI 소분류 코드(cat3)로 먼저 정하고, 이름·소개글·상세 소개 전체에서 단어를 찾아 보탠다.
+   코드표: 한국관광공사 서비스분류코드. 여기 없는 코드는 단어 찾기만으로 간다. */
+const CAT3_TAGS = {
+  A01010400: {areas: ['outdoor'], topics: ['숲']},            // 산
+  A01010500: {areas: ['outdoor', 'concept'], topics: ['숲']}, // 자연생태관광지
+  A01010700: {areas: ['outdoor'], topics: ['물놀이']},        // 계곡
+  A01011100: {areas: ['outdoor'], topics: ['물놀이', '모래놀이']}, // 해수욕장
+  A01011300: {areas: ['outdoor'], topics: []},                // 호수
+  A01011700: {areas: ['outdoor', 'concept'], topics: ['식물', '숲']}, // 수목원
+  A01011800: {areas: ['outdoor', 'concept'], topics: []},     // 동굴
+  A02020300: {areas: ['outdoor'], topics: ['숲']},            // 자연휴양림
+  A02020600: {areas: ['outdoor', 'pretend', 'sport'], topics: []}, // 테마공원
+  A02020700: {areas: ['outdoor'], topics: []},                // 공원
+  A02030100: {areas: ['outdoor', 'skill'], topics: ['동물', '식물']}, // 농·산·어촌 체험
+  A02030200: {areas: ['skill', 'pretend'], topics: ['역사']}, // 전통체험
+  A02030400: {areas: ['skill', 'pretend'], topics: []},       // 이색체험
+  A02050100: {areas: ['pretend'], topics: []},                // 테마촬영지? (드라마 세트)
+  A02060100: {areas: ['concept'], topics: []},                // 박물관
+  A02060200: {areas: ['concept'], topics: ['역사']},          // 기념관
+  A02060300: {areas: ['concept'], topics: []},                // 전시관
+  A02060500: {areas: ['create', 'concept'], topics: ['미술']}, // 미술관/화랑
+  A02060600: {areas: ['literacy'], topics: ['음악']},         // 공연장
+  A02060700: {areas: ['skill', 'create'], topics: []},        // 문화원
+  A02060900: {areas: ['literacy'], topics: ['책']},           // 도서관
+  A02061000: {areas: ['literacy'], topics: ['책']},           // 대형서점
+  A02061100: {areas: ['skill', 'create'], topics: []},        // 문화전수시설
+  A03010200: {areas: ['sport', 'outdoor'], topics: ['물놀이']}, // 수상레포츠
+  A03020200: {areas: ['sport'], topics: ['물놀이']},          // 수영
+  A03020700: {areas: ['sport', 'outdoor'], topics: []},       // 자전거하이킹
+  A03021000: {areas: ['sport', 'outdoor'], topics: []},       // 스키/스노보드
+  A03021100: {areas: ['sport', 'outdoor'], topics: []},       // 눈썰매장
+  A03021200: {areas: ['sport'], topics: []},                  // 스케이트
+  A03021800: {areas: ['sport', 'outdoor'], topics: ['동물']}, // 승마
+  A03022200: {areas: ['sport'], topics: []},                  // 볼링
+  A03022300: {areas: ['games', 'sport'], topics: []},         // 서바이벌게임
+  A03022400: {areas: ['sport', 'outdoor'], topics: []},       // ATV
+  A03022600: {areas: ['sport', 'outdoor'], topics: []},       // 카트
+  A03030100: {areas: ['sport', 'outdoor'], topics: ['물놀이']}, // 윈드서핑/제트스키
+  A03030200: {areas: ['sport', 'outdoor'], topics: ['물놀이']}, // 카약/카누
+  A03030300: {areas: ['sport', 'outdoor'], topics: ['물놀이']}, // 요트
+  A03030500: {areas: ['sport', 'outdoor'], topics: ['물놀이']}, // 래프팅
+  A03030600: {areas: ['sport', 'outdoor'], topics: ['물놀이']}, // 수상스키/보트
+  A03030800: {areas: ['sport', 'outdoor'], topics: ['바다생물']}, // 스킨스쿠버
+  A03040300: {areas: ['sport', 'outdoor'], topics: []},       // 스카이다이빙 등
+};
+export function tagPlace(name, cat3, fullText) {
+  const base = CAT3_TAGS[cat3] || {areas: [], topics: []};
+  const tt = tagText(`${name} ${name} ${fullText}`);
+  const areas = [...new Set([...base.areas, ...tt.areas])].filter(a => AREA_KEYS.includes(a));
+  const topics = [...new Set([...base.topics, ...tt.topics])];
+  return {areas, topics};
+}
+
+/* ---------- 취향 태그 키워드 (예전 8개 모델, 호환용으로 남김) ---------- */
 export const TAG_WORDS = {
   dino:   ['공룡', '화석', '자연사', '쥬라기', '쥐라기', '고생물'],
   water:  ['물놀이', '수영장', '워터', '분수', '계곡', '해수욕', '물썰매', '래프팅', '물빛'],
@@ -103,9 +159,12 @@ export function transformOne({list, common, intro, bf}) {
       .filter(([, s]) => s > 0)
       .sort((a, b) => b[1] - a[1]);
     scored.slice(0, 3).forEach(([k]) => ints.push(k));
-    if (!ints.length) return null; // 아이 취향과 이어지는 게 없으면 빼요
     if (hasAny(name, EXCLUDE_WORDS)) return null;
   }
+  /* 새 모델: 흥미 유형·관심 주제. 둘 다 비면 아이와 이어지는 게 없는 곳이라 빼요 */
+  const cat3 = clean(c.cat3 || list.cat3 || '');
+  const tags = type === 'play' ? tagPlace(name, cat3, `${overview} ${introText}`) : {areas: [], topics: []};
+  if (type === 'play' && !tags.areas.length && !tags.topics.length) return null;
 
   const cat = type === 'meal' ? '식당' : (CAT_RULES.find(([, ws]) => hasAny(name, ws)) || CAT_RULES.find(([, ws]) => hasAny(text, ws)) || ['놀이터·공원'])[0];
   const indoor = type === 'meal' ? true : guessIndoor(name, overview, String(c.contenttypeid));
@@ -156,6 +215,8 @@ export function transformOne({list, common, intro, bf}) {
   return {
     id: 't' + c.contentid,
     name, cat, ints,
+    areas: tags.areas, topics: tags.topics,
+    ...(cat3 ? {cat3} : {}),
     fac: [...fac], facKnown: [...known],
     indoor, fee, ...(feeUnknown ? {feeUnknown: true} : {}),
     stay, lat: round6(lat), lng: round6(lng),

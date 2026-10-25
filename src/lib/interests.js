@@ -24,7 +24,7 @@ export const isArea=ref=>typeof ref==='string'&&ref.startsWith('a:');
 export const areaRef=k=>'a:'+k;
 
 /* 장소 글에서 흥미 유형을 알아보는 단어 */
-const AREA_WORDS={
+export const AREA_WORDS={
  concept:['박물관','과학관','기념관','전시','아쿠아리움','수족관','동물원','식물원','생태','자연사','천문','체험관','역사관'],
  pretend:['역할','키즈카페','소꿉','인형극','직업체험','상상','모험'],
  create:['미술','그리기','공방','만들기','아트','도예','공예'],
@@ -85,17 +85,26 @@ export function tintOf(ref){return TINT_OF[iconOf(ref)]||'#F2F4F6'}
 
 const hasAny=(s,ws)=>ws.some(w=>s.includes(w));
 
+/* 아무 글(이름·분류·소개글)에서 흥미 유형과 주제를 찾는다. 수집 스크립트(scripts/lib/transform.mjs)와 profileOf가 같이 쓴다 */
+export function tagText(text){
+ const t=String(text||'');const areas=[],topics=[];
+ for(const [k,ws] of Object.entries(AREA_WORDS))if(hasAny(t,ws))areas.push(k);
+ for(const [name,al] of Object.entries(SEED_TOPICS))if(hasAny(t,al))topics.push(name);
+ return {areas,topics};
+}
+
 /* 장소 하나의 관심사 프로필: {areas:[키], topics:[이름], text}. 이름·분류·테마·소개글에서 뽑는다.
    샘플 장소는 소개글이 없어서 원본 태그(ints)도 함께 옮긴다 */
 const cache=new Map();
 export function profileOf(p){
  if(cache.has(p))return cache.get(p);
  const text=[p.name,p.cat,p.theme,p.summary].filter(Boolean).join(' ');
- const areas=new Set(),topics=new Set();
+ /* 수집 때 전체 소개글·분류코드로 미리 계산한 값(p.areas, p.topics)이 있으면 그걸 먼저 쓰고, 화면에 있는 글로 보충한다 */
+ const areas=new Set(p.areas||[]),topics=new Set(p.topics||[]);
  if(p.type!=='meal'){
-  for(const [k,ws] of Object.entries(AREA_WORDS))if(hasAny(text,ws))areas.add(k);
-  for(const [name,al] of Object.entries(SEED_TOPICS))if(hasAny(text,al))topics.add(name);
-  (p.ints||[]).forEach(i=>{const r=LEGACY[i];if(!r)return;if(isArea(r)){/* 뛰어놀기는 실내면 운동, 밖이면 바깥 놀이 */areas.add(r==='a:outdoor'&&p.indoor?'sport':r.slice(2))}else topics.add(r)});
+  const tt=tagText(text);tt.areas.forEach(a=>areas.add(a));tt.topics.forEach(x=>topics.add(x));
+  /* 예전 8개 태그(ints)는 글에서 아무것도 못 찾았을 때만 (옛 묶음 노이즈 방지) */
+  if(!areas.size&&!topics.size)(p.ints||[]).forEach(i=>{const r=LEGACY[i];if(!r)return;if(isArea(r)){/* 뛰어놀기는 실내면 운동, 밖이면 바깥 놀이 */areas.add(r==='a:outdoor'&&p.indoor?'sport':r.slice(2))}else topics.add(r)});
  }
  const pr={areas:[...areas],topics:[...topics],text};
  cache.set(p,pr);
