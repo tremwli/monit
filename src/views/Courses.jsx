@@ -14,7 +14,7 @@ function CourseList({mode}){
  const {S,set}=useStore();const n=S.child.name;
  const list=(S.courses||[]).filter(k=>mode==='saved'?statusOf(k)==='saved':statusOf(k)!=='saved');
  const open=(k,to)=>{if(k.course)set(S=>{S.lastCourse=k.course});go(to)};
- const start=k=>{set(S=>{S.lastCourse=k.course;upsertCourse(S,k.course,{status:'ongoing',startedAt:Date.now()})});go('trip')};
+ const start=k=>{set(S=>{S.lastCourse=k.course;upsertCourse(S,k.course,{status:'ongoing',startedAt:Date.now()})});go('result')};
  const remove=k=>{set(S=>{S.courses=S.courses.filter(x=>x.key!==k.key)});toast('저장한 코스를 지웠어요')};
  const back=()=>{if(history.length>1)history.back();else go('my')};
  return (

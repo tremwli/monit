@@ -26,6 +26,16 @@ export function Thumb({p,size,square,style}){const k=pkey(p);return (
 
 export function Chip({on,onClick,children,style,className=''}){return <button type="button" className={'chip '+(on?'on':'')+' '+className} aria-pressed={!!on} onClick={onClick} style={style}>{children}</button>}
 
+/* 숫자 직접 입력 + −/＋ 버튼. 입력 중엔 비워둘 수 있고, 칸을 벗어나면 min~max로 맞춘다 */
+export function Stepper({value,min=1,max=99,step=1,unit,label,onChange}){
+ const fix=v=>Math.max(min,Math.min(max,Math.round((Number(v)||min)/step)*step));
+ return (
+ <div className="stepper" role="group" aria-label={label}>
+  <button type="button" className="iconbtn" aria-label={label+' 줄이기'} disabled={value<=min} onClick={()=>onChange(fix(value-step))}>−</button>
+  <label className="row" style={{gap:4,justifyContent:'center',flex:1}}><input inputMode="numeric" aria-label={label} value={value} onChange={e=>{const v=e.target.value.replace(/\D/g,'');onChange(v===''?'':Math.min(max,+v))}} onBlur={e=>onChange(fix(e.target.value))}/><span>{unit}</span></label>
+  <button type="button" className="iconbtn" aria-label={label+' 늘리기'} disabled={value>=max} onClick={()=>onChange(fix((Number(value)||0)+step))}>+</button>
+ </div>)}
+
 export function Seg({opts,cur,onPick}){return (
  <div className="seg" role="group" style={{gridTemplateColumns:`repeat(${opts.length},minmax(0,1fr))`}}>
   {opts.map(([v,l])=><button type="button" key={v} className={String(cur)===String(v)?'on':''} aria-pressed={String(cur)===String(v)} onClick={()=>onPick(v)}>{l}</button>)}

@@ -1,3 +1,4 @@
+import {useState} from 'react';
 import {useStore} from '../store.jsx';
 import {HOME} from '../lib/data.js';
 import {buildCourse,hashtags,placeById,courseEntry,statusOf,upsertCourse} from '../lib/logic.js';
@@ -9,7 +10,7 @@ const won=v=>{v=Math.round(v/1000)*1000;if(!v)return '0원';const m=Math.floor(v
 const COLS=['#FFE08A','#A9DDB4','#8EC1F2','#93A9EE','#FFE08A','#A9DDB4'];
 
 export default function Result(){
- const {S,set}=useStore();const L=S.lastCourse;const n=S.child.name;const c=S.c;
+ const {S,set}=useStore();const [bigMap,setBigMap]=useState(false);const L=S.lastCourse;const n=S.child.name;const c=S.c;
  if(!L)return <div className="screen pad" style={{paddingTop:60}}><div className="h-title">아직 만든 코스가 없어요</div><div style={{paddingTop:20}}><a className="btn btn-primary" href="#/c1">코스 만들기</a></div></div>;
  const multi=L.days.length>1;let num=0;
  const pts=[{...HOME,home:true}];const route=[HOME];let k=0;
@@ -17,16 +18,22 @@ export default function Result(){
  const s=L.days[0].items[0].time,e=L.days[L.days.length-1].items.slice(-1)[0].time;
  const entry=courseEntry(S,L.createdAt);const st=entry?statusOf(entry):null;
  const save=()=>{set(S=>{upsertCourse(S,S.lastCourse,{status:'saved'})});toast('저장한 코스에 담았어요')};
- const start=()=>{set(S=>{upsertCourse(S,S.lastCourse,{status:'ongoing',startedAt:Date.now()})});go('trip')};
+ /* 출발해도 이 코스 화면에 그대로 있고, 아래 버튼이 '다녀왔어요 · 만족도 남기기'로 바뀐다 */
+ const start=()=>{set(S=>{upsertCourse(S,S.lastCourse,{status:'ongoing',startedAt:Date.now()})});toast('출발했어요')};
  /* 저장·출발한 코스는 그대로 두고, 새로 짠 코스만 바꾼다 */
  const rebuild=()=>{set(S=>{S.lastCourse=buildCourse(S)});toast('조건 그대로 새로 짰어요')};
  return (
 <div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,var(--paper) 321px)'}}>
  <MapBox id="resultMap" pts={pts} opts={{route,padTop:80,padBottom:60}} style={{height:330,background:'transparent'}}/>
  <div className="row between" style={{position:'absolute',top:16,left:16,right:16,zIndex:5}}>
-  <a className="iconbtn white" href="#/c5" aria-label="조건 다시 보기"><Icon name="back"/></a>
-  <a href="#/map" style={{height:40,padding:'0 14px',borderRadius:999,background:'var(--paper)',boxShadow:'0 2px 10px rgba(31,58,95,.12)',color:'#333D4B',fontSize:13,fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center'}}>지도 크게 보기</a>
+  <a className="iconbtn white" href="#/home" aria-label="홈으로"><Icon name="close"/></a>
+  <button type="button" onClick={()=>setBigMap(true)} style={{border:'none',height:40,padding:'0 14px',borderRadius:999,background:'var(--paper)',boxShadow:'0 2px 10px rgba(31,58,95,.12)',color:'#333D4B',fontSize:13,fontWeight:600,textDecoration:'none',display:'flex',alignItems:'center'}}>지도 크게 보기</button>
  </div>
+ {/* 지도 크게 보기: 이 코스의 핀과 경로를 화면 가득. 닫으면 코스 화면으로 */}
+ {bigMap?<div className="map-full">
+  <MapBox id="resultMapBig" pts={pts} opts={{route,padTop:90,padBottom:60}} style={{height:'100dvh'}}/>
+  <button type="button" className="iconbtn white" aria-label="지도 닫기" onClick={()=>setBigMap(false)} style={{position:'absolute',top:16,right:16,zIndex:5}}><Icon name="close"/></button>
+ </div>:null}
  <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>
   <div className="col gap6" style={{paddingTop:16}}>

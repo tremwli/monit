@@ -5,7 +5,7 @@ import {FAC,ICON} from '../lib/data.js';
 import {STARTER_REFS,isArea,label} from '../lib/interests.js';
 import {buildCourse,peopleOf} from '../lib/logic.js';
 import {fmtT,fmtShort,fmtDate,demo,go,openPicker} from '../lib/utils.js';
-import {StepHead,BottomCta,Chip,Seg,Switch,Icon,Face,Html} from '../components/ui.jsx';
+import {StepHead,BottomCta,Chip,Seg,Switch,Icon,Face,Html,Stepper} from '../components/ui.jsx';
 
 /* ---------- 시간 휠 ---------- */
 function Wheel({which}){
@@ -82,7 +82,7 @@ export function C2(){
  </div>
  <div className="pad section" style={{paddingTop:22}}>
   <div className="label">한 번에 이동할 최대 시간</div>
-  <Seg opts={[[15,'15분'],[30,'30분'],[60,'1시간']]} cur={c.maxTravel} onPick={v=>set(S=>{S.c.maxTravel=+v})}/>
+  <Stepper label="한 번에 이동할 최대 시간" value={c.maxTravel} min={5} max={180} step={5} unit="분" onChange={v=>set(S=>{S.c.maxTravel=v})}/>
  </div>
  <BottomCta><a className="btn btn-primary" href="#/c3">다음</a></BottomCta>
 </div>)}
@@ -148,7 +148,7 @@ export function C5(){
   <div className="section"><div className="label">요즘 {n} 체력</div>
    <div style={{display:'grid',gridTemplateColumns:'repeat(3,minmax(0,1fr))',gap:8}}>{faces.map(([v,f,l])=><button type="button" key={v} className={'optcard '+(c.energy===v?'on':'')} aria-pressed={c.energy===v} onClick={()=>set(S=>{S.c.energy=v})}><span className="ic"><Face level={f} size={26}/></span>{l}</button>)}</div></div>
   <div className="section"><div className="label">얼마나 모험해볼까요?</div><Seg opts={[['none','익숙한 곳'],['one','반반'],['many','새로운 곳']]} cur={c.novelty} onPick={v=>set(S=>{S.c.novelty=v})}/></div>
-  <div className="section"><div className="label">하루에 들를 곳</div><Seg opts={[[2,'2곳'],[3,'3곳'],[4,'4곳']]} cur={c.perDay} onPick={v=>set(S=>{S.c.perDay=+v})}/></div>
+  <div className="section"><div className="label">하루에 들를 곳</div><Stepper label="하루에 들를 곳" value={c.perDay} min={1} max={10} unit="곳" onChange={v=>set(S=>{S.c.perDay=v})}/></div>
   <div className="card" style={{padding:'2px 16px'}}>
    <div className="row between" style={{height:54,borderBottom:'1px solid #E9ECEF'}}><span style={{fontSize:15,fontWeight:600}}>식사 장소 넣기</span><Switch on={c.meal} label="식사 장소 넣기" onToggle={()=>set(S=>{S.c.meal=!S.c.meal})}/></div>
    <div className="row between" style={{height:60}}><span className="col" style={{gap:2}}><span style={{fontSize:15,fontWeight:600}}>사람 많은 곳 피하기</span><span className="small" style={{color:'var(--primaryInk)'}}>{n} 기록에서 배웠어요</span></span><Switch on={c.avoidCrowd} label="사람 많은 곳 피하기" onToggle={()=>set(S=>{S.c.avoidCrowd=!S.c.avoidCrowd})}/></div>
