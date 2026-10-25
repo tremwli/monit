@@ -7,7 +7,7 @@ import {load,save,defaults,clear} from './lib/state.js';
 
 const Ctx=createContext(null);
 
-const UI_DEFAULT={wheel:null,mapSel:null,mapCat:'fit',rec:{},photos:{},startSel:[],kidSel:null,kidQuote:null,resetArm:false};
+const UI_DEFAULT={wheel:null,mapSel:null,mapCat:'fit',rec:{},photos:{},startSel:[],startTopics:[],kidSel:null,kidQuote:null,resetArm:false};
 
 export function StoreProvider({children}){
  const [S,setS]=useState(load);
