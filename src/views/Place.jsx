@@ -2,7 +2,7 @@
 import {useStore} from '../store.jsx';
 import {FAC} from '../lib/data.js';
 import {profileOf,AREAS} from '../lib/interests.js';
-import {placeById,scorePlace,levelOf,hashtags} from '../lib/logic.js';
+import {placeById,scorePlace,levelOf,hashtags,visitCount} from '../lib/logic.js';
 import {kakaoMapUrl,kakaoRouteUrl} from '../lib/map.js';
 import {fmtT,go} from '../lib/utils.js';
 import {sampleReviews} from '../lib/reviews.js';
@@ -59,7 +59,7 @@ export default function Place(){
  </div>
 
  <div className="pad col gap10" style={{paddingTop:28}}>
-  <div className="row between" style={{alignItems:'baseline'}}><div style={{fontSize:18,fontWeight:700}}>{n}의 기록</div><span className="small">{mine.length+diaries.length}개</span></div>
+  <div className="row between" style={{alignItems:'baseline'}}><div style={{fontSize:18,fontWeight:700}}>{n}의 기록</div><span className="small">{visitCount(S,p.id)?visitCount(S,p.id)+'번 다녀옴':'아직 안 가봄'}</span></div>
   {mine.length||diaries.length?<div className="col gap8">
    {diaries.slice().reverse().map(d=><a key={d.id} href={'#/entry?id='+d.id} className="card col gap6" style={{padding:'12px 14px',textDecoration:'none',color:'inherit',background:'var(--paper)'}}>
     <div className="row between"><span className="small">{d.date} · {d.kind==='visit'?'다녀온 날':'육아일기'}{d.photos?.length?' · 사진 '+d.photos.length:''}</span>{d.reaction&&REACT[d.reaction]?<Html s={moodSvg(REACT[d.reaction][0],20)} style={{display:'inline-flex'}}/>:null}</div>

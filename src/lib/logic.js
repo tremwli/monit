@@ -85,7 +85,11 @@ export function dayList(S){const c=S.c;const out=[];const a=new Date(c.startDate
 export function peopleOf(S){return Math.max(1,(S.c.adults||[]).length)+1}
 export function budgetOf(S){return Number(S.c.budget)||0}
 /* wallet: {left} 여러 날에 걸쳐 남은 예산. 무료만 고른 경우엔 null(예산 확인 안 함) */
-export function planDay(S,date,used,relax,wallet){
+/* 이 장소에 몇 번 다녀왔는지 (기록 화면에서 저장한 방문 수) */
+export function visitCount(S,id){return (S.history||[]).filter(h=>h.id===id).length}
+
+/* opts: {prefer:Set(ids) 코스 수정 때 그대로 두고 싶은 곳, maxPlaces 하루 방문 수 덮어쓰기} */
+export function planDay(S,date,used,relax,wallet,opts={}){
  const c=S.c,blocks=blocksFor(S),soft=softFor(S);
  const start=c.startTime,end=c.endTime>c.startTime?c.endTime:c.startTime+180;
  const limitAt=t=>{let L=end;blocks.forEach(([s,e])=>{if(s>=t&&s<L)L=s});return L};
@@ -102,7 +106,7 @@ export function planDay(S,date,used,relax,wallet){
   return false};
  while(true){
   if(!mealDone&&t>=690&&t<840)tryMeal();
-  if(count>=c.perDay)break;
+  if(count>=(opts.maxPlaces??c.perDay))break;
   const L=limitAt(t);
   const mealPending=!mealDone&&t<840&&L>700;
   let best=null;
@@ -116,6 +120,9 @@ export function planDay(S,date,used,relax,wallet){
    if(leave+back+reserve>L)return;
    if(!openOk(p,date,arr,leave))return;
    let s=scorePlace(S,p)-tr*.004+(rand?Math.random()*.6:0);
+   /* 자주 간 곳은 코스에서 살짝 뒤로 — 안 가본 곳도 가보게. 화면의 '좋아할 확률'에는 영향 없음 */
+   s-=Math.min(.12,.04*visitCount(S,p.id));
+   if(opts.prefer&&opts.prefer.has(p.id))s+=.6;
    const nw=!newUsed&&count>=1&&isNewCandidate(S,p);
    if(nw)s+=c.novelty==='many'?.5:.3;
    if(!best||s>best.s)best={p,s,tr,arr,leave,nw};
@@ -146,18 +153,21 @@ export function planDay(S,date,used,relax,wallet){
  return {date,items,count};
 }
 /* 코스를 계산해서 반환한다 (S를 바꾸지 않음). 호출한 쪽에서 S.lastCourse에 넣는다. */
-export function buildCourse(S){
- const used=new Set();let relaxed=false;
+/* opts: {exclude:[ids] 이 코스에서 뺀 곳, prefer:[ids] 그대로 둘 곳, maxPlaces, keepCreatedAt 저장된 코스를 고칠 때 키 유지} */
+export function buildCourse(S,opts={}){
+ const excluded=[...(opts.exclude||[])];
+ const used=new Set(excluded);let relaxed=false;
+ const po={prefer:new Set(opts.prefer||[]),maxPlaces:opts.maxPlaces};
  const wallet=()=>S.c.feeMode==='paid'?{left:budgetOf(S)}:null;
- const w1=wallet();let days=dayList(S).map(d=>planDay(S,d,used,false,w1));
- if(days.every(d=>d.count===0)){relaxed=true;const u2=new Set(),w2=wallet();days=dayList(S).map(d=>planDay(S,d,u2,true,w2))}
+ const w1=wallet();let days=dayList(S).map(d=>planDay(S,d,used,false,w1,po));
+ if(days.every(d=>d.count===0)){relaxed=true;const u2=new Set(excluded),w2=wallet();days=dayList(S).map(d=>planDay(S,d,u2,true,w2,po))}
  const ids=[];days.forEach(d=>d.items.forEach(it=>{if(it.kind==='place')ids.push(it.id)}));
  /* fee: 여행 전체 예상 비용 = 장소마다 1인 요금 × 인원 (식사 포함) */
  const people=peopleOf(S);
  const fee=ids.reduce((a,id)=>a+PLACES.find(p=>p.id===id).fee,0)*people;
  const mv=days.reduce((a,d)=>a+d.items.filter(i=>i.kind==='move').reduce((x,i)=>x+i.min,0),0);
  const allIndoor=ids.every(id=>PLACES.find(p=>p.id===id).indoor);
- return {days,fee,people,budget:S.c.feeMode==='paid'?budgetOf(S):0,move:mv,relaxed,allIndoor,createdAt:Date.now()};
+ return {days,fee,people,budget:S.c.feeMode==='paid'?budgetOf(S):0,move:mv,relaxed,allIndoor,excluded,createdAt:opts.keepCreatedAt||Date.now()};
 }
 export function hashtags(p){const tg=p.theme?[p.theme]:[];profileOf(p).topics.forEach(t=>{if(t!==p.theme&&!tg.includes(t))tg.push(t)});['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
 export function placeById(id){return PLACES.find(p=>p.id===id)}

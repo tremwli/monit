@@ -21,7 +21,8 @@ export default function Record(){
    S.lastCourse.days.forEach(d=>d.items.forEach(it=>{if(it.kind!=='place')return;const p=placeById(it.id);const r=rec[p.id]||{};const ph=photos[p.id]||[];
     if(!S.visited.includes(p.id))S.visited.push(p.id);
     if(r.v){learnFromVisit(S,p,r.v);changed++}
-    if(r.v||r.note)S.history.push({id:p.id,v:r.v||null,note:r.note||'',date});
+    /* 반응·한 줄이 없어도 방문은 남긴다 (몇 번 갔는지 세려고) */
+    S.history.push({id:p.id,v:r.v||null,note:r.note||'',date});
     /* 반응·한 줄·사진 중 하나라도 있으면 엽서(일기)로도 남긴다 */
     if(r.v||r.note||ph.length)S.diary.push({id:newEntryId(),date,createdAt:Date.now(),kind:'visit',title:'',text:r.note||'',placeId:p.id,reaction:r.v||null,photos:ph,ageGroup:ag,analysis:null})}));
    /* 지난 코스 목록에 저장. 같은 코스를 다시 기록하면 덮어씀 */

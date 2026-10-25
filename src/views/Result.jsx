@@ -21,7 +21,14 @@ export default function Result(){
  /* 출발해도 이 코스 화면에 그대로 있고, 아래 버튼이 '다녀왔어요 · 만족도 남기기'로 바뀐다 */
  const start=()=>{set(S=>{upsertCourse(S,S.lastCourse,{status:'ongoing',startedAt:Date.now()})});toast('출발했어요')};
  /* 저장·출발한 코스는 그대로 두고, 새로 짠 코스만 바꾼다 */
- const rebuild=()=>{set(S=>{S.lastCourse=buildCourse(S)});toast('조건 그대로 새로 짰어요')};
+ /* 새 코스는 통째로 다시, 저장·출발한 코스는 키를 유지해 목록의 그 항목을 고친다 */
+ const apply=(opts,msg)=>{set(S=>{const old=S.lastCourse;const keep=st?{keepCreatedAt:old.createdAt}:{};S.lastCourse=buildCourse(S,{...opts,...keep});if(st)upsertCourse(S,S.lastCourse,{})});toast(msg)};
+ const rebuild=()=>apply({},'경로를 다시 추천했어요');
+ const ids=L.days.flatMap(d=>d.items.filter(it=>it.kind==='place'&&!it.meal).map(it=>it.id));
+ /* 한 곳만 바꾸기: 그곳은 빼고 나머지는 그대로 두라고 알려준 채 다시 짠다 */
+ const swap=id=>apply({exclude:[...(L.excluded||[]),id],prefer:ids.filter(x=>x!==id)},'다른 곳으로 바꿨어요');
+ const drop=id=>apply({exclude:[...(L.excluded||[]),id],prefer:ids.filter(x=>x!==id),maxPlaces:Math.max(1,ids.length-1)},'코스에서 뺐어요');
+ const editable=st!=='done';
  return (
 <div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,var(--paper) 321px)'}}>
  <MapBox id="resultMap" pts={pts} opts={{route,padTop:80,padBottom:60}} style={{height:330,background:'transparent'}}/>
@@ -37,7 +44,7 @@ export default function Result(){
  <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>
   <div className="col gap6" style={{paddingTop:16}}>
-   <div className="row between"><div className="small">{fmtDate(L.days[0].date)}{multi?' – '+fmtDate(L.days[L.days.length-1].date):''} · {fmtT(s)} – {fmtT(e)}</div>{st?null:<button type="button" className="chip" style={{height:30,fontSize:13}} onClick={rebuild}>다시 만들기</button>}</div>
+   <div className="row between"><div className="small">{fmtDate(L.days[0].date)}{multi?' – '+fmtDate(L.days[L.days.length-1].date):''} · {fmtT(s)} – {fmtT(e)}</div>{editable?<button type="button" className="chip" style={{height:30,fontSize:13}} onClick={rebuild}><Icon name="dice"/>경로 다시 추천</button>:null}</div>
    <div style={{fontSize:23,fontWeight:700}}>{n}를 위한 {multi?L.days.length+'일':(e-s>300?'하루':'반나절')} 코스</div>
    <div className="row gap6 wrap" style={{paddingTop:4}}><span className="tag t-blue" style={{fontWeight:600}}>이동 {L.move}분</span><span className="tag t-yellow" style={{fontWeight:600}}>{L.people?'총 약 '+won(L.fee):'1인 약 '+won(L.fee)}{L.budget?' / 예산 '+won(L.budget):''}</span><span className={'tag '+(L.relaxed?'t-red':'t-mint')} style={{fontWeight:600}}>{L.relaxed?'조건 일부 완화':'조건 모두 충족'}</span></div>
   </div>
@@ -56,7 +63,8 @@ export default function Result(){
        <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="card row gap12" style={{padding:10,textAlign:'left',width:'100%',textDecoration:'none',color:'inherit'}}><Thumb p={p} size={64}/>
         <span className="col" style={{flex:1,minWidth:0,gap:4}}><span className="row between gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontWeight:700,padding:'2px 8px',fontSize:11}}>새로운 발견</span>:it.meal?null:<Face level={it.level}/>}</span>
         <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
-        <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></a></div>;
+        <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></a>
+       {editable&&!it.meal?<span className="row gap6" style={{gridColumn:3,paddingTop:6}}><button type="button" className="chip" style={{height:28,fontSize:12}} onClick={()=>swap(p.id)}>다른 곳으로</button><button type="button" className="chip" style={{height:28,fontSize:12}} onClick={()=>drop(p.id)}>빼기</button></span>:null}</div>;
      })}
     </div>
    </div>))}
