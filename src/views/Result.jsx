@@ -55,17 +55,19 @@ export default function Result(){
      <div className="road" aria-hidden="true"/>
      {d.items.map((it,i)=>{
       if(it.kind==='start')return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="pin"><Icon name="home"/></span><span className="lbl">{it.again?'다시 출발':'집에서 출발'}</span></Fragment>;
-      if(it.kind==='move')return <Fragment key={i}><span/><span/><span className="hop"><Icon name={it.mode==='car'?'car':it.mode==='transit'?'bus':'stroller'}/>{travelLabel(it.mode)} {it.min}분</span></Fragment>;
+      if(it.kind==='move')return <Fragment key={i}><span/><span className="ride"><Icon name={it.mode==='car'?'car':it.mode==='transit'?'bus':'stroller'}/></span><span className="ride-t">{travelLabel(it.mode)} {it.min}분</span></Fragment>;
       if(it.kind==='note')return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span style={{width:8,height:8,borderRadius:999,background:'var(--yellow)',justifySelf:'center',position:'relative',zIndex:1}}/><span className="sticky">{it.text}</span></Fragment>;
       if(it.kind==='end')return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="pin end"><Icon name="home"/></span><span className="lbl">집 도착{it.note?<span className="small" style={{fontWeight:500,color:'var(--periInk)'}}> · {it.note}</span>:null}</span></Fragment>;
       const p=placeById(it.id);num++;const col=COLS[(num-1)%6];
       return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="sticker" style={{background:col}}>{num}</span>
        <div className={'stop '+(num%2?'odd':'even')} style={{animationDelay:(num*40)+'ms'}}>
-        <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="body"><Thumb p={p} size={64} style={{borderRadius:18}}/>
-         <span className="col" style={{flex:1,minWidth:0,gap:4}}><span className="row between gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontWeight:700,padding:'2px 8px',fontSize:11}}>새로운 발견</span>:it.meal?null:<Face level={it.level}/>}</span>
-         <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
-         <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></a>
-        {editable&&!it.meal?<span className="edit"><button type="button" className="chip" onClick={()=>swap(p.id)}>다른 곳으로</button><button type="button" className="chip" onClick={()=>drop(p.id)}>빼기</button></span>:null}
+        {it.meal?<span className="clip" aria-hidden="true"/>:<span className="tack" aria-hidden="true"/>}
+        <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="body">
+         <span className="shot"><Thumb p={p} size={118} square style={{width:'100%',height:118}}/></span>
+         <span className="name"><span style={{minWidth:0,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontFamily:'var(--font)',fontWeight:700,padding:'2px 8px',fontSize:11,flexShrink:0}}>새로운 발견</span>:it.meal?null:<Face level={it.level} size={20}/>}</span>
+         <span className="meta">{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
+         <span className="tags">{hashtags(p)}</span></a>
+        {editable&&!it.meal?<span className="edit"><button type="button" onClick={()=>swap(p.id)}>다른 곳으로</button><button type="button" onClick={()=>drop(p.id)}>빼기</button></span>:null}
        </div></Fragment>;
      })}
     </div>
@@ -75,6 +77,6 @@ export default function Result(){
  </div>
  {/* 저장 안 한 코스: 저장 / 바로 시작. 저장한 코스: 시작. 출발한 코스: 다녀왔어요. 기록 끝난 코스: 기록 보기 */}
  <BottomCta>{st==='done'?<a className="btn btn-soft" href="#/courses">기록 보기</a>
-  :st==='ongoing'?<button type="button" className="btn btn-primary" onClick={()=>go('record')}>다녀왔어요 · 만족도 남기기</button>
-  :<><button type="button" className="btn btn-soft" style={{flex:1}} disabled={st==='saved'} onClick={save}>{st==='saved'?'저장됨':'코스 저장'}</button><button type="button" className="btn btn-primary" style={{flex:1.6}} onClick={start}>{st==='saved'?'시작하기':'바로 시작'}</button></>}</BottomCta>
+  :st==='ongoing'?<button type="button" className="btn btn-stamp" onClick={()=>go('record')}>다녀왔어요 · 만족도 남기기</button>
+  :<><button type="button" className="btn btn-paper" style={{flex:1}} disabled={st==='saved'} onClick={save}>{st==='saved'?'저장됨':'코스 저장'}</button><button type="button" className="btn btn-stamp" style={{flex:1.6}} onClick={start}>{st==='saved'?'시작하기':'바로 시작'}</button></>}</BottomCta>
 </div>)}

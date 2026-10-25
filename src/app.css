@@ -178,22 +178,43 @@ a{color:var(--primary)}
 @keyframes mapIn{from{opacity:0;transform:translateX(-50%) scale(.98)}}
 
 /* ---------- 코스 타임라인 (DESIGN.md) ---------- */
-.trail{display:grid;grid-template-columns:52px 28px minmax(0,1fr);column-gap:8px;row-gap:10px;align-items:center;position:relative;padding:14px 0 6px}
+/* 종이 질감: 아주 옅은 노이즈를 SVG로 깔아둔다 */
+:root{--grain:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.95' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .15 0 0 0 0 .1 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+.trail{display:grid;grid-template-columns:48px 30px minmax(0,1fr);column-gap:10px;row-gap:12px;align-items:center;position:relative;padding:16px 0 6px}
 .trail>*{min-width:0}
-.trail .road{position:absolute;left:calc(52px + 8px + 13px);top:28px;bottom:26px;border-left:3px dashed var(--sky2);border-radius:2px}
+.trail .road{position:absolute;left:calc(48px + 10px + 14px);top:30px;bottom:28px;border-left:2.5px dashed var(--sky2)}
 .trail .t{font-size:12px;font-weight:600;color:var(--mute);text-align:right;padding-right:2px;font-variant-numeric:tabular-nums}
-.trail .pin{width:28px;height:28px;border-radius:999px;background:#fff;border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;color:var(--navy);position:relative;z-index:1;box-shadow:0 2px 6px rgba(31,58,95,.12)}
+.trail .pin{width:30px;height:30px;border-radius:999px;background:#fff;border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;color:var(--navy);position:relative;z-index:1}
 .trail .pin.end{border-color:var(--peri);color:var(--periInk)}
 .trail .lbl{font-size:14px;font-weight:700}
-.sticker{width:28px;height:28px;border-radius:999px;border:2px solid #fff;box-shadow:0 2px 6px rgba(31,58,95,.18);display:flex;align-items:center;justify-content:center;font-family:var(--deco);font-size:15px;color:var(--navy);position:relative;z-index:1}
-.hop{grid-column:3;justify-self:start;margin-left:-22px;display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px 0 8px;border-radius:999px;background:var(--blueT);color:var(--primaryInk);font-size:12px;font-weight:600;position:relative;z-index:1}
-.hop svg{width:14px;height:14px}
-.stop{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadowCard);padding:10px 10px 8px;display:flex;flex-direction:column;gap:8px;transition:transform var(--fast) var(--ease);animation:rise .35s var(--ease) both}
-.stop.odd{transform:rotate(-1.2deg)}.stop.even{transform:rotate(1deg)}
-.stop:active{transform:rotate(0) scale(.98)}
-.stop .body{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
-.stop .edit{display:flex;gap:6px;padding:0 2px}
-.stop .edit .chip{height:28px;font-size:12px;padding:0 11px}
-.sticky{grid-column:3;justify-self:start;position:relative;background:var(--yellowT);border-left:3px solid var(--yellow);border-radius:4px 12px 12px 4px;padding:7px 12px 7px 10px;font-size:13px;color:var(--yellowInk);font-weight:600;transform:rotate(1.5deg);box-shadow:0 2px 8px rgba(122,90,12,.10)}
-.sticky:before{content:'';position:absolute;top:-7px;left:18px;width:34px;height:12px;background:rgba(255,255,255,.55);border:1px solid rgba(122,90,12,.12);transform:rotate(-4deg);border-radius:2px}
+.sticker{width:30px;height:30px;border-radius:999px;border:2px solid #fff;outline:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-family:var(--deco);font-size:16px;color:var(--navy);position:relative;z-index:1}
+/* 이동: 길 위에 탈것 아이콘, 옆에 분만 작게 */
+.trail .ride{width:30px;height:30px;border-radius:999px;background:var(--paperWarm);display:flex;align-items:center;justify-content:center;color:var(--mute);position:relative;z-index:1}
+.trail .ride svg{width:16px;height:16px}
+.trail .ride-t{font-size:12px;color:var(--mute);font-weight:600}
+/* 폴라로이드: 흰 종이 위에 사진, 아래 여백에 손글씨 이름. 그림자 없음, 압정으로 고정 */
+.stop{position:relative;background-color:#fff;background-image:var(--grain);border:1px solid #E9E4DA;border-radius:6px;padding:10px;display:flex;flex-direction:column;gap:8px;transition:transform var(--fast) var(--ease);animation:rise .35s var(--ease) both;max-width:280px}
+.stop.odd{transform:rotate(-1.4deg)}.stop.even{transform:rotate(1.1deg)}
+.stop:active{transform:rotate(0) scale(.985)}
+.stop .body{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:inherit}
+.stop .shot{width:100%;height:118px;border-radius:3px;overflow:hidden;background:var(--soft)}
+.stop .shot .thumb{width:100%!important;height:100%!important;border-radius:0!important}
+.stop .name{font-family:var(--deco);font-size:18px;color:var(--navy);line-height:1.2;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.stop .meta{font-size:12px;color:var(--sub)}
+.stop .tags{font-size:11px;color:var(--primaryInk);line-height:1.5}
+.stop .edit{display:flex;gap:12px;padding:8px 2px 0;border-top:1px dashed #E3DCCF}
+.stop .edit button{border:none;background:none;padding:0;font-size:12px;color:var(--mute);text-decoration:underline dotted;text-underline-offset:3px}
+/* 압정 */
+.tack{position:absolute;top:-9px;left:50%;width:16px;height:16px;margin-left:-8px;border-radius:999px;background:radial-gradient(circle at 35% 35%,#FFB4AA,#E2695C 55%,#B8463A);z-index:2;box-shadow:0 1px 1px rgba(0,0,0,.25)}
+.tack:after{content:'';position:absolute;left:7px;top:14px;width:2px;height:7px;background:#7A7F8A;border-radius:1px}
+/* 클립 (식사 카드) */
+.clip{position:absolute;top:-10px;right:18px;width:14px;height:30px;border:2.5px solid #9AA3B2;border-radius:7px 7px 3px 3px;z-index:2}
+.clip:before{content:'';position:absolute;left:2px;top:6px;width:5px;height:20px;border:2px solid #9AA3B2;border-top:none;border-radius:0 0 3px 3px}
+/* 간식 메모: 노란 종이 + 마스킹 테이프 */
+.sticky{grid-column:3;justify-self:start;position:relative;background-color:var(--yellowT);background-image:var(--grain);padding:8px 14px 8px 12px;font-size:13px;color:var(--yellowInk);font-weight:600;transform:rotate(1.5deg)}
+.sticky:before{content:'';position:absolute;top:-8px;left:14px;width:38px;height:13px;background:rgba(169,221,180,.55);transform:rotate(-5deg)}
+/* 종이 톤 버튼 */
+.btn-paper{background-color:#fff;background-image:var(--grain);border:1.5px solid var(--navy);color:var(--navy);font-family:var(--deco);font-size:18px;border-radius:12px}
+.btn-stamp{background:var(--navy);color:#FFF6E0;font-family:var(--deco);font-size:19px;border-radius:12px;transform:rotate(-1deg)}
+.btn-stamp:active{transform:rotate(0) scale(.98)}
 @keyframes rise{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
