@@ -42,7 +42,6 @@ export default function Start(){
  <div className="pad" style={{paddingTop:28}}><Logo/></div>
  <div className="pad col gap8" style={{paddingTop:22}}>
   <div className="h-title">내 아이를 아는<br/>여행의 시작</div>
-  <div className="help">아이를 먼저 소개해 주세요</div>
  </div>
  <div className="pad row gap8" style={{paddingTop:18}}>
   <label className="col gap6" style={{flex:1}}><span className="small">이름</span><input className="input" value={S.child.name} maxLength={10} onChange={e=>set(S=>{S.child.name=e.target.value.trim()||'아이'})}/></label>
@@ -50,7 +49,6 @@ export default function Start(){
  </div>
  <div className="pad col gap10" style={{paddingTop:22}}>
   <div className="label">{n}는 어떻게 노는 걸 좋아하나요?</div>
-  <div className="small">여러 개 골라도 돼요. 다녀온 기록이 쌓이면 알아서 바뀌어요.</div>
   <div style={{display:'grid',gridTemplateColumns:'repeat(2,minmax(0,1fr))',gap:10}}>
    {Object.entries(AREAS).map(([k,name])=>{const on=sel.includes(k);return (
     <button type="button" key={k} className={'radio '+(on?'on':'')} aria-pressed={on} style={{minHeight:72,padding:'10px 12px',alignItems:'center'}} onClick={()=>setUI(u=>{u.startSel=[...(u.startSel||[])];toggle(u.startSel,k)})}>
@@ -59,9 +57,8 @@ export default function Start(){
   </div>
  </div>
  <div className="pad col gap10" style={{paddingTop:24}}>
-  <div className="label">요즘 {n}가 푹 빠진 것 <span className="small" style={{fontWeight:400}}>· 선택</span></div>
+  <div className="label">요즘 {n}가 푹 빠진 것</div>
   <div className="row gap6 wrap">{TOPICS.map(t=><Chip key={t} on={topics.includes(t)} onClick={()=>setUI(u=>{u.startTopics=[...(u.startTopics||[])];toggle(u.startTopics,t)})}>{label(t)}</Chip>)}</div>
-  <div className="small">없는 건 나중에 일기에 적으면 저절로 생겨요</div>
  </div>
  <BottomCta><button type="button" className="btn btn-primary" onClick={done}>{sel.length+topics.length?(sel.length+topics.length)+'개 골랐어요 · ':''}시작하기</button></BottomCta>
 </div>)}

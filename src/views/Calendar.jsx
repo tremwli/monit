@@ -48,7 +48,7 @@ export default function Calendar(){
 
  <div className="pad row between" style={{paddingTop:22,paddingBottom:10,alignItems:'baseline'}}>
   <div style={{fontSize:17,fontWeight:700}}>{sel?Number(sel.slice(8))+'일의 엽서':'엽서 컬렉션'}</div>
-  {sel?<div className="row gap6"><a href={'#/diary?date='+sel} className="chip" style={{height:30,fontSize:12,textDecoration:'none'}}>이 날 일기 더 쓰기</a><button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>전체 보기</button></div>:<span className="small">날짜를 누르면 그날 일기를 써요</span>}
+  {sel?<div className="row gap6"><a href={'#/diary?date='+sel} className="chip" style={{height:30,fontSize:12,textDecoration:'none'}}>이 날 일기 더 쓰기</a><button type="button" className="chip" style={{height:30,fontSize:12}} onClick={()=>setSel(null)}>전체 보기</button></div>:null}
  </div>
  {list.length?<div className="row gap8" style={{overflowX:'auto',padding:'4px 18px 10px',scrollSnapType:'x mandatory',scrollbarWidth:'none',alignItems:'flex-start'}}>{list.map((e,i)=><Postcard key={e.id} e={e} i={i}/>)}</div>
  :<div className="pad"><a href={'#/diary'+(sel?'?date='+sel:'')} style={{display:'block',width:124,margin:'4px 0',padding:'8px 8px 10px',background:'#fff',borderRadius:6,boxShadow:'0 3px 12px rgba(31,58,95,.10), 0 0 0 1px #EEF0F3',transform:'rotate(-1.2deg)',textDecoration:'none',color:'inherit'}}><div style={{height:84,borderRadius:3,border:'1.5px dashed #C9CED6',display:'flex',alignItems:'center',justifyContent:'center',color:'var(--mute)',fontSize:22}}>+</div><div style={{paddingTop:9,fontFamily:'var(--deco)',fontSize:14,color:'var(--navy)'}}>{sel?'이 날은 비어 있어요':'첫 엽서 만들기'}</div><div style={{fontSize:10,color:'var(--mute)',marginTop:3}}>사진 한 장이면 돼요</div></a></div>}
