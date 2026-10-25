@@ -144,7 +144,8 @@ export function planDay(S,date,used,relax,wallet,opts={}){
   if(best.nw&&c.novelty!=='many')newUsed=true;
   used.add(best.p.id);spend(best.p);pos=best.p;t=best.leave;count++;
  }
- if(!mealDone&&t>=630&&t<840)tryMeal();
+ /* 장소가 일찍 끝나도 식사를 켜뒀으면 11시까지 기다렸다 식사 장소를 넣는다 */
+ if(!mealDone&&t<840){t=Math.max(t,660);tryMeal()}
  if(lastJump&&items[items.length-1].kind==='start'&&items[items.length-1].again){items.length=lastJump.len;t=lastJump.t;pos=lastJump.pos}
  if(pos!==HOME){const back=travel(pos,HOME,c.mode);items.push({kind:'move',min:back,mode:c.mode});t+=back}
  const nextB=blocks.filter(([s])=>s>=t).sort((a,b)=>a[0]-b[0])[0];
