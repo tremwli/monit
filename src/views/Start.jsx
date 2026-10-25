@@ -30,7 +30,8 @@ export default function Start(){
  const sel=UI.startSel||[],topics=UI.startTopics||[];const n=S.child.name||'아이';
  const done=()=>{set(S=>{
   if(sel.length||topics.length){
-   Object.keys(S.taste).forEach(k=>S.taste[k]=.34);
+   /* 안 고른 건 '모름'(0.5)이지 싫어하는 게 아니다 */
+   Object.keys(S.taste).forEach(k=>S.taste[k]=.5);
    sel.forEach(k=>{S.taste['a:'+k]=.68});
    topics.forEach(t=>{S.taste[t]=.68});
    /* 코스 '원하는 것'은 주제 먼저, 모자라면 유형 */
