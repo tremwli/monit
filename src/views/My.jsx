@@ -48,7 +48,6 @@ export default function My(){
   <div style={{background:'var(--paper)',borderRadius:20,padding:'4px 16px'}}>
    <a href="#/report" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15,fontWeight:600}}>분기 리포트 보기</span><span className="small">{n}의 성장 결과지 ›</span></a>
    <a href="#/courses" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>지난 코스</span><span className="small">{S.courses.filter(k=>statusOf(k)!=='saved').length}개 ›</span></a>
-   <a href="#/saved" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>저장한 코스</span><span className="small">{S.courses.filter(k=>statusOf(k)==='saved').length}개 ›</span></a>
    <a href="#/c4" className="row between" style={{padding:'14px 0',borderBottom:'1px solid var(--soft)',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>부모님 기본 조건</span><span className="small">{S.c.fac.slice(0,3).map(f=>FAC[f]).join(' · ')} ›</span></a>
    <a href="#/c1" className="row between" style={{padding:'14px 0',textDecoration:'none',color:'inherit'}}><span style={{fontSize:15}}>{n}의 일정</span><span className="small">{S.c.schedules.map(s=>s.name).join(' · ')||'없음'} ›</span></a>
   </div>

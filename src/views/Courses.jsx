@@ -20,7 +20,8 @@ function CourseList({mode}){
  return (
 <div className="screen">
  <div className="topbar">
-  <button type="button" className="iconbtn" style={{background:'transparent'}} aria-label="뒤로" onClick={back}><Icon name="back"/></button>
+  {/* 저장한 코스는 하단 탭이라 뒤로가기 없이 제목만 */}
+  {mode==='saved'?<span style={{width:8}}/>:<button type="button" className="iconbtn" style={{background:'transparent'}} aria-label="뒤로" onClick={back}><Icon name="back"/></button>}
   <div style={{fontSize:19,fontWeight:700}}>{mode==='saved'?'저장한 코스':'지난 코스'}</div>
  </div>
  {list.length?<div className="pad col gap12" style={{paddingTop:20}}>
@@ -50,7 +51,7 @@ function CourseList({mode}){
   <div className="h-title">{mode==='saved'?'저장한 코스가 없어요':'아직 다녀온 코스가 없어요'}</div>
   <a className="btn btn-primary" href="#/c1" style={{marginTop:12}}>코스 만들기</a>
  </div>}
- <TabBar on="my"/>
+ <TabBar on={mode==='saved'?'saved':'my'}/>
 </div>)}
 
 export default function Courses(){return <CourseList mode="past"/>}
