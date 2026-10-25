@@ -18,6 +18,7 @@ export function systemPrompt(ageGroup,childName){
  return `부모의 육아일기에서 아이의 흥미 유형, 관심 주제, 노는 방식을 추출한다. ${who}
 흥미 유형(areas, 어떻게 노는가): ${Object.entries(AREAS).map(([k,v])=>`${k}=${v}`).join(' ')}
 관심 주제(topics, 무엇에 빠졌는가): 원문에 나온 대상을 2~6자 한국어 명사로 (예: 공룡, 소방차, 개미, 우주). 목록 없음. 최대 5개.
+ 각 주제의 group: 그 주제가 속하는 큰 묶음을 다음 중 하나로, 없으면 빈 문자열: ${Object.keys(SEED_TOPICS).join(', ')} (예: 사마귀→곤충, 소방차→자동차, 티라노→공룡)
 노는 방식(styles): ${Object.entries(STYLE_TAGS).map(([k,v])=>`${k}=${v}`).join(' ')}
 score 0~1 (좋아함≥0.6, 싫어함≤0.3, 언급만 0.5). quote는 원문에서 그대로 20자 이내. 근거 없는 항목 금지, 추측 금지.
 avoid: 무서워하거나 싫어한 것, 알레르기. topic에 그 대상 명사. summary: 부모에게 보여줄 한 문장, "${childName}는 ~" 형태, 과장 없이.`;
@@ -29,7 +30,7 @@ export const OUTPUT_SCHEMA={
  type:'object',
  properties:{
   areas:{type:'array',items:item('tag',{type:'string',enum:Object.keys(AREAS)})},
-  topics:{type:'array',items:item('topic',{type:'string'})},
+  topics:{type:'array',items:{type:'object',properties:{topic:{type:'string'},group:{type:'string'},score:{type:'number'},quote:{type:'string'}},required:['topic','group','score','quote'],additionalProperties:false}},
   styles:{type:'array',items:item('tag',{type:'string',enum:Object.keys(STYLE_TAGS)})},
   avoid:{type:'array',items:{type:'object',properties:{item:{type:'string'},topic:{type:'string'},quote:{type:'string'}},required:['item','topic','quote'],additionalProperties:false}},
   summary:{type:'string'}
@@ -44,7 +45,7 @@ export function toInterests(parsed){
  const out=[],seen=new Set();
  const push=(ref,x)=>{if(!ref||seen.has(ref))return;seen.add(ref);out.push({tag:ref,score:Math.max(0,Math.min(1,Number(x.score)||0)),quote:x.quote||''})};
  (parsed.areas||[]).forEach(x=>{if(x.tag in AREAS)push('a:'+x.tag,x)});
- (parsed.topics||[]).forEach(x=>push(normalizeTopic(x.topic),x));
+ (parsed.topics||[]).forEach(x=>{const ref=normalizeTopic(x.topic);const g=normalizeTopic(x.group||'');const ok=g&&g!==ref&&(g in SEED_TOPICS);if(!ref||seen.has(ref))return;seen.add(ref);out.push({tag:ref,score:Math.max(0,Math.min(1,Number(x.score)||0)),quote:x.quote||'',...(ok?{group:g}:{})})});
  return out;
 }
 
@@ -77,7 +78,15 @@ export function localAnalyze(text,childName){
    예전 일기(원본 8개 태그)도 그대로 들어오면 새 이름으로 옮겨서 섞는다 */
 export function mergeTaste(taste,analysis){
  const next={...taste};
- (analysis.interests||[]).forEach(({tag,score})=>{const ref=isArea(tag)?tag:normalizeTopic(migrateRef(tag));if(!ref)return;const s=Math.max(0,Math.min(1,Number(score)||0));next[ref]=Math.max(0.05,Math.min(0.98,0.7*(next[ref]??.5)+0.3*s))});
+ (analysis.interests||[]).forEach(({tag,score,group})=>{const ref=isArea(tag)?tag:normalizeTopic(migrateRef(tag));if(!ref)return;const s=Math.max(0,Math.min(1,Number(score)||0));next[ref]=Math.max(0.05,Math.min(0.98,0.7*(next[ref]??.5)+0.3*s));
+  /* 상위 묶음(사마귀→곤충)은 절반 세기로 같이 움직인다 */
+  if(group&&group!==ref)next[group]=Math.max(0.05,Math.min(0.98,0.85*(next[group]??.5)+0.15*s))});
+ return next;
+}
+/* 주제 → 상위 묶음 기억 (추천에서 장소 태그와 맞출 때 씀). {사마귀:'곤충'} */
+export function mergeGroups(groups,analysis){
+ const next={...(groups||{})};
+ (analysis.interests||[]).forEach(({tag,group})=>{if(group&&!isArea(tag)&&group!==tag)next[tag]=group});
  return next;
 }
 export function mergeStyles(styles,analysis){

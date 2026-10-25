@@ -17,7 +17,7 @@ export function defaults(){const sat=nextSat();return {
     fac:['stroller','nursing','diaper','parking','pediatric'],feeMode:'paid',budget:100000,rainIndoor:true,
     wants:['공룡','물놀이'],energy:'high',novelty:'one',perDay:2,meal:true,avoidCrowd:true},
  lastCourse:null, history:[], visited:[], courses:[],
- diary:[], styles:{}, avoid:[]
+ diary:[], styles:{}, avoid:[], topicGroups:{}
 }}
 
 /* 예전 저장본에 새 필드(courses, diary, styles, avoid …)가 없을 수 있으니 기본값 위에 덮어쓴다 */

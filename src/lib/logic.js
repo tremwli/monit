@@ -16,7 +16,9 @@ const HANDS_ON=['create','build','skill','sport','pretend'];
    주제가 겹치면 주제 55% + 유형 45%, 안 겹치면 유형 위주로 본다. */
 export function fitOf(S,p){
  const pr=profileOf(p),T=S.taste||{};
- const tScores=Object.keys(T).filter(k=>!isArea(k)&&mentions(p,k)).map(k=>T[k]);
+ /* 주제가 장소 글에 없으면 상위 묶음(사마귀→곤충)으로도 맞춰본다 */
+ const G=S.topicGroups||{};
+ const tScores=Object.keys(T).filter(k=>!isArea(k)&&(mentions(p,k)||(G[k]&&mentions(p,G[k])))).map(k=>T[k]);
  const aScores=pr.areas.map(a=>T['a:'+a]??.5);
  const area=aScores.length?avg(aScores):.5;
  if(!tScores.length)return .45*.4+area*.6;
