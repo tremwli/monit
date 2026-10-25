@@ -3,6 +3,7 @@
 
    실행:  npm run fetch-places
           npm run fetch-places -- --lat 37.5665 --lng 126.9780 --radius 15000
+          npm run fetch-places -- --maxPlay 1000 --maxMeal 150 --pages 10   (크게 받기, 호출 약 3,000번)
    다시 다듬기만(인터넷 안 씀): npm run build-places
 
    필요한 것: .env 에 TOUR_API_KEY=공공데이터포털 인증키(Decoding 키)
@@ -29,8 +30,18 @@ const CFG = {
   radius: Math.min(20000, Number(args.radius ?? 20000)), // 미터, TourAPI 최대 20km
   maxPlay: Number(args.maxPlay ?? 120),  // 상세 정보를 받을 놀거리 수 (호출 수 = 약 3배)
   maxMeal: Number(args.maxMeal ?? 50),
+  pages: Number(args.pages ?? 5),        // 목록 페이지 수 (한 페이지 100곳, 유형마다)
+  minScore: Number(args.minScore ?? 0.6), // 후보 문턱 (낮출수록 많이 받음, 태그 없는 곳은 변환에서 걸러짐)
   offline: !!args.offline,               // true면 캐시만 사용
 };
+/* 여러 중심점으로 넓게 받기: --area sudogwon (수도권 10곳) 또는 --centers "37.5,127.0;37.3,127.1"
+   TourAPI 반경 최대가 20km라 수도권 전체를 받으려면 중심점을 여러 개 돌아야 해요. 겹치는 곳은 contentid로 한 번만. */
+const AREAS = {
+  sudogwon: [[37.534, 126.994], [37.56, 126.80], [37.68, 127.07], [37.54, 127.17], [37.44, 127.13],
+             [37.46, 126.70], [37.28, 127.03], [37.68, 126.80], [37.24, 127.18], [37.39, 126.93]],
+};
+CFG.centers = args.centers ? String(args.centers).split(';').map(x => x.split(',').map(Number)).filter(c => c.length === 2 && c.every(n => n))
+            : AREAS[args.area] || [[CFG.lat, CFG.lng]];
 const PLAY_TYPES = [12, 14, 28];          // 관광지, 문화시설, 레포츠
 const MEAL_TYPE = 39;                     // 음식점
 
@@ -47,20 +58,20 @@ let calls = 0, cacheHits = 0, withServiceOff = false;
 main().catch(e => fail(e.message));
 
 async function main() {
-  console.log(`\n📍 기준점 ${CFG.lat}, ${CFG.lng} · 반경 ${CFG.radius / 1000}km${CFG.offline ? ' · 캐시만 사용' : ''}\n`);
+  console.log(`
+📍 기준점 ${CFG.lat}, ${CFG.lng} · 반경 ${CFG.radius / 1000}km · 중심점 ${CFG.centers.length}곳${CFG.offline ? ' · 캐시만 사용' : ''}
+`);
 
-  /* 1. 목록 모으기 */
-  const play = [];
-  for (const t of PLAY_TYPES) {
-    const items = await listAll(t, 5);
-    console.log(`  목록 · 유형 ${t}: ${items.length}곳`);
-    play.push(...items);
+  /* 1. 목록 모으기 (중심점마다) */
+  const play = [], meals = [];
+  for (const [lat, lng] of CFG.centers) {
+    for (const t of PLAY_TYPES) play.push(...await listAll(t, CFG.pages, lat, lng));
+    meals.push(...await listAll(MEAL_TYPE, CFG.pages, lat, lng));
+    console.log(`  목록 · ${lat},${lng}: 놀거리 ${play.length} · 음식점 ${meals.length} (누적)`);
   }
-  const meals = await listAll(MEAL_TYPE, 5);
-  console.log(`  목록 · 음식점: ${meals.length}곳`);
 
   /* 2. 아이랑 갈 만한 곳만 추려서 상세 정보 받기 (호출 수 아끼기) */
-  const playPick = pickPlayCandidates(play).slice(0, CFG.maxPlay);
+  const playPick = pickPlayCandidates(play, CFG.minScore).slice(0, CFG.maxPlay);
   const mealPick = pickMealCandidates(meals, playPick, CFG.maxMeal);
   console.log(`\n  추린 놀거리 ${playPick.length}곳 · 식당 ${mealPick.length}곳 → 상세 정보 받는 중…`);
 
@@ -96,11 +107,11 @@ async function main() {
 }
 
 /* ---------- TourAPI 호출 ---------- */
-async function listAll(contentTypeId, maxPages) {
+async function listAll(contentTypeId, maxPages, lat = CFG.lat, lng = CFG.lng) {
   const out = [];
   for (let page = 1; page <= maxPages; page++) {
     const body = await call('KorService2', 'locationBasedList2', {
-      mapX: CFG.lng, mapY: CFG.lat, radius: CFG.radius, contentTypeId,
+      mapX: lng, mapY: lat, radius: CFG.radius, contentTypeId,
       arrange: 'E', numOfRows: 100, pageNo: page,
     });
     const items = asArray(body?.items?.item);

@@ -91,7 +91,7 @@ const CROWD_WORDS = ['롯데월드', '에버랜드', '서울랜드', '코엑스'
 const DEFAULT_STAY = {'키즈카페': 90, '동물원': 90, '물놀이': 80, '식물원': 60, '도서관': 45, '체험 공방': 60, '박물관': 70, '놀이터·공원': 60};
 
 /* ---------- 상세 받기 전에 후보 추리기 ---------- */
-export function pickPlayCandidates(items) {
+export function pickPlayCandidates(items, minScore = 0.6) {
   const seen = new Set();
   return items
     .filter(it => {
@@ -107,7 +107,7 @@ export function pickPlayCandidates(items) {
       const dist = Number(it.dist || 0) / 1000; // km, arrange=E 일 때 거리(m)가 와요
       return {it, s: kid + tags + img + (String(it.contenttypeid) === '14' ? 0.5 : 0) - dist * 0.05};
     })
-    .filter(x => x.s > 0.6)
+    .filter(x => x.s > minScore)
     .sort((a, b) => b.s - a.s)
     .map(x => x.it);
 }

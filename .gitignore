@@ -35,3 +35,6 @@ scripts/.cache
 
 # 발표용 프레임 캡처 (용량 큼)
 shots/
+
+# 수집 로그
+scripts/.fetch-log*.txt
