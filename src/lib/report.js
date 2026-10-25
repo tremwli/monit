@@ -25,6 +25,9 @@ const TYPE_BY_STYLE={
 /* 가장 좋아하는 관심사로 유형 이름 (원본 8개 태그 이름을 새 이름으로 옮김). 목록에 없는 주제는 typeOf에서 만든다 */
 const TYPE_BY_INT={'공룡':'공룡이라면 달려가는 꼬마 박사','물놀이':'물만 보면 뛰어드는 물개','동물':'동물 친구를 찾아다니는 탐험가','a:create':'손끝으로 세상을 그리는 화가','기차':'바퀴 달린 건 다 좋아하는 기관사','식물':'작은 잎도 들여다보는 식물 박사','a:outdoor':'온몸으로 노는 에너자이저','a:literacy':'이야기 속으로 들어가는 독서가'};
 const typeOf=ref=>TYPE_BY_INT[ref]||(label(ref)+' 이야기라면 눈이 반짝이는 꼬마 탐험가');
+/* 유형 카드 색. 앱 팔레트(blue·yellow·mint·peri) 안에서만 고른다 */
+const TONE_BY_STYLE={hands:'yellow',watch:'peri',outdoor:'mint',indoor:'blue',quiet:'peri',lively:'yellow'};
+const TONE_BY_INT={'공룡':'mint','물놀이':'blue','동물':'mint','a:create':'yellow','기차':'peri','식물':'mint','a:outdoor':'mint','a:literacy':'peri'};
 
 const REACT_SCORE={like:.85,meh:.25};
 
@@ -62,6 +65,7 @@ export function buildReport(S,q){
  const styleTop=Object.entries(S.styles||{}).sort((a,b)=>b[1]-a[1]);
  const intTop=Object.entries(S.taste).sort((a,b)=>b[1]-a[1]);
  const type=styleTop[0]?TYPE_BY_STYLE[styleTop[0][0]]:typeOf(intTop[0][0]);
+ const tone=(styleTop[0]?TONE_BY_STYLE[styleTop[0][0]]:TONE_BY_INT[intTop[0][0]])||'blue';
  const subtitle=[styleTop[0]&&STYLE_TAGS[styleTop[0][0]]+'형',label(intTop[0][0])+' 좋아함',styleTop[1]&&STYLE_TAGS[styleTop[1][0]]+'파'].filter(Boolean).join(' · ');
 
  /* 장면: 다녀온 곳마다 예상 vs 실제 */
@@ -82,7 +86,7 @@ export function buildReport(S,q){
  /* 다음 추천: 아직 안 간 곳 중 확률 높은 2곳 */
  const next=PLACES.filter(p=>p.type==='play'&&!(S.visited||[]).includes(p.id)).map(p=>({p,s:scorePlace(S,p)})).sort((a,b)=>b.s-a.s).slice(0,2).map(({p,s})=>({id:p.id,name:p.name,prob:Math.round(s*100)}));
 
- return {q,label:quarterLabel(q),n,type,subtitle,
+ return {q,label:quarterLabel(q),n,type,tone,subtitle,
   stats:[{v:styleTop[0]?Math.round(styleTop[0][1]*100)+'%':'–',l:styleTop[0]?STYLE_TAGS[styleTop[0][0]]:'노는 방식'},{v:judged.length?hits+'/'+judged.length:'–',l:'예상 적중'},{v:(newTags.length?'+':'')+newTags.length,l:'새 관심사'}],
   compare,scenes,changes,next,
   thin:scenes.length+analyzed.length<2};
@@ -90,7 +94,7 @@ export function buildReport(S,q){
 
 /* 기록이 없을 때 보여주는 예시. 화면에 '예시' 배지를 꼭 붙인다 */
 export function sampleReport(n){return {
- q:'sample',label:'예시 분기',n,type:'직접 만져봐야 아는 탐험가',subtitle:'직접 해보기형 · 동물 좋아함 · 야외파',
+ q:'sample',label:'예시 분기',n,type:'직접 만져봐야 아는 탐험가',tone:'yellow',subtitle:'직접 해보기형 · 동물 좋아함 · 야외파',
  stats:[{v:'89%',l:'직접 해보기'},{v:'4/5',l:'예상 적중'},{v:'+1',l:'새 관심사'}],
  compare:[{t:'동물',h:true},{t:' 관심이 더 커졌고, 처음으로 '},{t:'식물',h:true},{t:' 태그가 나타났어요.'}],
  scenes:[{id:'s1',name:'공룡 박물관',date:'',pred:87,v:'like',note:'뼈 앞에서 12분. "진짜 크다"를 세 번.',hit:true},{id:'s2',name:'동물원',date:'',pred:72,v:'meh',note:'보는 건 금방 질렸어요. 먹이주기만 기억해요.',hit:false},{id:'s3',name:'숲 체험 공원',date:'',pred:64,v:'like',note:'나뭇잎 주워서 집까지 들고 왔어요.',hit:true}],
