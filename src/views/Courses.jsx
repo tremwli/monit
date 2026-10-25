@@ -33,7 +33,6 @@ export default function Courses(){
   </div>)}
  </div>:<div className="pad col gap12" style={{paddingTop:48,alignItems:'center',textAlign:'center'}}>
   <div className="h-title">아직 만든 코스가 없어요</div>
-  <div className="help">코스를 만들면 여기에 모이고, 다녀와서 기록하면 아이 반응이 남아요</div>
   <a className="btn btn-primary" href="#/c1" style={{marginTop:12}}>코스 만들기</a>
  </div>}
  <TabBar on="my"/>
