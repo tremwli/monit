@@ -8,7 +8,7 @@ import {analyzeText} from '../lib/ai.js';
 import {savePhoto,cachedPhoto} from '../lib/photos.js';
 import {newEntryId} from '../lib/journal.js';
 import {PLACES} from '../lib/data.js';
-import {ymd,toast,go} from '../lib/utils.js';
+import {ymd,toast,go,openPicker} from '../lib/utils.js';
 import {Icon,BottomCta,Chip} from '../components/ui.jsx';
 
 const SCORE_TXT=s=>s>=.75?'푹 빠졌어요':s>=.55?'좋아해요':s>=.4?'관심 있어요':'별로였어요';
@@ -66,7 +66,7 @@ export default function Diary(){
 <div className="screen" style={{background:'#fff',paddingBottom:'calc(170px + env(safe-area-inset-bottom))'}}>
  <div className="pad row between" style={{paddingTop:16}}>
   <a className="iconbtn" href="#/calendar" aria-label="캘린더로"><Icon name="back"/></a>
-  <label className="pill"><span>{date===today?'오늘':date}</span><input type="date" value={date} max={today} aria-label="기록 날짜" onChange={e=>{if(e.target.value)setDate(e.target.value)}}/></label>
+  <label className="pill"><span>{date===today?'오늘':date}</span><input type="date" onClick={openPicker} value={date} max={today} aria-label="기록 날짜" onChange={e=>{if(e.target.value)setDate(e.target.value)}}/></label>
  </div>
 
  <div className="pad" style={{paddingTop:18}}>

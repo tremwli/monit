@@ -13,5 +13,7 @@ export function toggle(arr,v){const i=arr.indexOf(v);if(i>=0)arr.splice(i,1);els
 export function toast(t){const el=document.createElement('div');el.className='toast';el.textContent=t;document.body.appendChild(el);setTimeout(()=>el.remove(),2500)}
 export function demo(){toast('MVP에서는 보기만 가능한 기능이에요')}
 export function go(r){location.hash='#/'+r}
+/* 알약 버튼 위에 투명하게 덮은 날짜·시간 입력: 데스크톱 크롬은 달력 아이콘을 눌러야만 열려서, 아무 데나 눌러도 열리게 한다 */
+export function openPicker(e){try{e.currentTarget.showPicker()}catch(err){/* 지원 안 하는 브라우저는 기본 동작 */}}
 /* "a:b;c:d" 형태의 인라인 스타일 문자열을 React style 객체로 */
 export function css(str){const o={};String(str||'').split(';').forEach(p=>{const i=p.indexOf(':');if(i<0)return;const k=p.slice(0,i).trim(),v=p.slice(i+1).trim();if(!k)return;o[k.replace(/-([a-z])/g,(_,c)=>c.toUpperCase())]=v});return o}

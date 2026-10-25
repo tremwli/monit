@@ -64,7 +64,8 @@ export function passFilters(S,p,relax){
  const c=S.c;
  if(!relax){const need=c.fac.filter(f=>p.type==='meal'?MEAL_FAC.includes(f)||f==='stroller':!MEAL_FAC.includes(f));if(!need.every(f=>p.fac.includes(f)||(p.facKnown&&!p.facKnown.includes(f))))return false}
  if(c.feeMode==='free'&&p.fee>0&&p.type!=='meal')return false;
- if(c.feeMode==='paid'&&p.fee>(Number(c.feeMax)||0)&&p.type!=='meal')return false;
+ /* 총예산: 한 곳 비용(1인 요금 × 인원)만으로 예산을 넘는 곳은 뺀다. 코스 전체 합계는 planDay에서 지갑으로 확인 */
+ if(c.feeMode==='paid'&&p.fee*peopleOf(S)>budgetOf(S))return false;
  if(c.place==='near'&&travel(HOME,p,c.mode)>c.maxTravel)return false;
  return true}
 /* 그날 문 열었는지, 도착~떠나는 시간이 운영시간 안인지. 정보가 없으면 통과. */
@@ -76,7 +77,11 @@ export function openOk(p,date,arrive,leave){
 export function blocksFor(S){return S.c.schedules.filter(b=>b.end-b.start>20).map(b=>[b.start,b.end])}
 export function softFor(S){return S.c.schedules.filter(b=>b.end-b.start<=20)}
 export function dayList(S){const c=S.c;const out=[];const a=new Date(c.startDate+'T00:00:00'),b=new Date((c.endDate||c.startDate)+'T00:00:00');for(let d=new Date(a);d<=b&&out.length<3;d.setDate(d.getDate()+1))out.push(ymd(d));return out.length?out:[c.startDate]}
-export function planDay(S,date,used,relax){
+/* 함께 가는 사람 수: 고른 어른 + 아이 1명 */
+export function peopleOf(S){return Math.max(1,(S.c.adults||[]).length)+1}
+export function budgetOf(S){return Number(S.c.budget)||0}
+/* wallet: {left} 여러 날에 걸쳐 남은 예산. 무료만 고른 경우엔 null(예산 확인 안 함) */
+export function planDay(S,date,used,relax,wallet){
  const c=S.c,blocks=blocksFor(S),soft=softFor(S);
  const start=c.startTime,end=c.endTime>c.startTime?c.endTime:c.startTime+180;
  const limitAt=t=>{let L=end;blocks.forEach(([s,e])=>{if(s>=t&&s<L)L=s});return L};
@@ -85,10 +90,11 @@ export function planDay(S,date,used,relax){
  let pos=HOME,count=0,mealDone=!c.meal,newUsed=c.novelty==='none';
  const items=[{kind:'start',time:t}];
  const rand=c.place==='random';let lastJump=null;
+ const ppl=peopleOf(S);const fits=p=>!wallet||p.fee*ppl<=wallet.left;const spend=p=>{if(wallet)wallet.left-=p.fee*ppl};
  const tryMeal=()=>{
   mealDone=true;
   const meals=PLACES.filter(m=>m.type==='meal'&&!used.has(m.id)&&passFilters(S,m,relax)).sort((a,b)=>travel(pos,a,c.mode)-travel(pos,b,c.mode));
-  for(const m of meals){const tr=travel(pos,m,c.mode);if(!openOk(m,date,t+tr,t+tr+m.stay))continue;if(t+tr+m.stay+travel(m,HOME,c.mode)<=limitAt(t)){items.push({kind:'move',min:tr,mode:c.mode});items.push({kind:'place',id:m.id,time:t+tr,stay:m.stay,score:.7,level:'B',meal:true});used.add(m.id);pos=m;t+=tr+m.stay;return true}}
+  for(const m of meals){const tr=travel(pos,m,c.mode);if(!fits(m)||!openOk(m,date,t+tr,t+tr+m.stay))continue;if(t+tr+m.stay+travel(m,HOME,c.mode)<=limitAt(t)){items.push({kind:'move',min:tr,mode:c.mode});items.push({kind:'place',id:m.id,time:t+tr,stay:m.stay,score:.7,level:'B',meal:true});used.add(m.id);spend(m);pos=m;t+=tr+m.stay;return true}}
   return false};
  while(true){
   if(!mealDone&&t>=690&&t<840)tryMeal();
@@ -97,6 +103,7 @@ export function planDay(S,date,used,relax){
   const mealPending=!mealDone&&t<840&&L>700;
   let best=null;
   PLACES.filter(p=>p.type==='play'&&!used.has(p.id)&&passFilters(S,p,relax)).forEach(p=>{
+   if(!fits(p))return;
    const tr=travel(pos,p,c.mode);if(tr>c.maxTravel+(c.place==='near'?0:15))return;
    /* 문 열기 전에 도착하면 40분까지는 기다렸다 들어가요 */
    let arr=t+tr;if(p.open!=null&&arr<p.open){if(p.open-arr>40)return;arr=p.open}
@@ -124,7 +131,7 @@ export function planDay(S,date,used,relax){
   items.push({kind:'place',id:best.p.id,time:best.arr,stay:best.p.stay,score:sc,level:levelOf(sc,best.nw),isNew:best.nw});
   soft.forEach(sb=>{if(sb.start>=t&&sb.start<best.leave)items.push({kind:'note',time:sb.start,text:sb.name+' 시간 · 장소 안에서 챙겨요'})});
   if(best.nw&&c.novelty!=='many')newUsed=true;
-  used.add(best.p.id);pos=best.p;t=best.leave;count++;
+  used.add(best.p.id);spend(best.p);pos=best.p;t=best.leave;count++;
  }
  if(!mealDone&&t>=630&&t<840)tryMeal();
  if(lastJump&&items[items.length-1].kind==='start'&&items[items.length-1].again){items.length=lastJump.len;t=lastJump.t;pos=lastJump.pos}
@@ -137,22 +144,32 @@ export function planDay(S,date,used,relax){
 /* 코스를 계산해서 반환한다 (S를 바꾸지 않음). 호출한 쪽에서 S.lastCourse에 넣는다. */
 export function buildCourse(S){
  const used=new Set();let relaxed=false;
- let days=dayList(S).map(d=>planDay(S,d,used,false));
- if(days.every(d=>d.count===0)){relaxed=true;const u2=new Set();days=dayList(S).map(d=>planDay(S,d,u2,true))}
+ const wallet=()=>S.c.feeMode==='paid'?{left:budgetOf(S)}:null;
+ const w1=wallet();let days=dayList(S).map(d=>planDay(S,d,used,false,w1));
+ if(days.every(d=>d.count===0)){relaxed=true;const u2=new Set(),w2=wallet();days=dayList(S).map(d=>planDay(S,d,u2,true,w2))}
  const ids=[];days.forEach(d=>d.items.forEach(it=>{if(it.kind==='place')ids.push(it.id)}));
- const fee=ids.reduce((a,id)=>a+PLACES.find(p=>p.id===id).fee,0);
+ /* fee: 여행 전체 예상 비용 = 장소마다 1인 요금 × 인원 (식사 포함) */
+ const people=peopleOf(S);
+ const fee=ids.reduce((a,id)=>a+PLACES.find(p=>p.id===id).fee,0)*people;
  const mv=days.reduce((a,d)=>a+d.items.filter(i=>i.kind==='move').reduce((x,i)=>x+i.min,0),0);
  const allIndoor=ids.every(id=>PLACES.find(p=>p.id===id).indoor);
- return {days,fee,move:mv,relaxed,allIndoor,createdAt:Date.now()};
+ return {days,fee,people,budget:S.c.feeMode==='paid'?budgetOf(S):0,move:mv,relaxed,allIndoor,createdAt:Date.now()};
 }
 export function hashtags(p){const tg=p.theme?[p.theme]:[];profileOf(p).topics.forEach(t=>{if(t!==p.theme&&!tg.includes(t))tg.push(t)});['stroller','nursing','diaper','parking','pediatric','kidsmenu','babychair','elevator'].forEach(f=>{if(p.fac.includes(f))tg.push(FAC[f].replace(/ /g,'').replace('가능','OK'))});if(p.indoor)tg.push('실내');if(p.fee===0)tg.push('무료');return tg.slice(0,5).map(t=>'#'+t).join(' ')}
 export function placeById(id){return PLACES.find(p=>p.id===id)}
 
-/* 코스를 만들면 바로 '지난 코스'에 넣는다 (done:false = 아직 안 다녀옴).
-   replaceKey: '다시 만들기'처럼 기록 안 한 이전 코스를 대신할 때 그 키. 기록이 끝난 코스는 절대 지우지 않는다 */
-export function rememberCourse(S,replaceKey){
- const L=S.lastCourse;if(!L)return;
- const entry={key:L.createdAt,date:L.days[0].date,done:false,course:L,
-  places:L.days.flatMap(d=>d.items.filter(it=>it.kind==='place').map(it=>({id:it.id,time:it.time,v:null,note:''})))};
- S.courses=[entry,...(S.courses||[]).filter(k=>k.key!==entry.key&&!(replaceKey&&k.key===replaceKey&&!k.done))];
+/* 코스 상태: saved(저장만, 아직 안 감) → ongoing(출발함) → done(만족도까지 기록).
+   S.courses에 코스마다 하나(key = 코스 createdAt). 예전 항목은 done 여부로 상태를 정한다 */
+export function statusOf(k){return k.status||(k.done?'done':'saved')}
+export function courseEntry(S,key){return (S.courses||[]).find(k=>k.key===key)}
+/* 코스를 목록에 넣거나 상태를 바꾼다. patch로 status·rating·places 등을 덮어쓴다 */
+export function upsertCourse(S,L,patch){
+ const old=courseEntry(S,L.createdAt);
+ const places=L.days.flatMap(d=>d.items.filter(it=>it.kind==='place').map(it=>({id:it.id,time:it.time,v:null,note:''})));
+ const entry={key:L.createdAt,date:L.days[0].date,course:L,places,status:'saved',savedAt:Date.now(),...old,...patch};
+ entry.done=entry.status==='done';
+ S.courses=[entry,...(S.courses||[]).filter(k=>k.key!==entry.key)];
+ return entry;
 }
+/* 코스가 끝나는 시각 (마지막 날 귀가 시간). 지나면 홈에서 만족도 조사를 권한다 */
+export function courseEndAt(L){const d=L.days[L.days.length-1];const end=d.items[d.items.length-1].time;const t=new Date(d.date+'T00:00:00');t.setMinutes(end);return t.getTime()}

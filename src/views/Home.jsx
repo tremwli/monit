@@ -1,8 +1,8 @@
 import {useEffect,useRef,useState} from 'react';
 import {useStore} from '../store.jsx';
 import {PLACES,CAT_INT,CAT_ICON} from '../lib/data.js';
-import {scorePlace} from '../lib/logic.js';
-import {demo,go} from '../lib/utils.js';
+import {scorePlace,statusOf,courseEndAt} from '../lib/logic.js';
+import {demo,go,fmtDate} from '../lib/utils.js';
 import {Logo,Icon,TabBar} from '../components/ui.jsx';
 import {PICKS,PICK_FILTER,FilterChips,PlaceGrid} from '../components/places.jsx';
 
@@ -12,9 +12,13 @@ const openCat=cat=>go('cat?c='+encodeURIComponent(cat));
 const CatSvg=({cat,size})=><svg width={size} height={size} viewBox="0 0 48 48" aria-hidden="true" dangerouslySetInnerHTML={{__html:CAT_ICON[cat]}}/>;
 
 export default function Home(){
- const {S}=useStore();const n=S.child.name;
+ const {S,set}=useStore();const n=S.child.name;
  const ranked=PLACES.filter(p=>p.type==='play').map(p=>({p,s:scorePlace(S,p)})).sort((a,b)=>b.s-a.s);
  const [pick,setPick]=useState('all');
+ /* 출발한 코스가 있으면 홈 맨 위에서 이어가기. 코스 끝 시간이 지났으면 만족도 조사를 권한다 */
+ const trip=(S.courses||[]).find(k=>statusOf(k)==='ongoing'&&k.course);
+ const tripEnded=trip&&Date.now()>courseEndAt(trip.course);
+ const openTrip=to=>{set(S=>{S.lastCourse=trip.course});go(to)};
  /* 코스 만들기 버튼이 화면 위로 사라지면 오른쪽 아래 동그란 버튼을 띄움 */
  const ctaRef=useRef(null);const [fab,setFab]=useState(false);
  useEffect(()=>{const io=new IntersectionObserver(([e])=>setFab(!e.isIntersecting&&e.boundingClientRect.top<0));io.observe(ctaRef.current);return()=>io.disconnect()},[]);
@@ -48,6 +52,10 @@ export default function Home(){
   <div aria-hidden="true" style={{position:'absolute',left:0,right:0,bottom:0,height:21,background:'var(--paper)'}}/>
  </div>
  <div className="sheet pad col" style={{marginTop:-20,paddingTop:22,gap:28}}>
+  {trip?<div className="trip-banner">
+   <div className="col" style={{gap:2,minWidth:0}}><span className="small">{fmtDate(trip.date)} 코스</span><span style={{fontSize:16,fontWeight:700}}>{tripEnded?'다녀온 코스 어땠나요?':n+'랑 떠나는 중이에요'}</span></div>
+   <button type="button" className="btn btn-sm btn-primary" style={{width:'auto',padding:'0 16px',flexShrink:0}} onClick={()=>openTrip(tripEnded?'record':'trip')}>{tripEnded?'만족도 남기기':'진행 보기'}</button>
+  </div>:null}
   <a ref={ctaRef} className="btn btn-primary" href="#/c1"><Icon name="route"/>{n} 맞춤 코스 만들기</a>
   <div className="cat-chips">{CATS.map(cat=><button type="button" key={cat} className="cat-chip press" onClick={()=>openCat(cat)}><CatSvg cat={cat} size={18}/>{cat}</button>)}</div>
  </div>
