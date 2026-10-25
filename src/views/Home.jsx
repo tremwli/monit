@@ -54,7 +54,7 @@ export default function Home(){
  <div className="sheet pad col" style={{marginTop:-20,paddingTop:22,gap:28}}>
   {trip?<div className="trip-banner">
    <div className="col" style={{gap:2,minWidth:0}}><span className="small">{fmtDate(trip.date)} 코스</span><span style={{fontSize:16,fontWeight:700}}>{tripEnded?'다녀온 코스 어땠나요?':n+'랑 떠나는 중이에요'}</span></div>
-   <button type="button" className="btn btn-sm btn-primary" style={{width:'auto',padding:'0 16px',flexShrink:0}} onClick={()=>openTrip(tripEnded?'record':'trip')}>{tripEnded?'만족도 남기기':'진행 보기'}</button>
+   <button type="button" className="btn btn-sm btn-primary" style={{width:'auto',padding:'0 16px',flexShrink:0}} onClick={()=>openTrip(tripEnded?'record':'result')}>{tripEnded?'만족도 남기기':'진행 보기'}</button>
   </div>:null}
   <a ref={ctaRef} className="btn btn-primary" href="#/c1"><Icon name="route"/>{n} 맞춤 코스 만들기</a>
   <div className="cat-chips">{CATS.map(cat=><button type="button" key={cat} className="cat-chip press" onClick={()=>openCat(cat)}><CatSvg cat={cat} size={18}/>{cat}</button>)}</div>
