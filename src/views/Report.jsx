@@ -7,6 +7,8 @@ import {Icon,Html,TabBar} from '../components/ui.jsx';
 import {moodSvg} from '../lib/svg.js';
 
 const REACT={like:['joy','좋았어요'],meh:['meh','그냥'],};
+/* 유형 카드 색: [배경, 글자] */
+const TONES={blue:['var(--blueT)','var(--primaryInk)'],yellow:['var(--yellowT)','var(--yellowInk)'],mint:['var(--mintT)','var(--mintInk)'],peri:['var(--periT)','var(--periInk)']};
 
 function Section({title,children,style}){return <div className="pad col gap10" style={{paddingTop:26,...style}}><div style={{fontSize:14,fontWeight:600,color:'var(--sub)'}}>{title}</div>{children}</div>}
 
@@ -16,6 +18,7 @@ export default function Report(){
  const [showSample,setShowSample]=useState(false);
  const real=buildReport(S,q);
  const R=showSample?sampleReport(n):real;
+ const [toneBg,toneInk]=TONES[R.tone]||TONES.blue;
  const back=()=>{if(history.length>1)history.back();else go('my')};
  const share=async()=>{
   const text=`${R.label} · ${n}의 성장 리포트\n${n}의 유형: ${R.type}\n${R.compare.map(x=>x.t).join('')}\n다음엔: ${R.next.map(x=>x.name+' '+x.prob+'%').join(', ')}\n— 모닛`;
@@ -33,10 +36,10 @@ export default function Report(){
 
  <div className="pad col gap6" style={{paddingTop:14}}>
   <div className="row between"><div className="small">{R.label} · {n}의 분기 결과지</div>{R.sample?<span className="demo">예시</span>:null}</div>
-  <div className="col gap6" style={{background:'var(--blueT)',borderRadius:20,padding:'18px 20px',marginTop:6}}>
-   <div style={{fontSize:13,color:'var(--primaryInk)'}}>{n}의 유형</div>
+  <div className="col gap6" style={{background:toneBg,borderRadius:20,padding:'18px 20px',marginTop:6,transition:'background var(--mid) var(--ease)'}}>
+   <div style={{fontSize:13,color:toneInk}}>{n}의 유형</div>
    <div style={{fontFamily:'var(--deco)',fontSize:26,lineHeight:1.25,color:'var(--navy)'}}>{R.type}</div>
-   <div style={{fontSize:14,color:'var(--primaryInk)',fontWeight:600}}>{R.subtitle}</div>
+   <div style={{fontSize:14,color:toneInk,fontWeight:600}}>{R.subtitle}</div>
   </div>
  </div>
 
