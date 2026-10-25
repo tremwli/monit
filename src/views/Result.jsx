@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import {useState,Fragment} from 'react';
 import {useStore} from '../store.jsx';
 import {HOME} from '../lib/data.js';
 import {buildCourse,hashtags,placeById,courseEntry,statusOf,upsertCourse} from '../lib/logic.js';
@@ -41,30 +41,32 @@ export default function Result(){
   <MapBox id="resultMapBig" pts={pts} opts={{route,padTop:90,padBottom:60}} style={{height:'100dvh'}}/>
   <button type="button" className="iconbtn white" aria-label="지도 닫기" onClick={()=>setBigMap(false)} style={{position:'absolute',top:16,right:16,zIndex:5}}><Icon name="close"/></button>
  </div>:null}
- <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4}}>
+ <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4,background:'var(--paperWarm)'}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>
   <div className="col gap6" style={{paddingTop:16}}>
    <div className="row between"><div className="small">{fmtDate(L.days[0].date)}{multi?' – '+fmtDate(L.days[L.days.length-1].date):''} · {fmtT(s)} – {fmtT(e)}</div>{editable?<button type="button" className="chip" style={{height:30,fontSize:13}} onClick={rebuild}><Icon name="dice"/>경로 다시 추천</button>:null}</div>
-   <div style={{fontSize:23,fontWeight:700}}>{n}를 위한 {multi?L.days.length+'일':(e-s>300?'하루':'반나절')} 코스</div>
+   <div style={{fontFamily:'var(--deco)',fontSize:25,color:'var(--navy)',lineHeight:1.2}}>{n}를 위한 {multi?L.days.length+'일':(e-s>300?'하루':'반나절')} 코스</div>
    <div className="row gap6 wrap" style={{paddingTop:4}}><span className="tag t-blue" style={{fontWeight:600}}>이동 {L.move}분</span><span className="tag t-yellow" style={{fontWeight:600}}>{L.people?'총 약 '+won(L.fee):'1인 약 '+won(L.fee)}{L.budget?' / 예산 '+won(L.budget):''}</span><span className={'tag '+(L.relaxed?'t-red':'t-mint')} style={{fontWeight:600}}>{L.relaxed?'조건 일부 완화':'조건 모두 충족'}</span></div>
   </div>
   {L.days.map((d,di)=>(
    <div key={d.date}>
     {multi?<div style={{fontSize:15,fontWeight:700,padding:'16px 0 4px'}}>{di+1}일차 · {fmtDate(d.date)}</div>:null}
-    <div className="col" style={{position:'relative',paddingTop:multi?6:16}}>
-     <div aria-hidden="true" style={{position:'absolute',left:65,top:multi?22:32,bottom:18,width:2,background:'var(--line)'}}/>
+    <div className="trail" style={{paddingTop:multi?6:14}}>
+     <div className="road" aria-hidden="true"/>
      {d.items.map((it,i)=>{
-      if(it.kind==='start')return <div key={i} className="tl" style={{height:34}}><span style={{fontSize:13,fontWeight:600,color:'var(--sub)'}}>{fmtShort(it.time)}</span><span style={{width:12,height:12,borderRadius:999,background:'var(--navy)',border:'2px solid #fff',justifySelf:'center',position:'relative'}}/><span style={{fontSize:14,fontWeight:600}}>{it.again?'다시 출발':'집에서 출발'}</span></div>;
-      if(it.kind==='move')return <div key={i} className="tl" style={{height:24}}><span/><span/><span className="small">{travelLabel(it.mode)} {it.min}분</span></div>;
-      if(it.kind==='note')return <div key={i} className="tl" style={{height:26}}><span className="small">{fmtShort(it.time)}</span><span style={{width:8,height:8,borderRadius:999,background:'#FFD666',justifySelf:'center',position:'relative'}}/><span className="small" style={{color:'var(--yellowInk)'}}>{it.text}</span></div>;
-      if(it.kind==='end')return <div key={i} className="tl" style={{height:34}}><span style={{fontSize:13,fontWeight:600,color:'var(--sub)'}}>{fmtShort(it.time)}</span><span style={{width:12,height:12,borderRadius:999,background:'var(--peri)',border:'2px solid #fff',justifySelf:'center',position:'relative'}}/><span style={{fontSize:14,fontWeight:600}}>집 도착 {it.note?<span style={{fontSize:12,fontWeight:500,color:'var(--periInk)'}}>· {it.note}</span>:null}</span></div>;
+      if(it.kind==='start')return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="pin"><Icon name="home"/></span><span className="lbl">{it.again?'다시 출발':'집에서 출발'}</span></Fragment>;
+      if(it.kind==='move')return <Fragment key={i}><span/><span/><span className="hop"><Icon name={it.mode==='car'?'car':it.mode==='transit'?'bus':'stroller'}/>{travelLabel(it.mode)} {it.min}분</span></Fragment>;
+      if(it.kind==='note')return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span style={{width:8,height:8,borderRadius:999,background:'var(--yellow)',justifySelf:'center',position:'relative',zIndex:1}}/><span className="sticky">{it.text}</span></Fragment>;
+      if(it.kind==='end')return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="pin end"><Icon name="home"/></span><span className="lbl">집 도착{it.note?<span className="small" style={{fontWeight:500,color:'var(--periInk)'}}> · {it.note}</span>:null}</span></Fragment>;
       const p=placeById(it.id);num++;const col=COLS[(num-1)%6];
-      return <div key={i} className="tl"><span style={{fontSize:13,fontWeight:600,color:'var(--sub)'}}>{fmtShort(it.time)}</span><span style={{width:20,height:20,borderRadius:999,background:col,color:'var(--navy)',fontSize:11,fontWeight:800,display:'flex',alignItems:'center',justifyContent:'center',position:'relative'}}>{num}</span>
-       <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="card row gap12" style={{padding:10,textAlign:'left',width:'100%',textDecoration:'none',color:'inherit'}}><Thumb p={p} size={64}/>
-        <span className="col" style={{flex:1,minWidth:0,gap:4}}><span className="row between gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontWeight:700,padding:'2px 8px',fontSize:11}}>새로운 발견</span>:it.meal?null:<Face level={it.level}/>}</span>
-        <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
-        <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></a>
-       {editable&&!it.meal?<span className="row gap6" style={{gridColumn:3,paddingTop:6}}><button type="button" className="chip" style={{height:28,fontSize:12}} onClick={()=>swap(p.id)}>다른 곳으로</button><button type="button" className="chip" style={{height:28,fontSize:12}} onClick={()=>drop(p.id)}>빼기</button></span>:null}</div>;
+      return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="sticker" style={{background:col}}>{num}</span>
+       <div className={'stop '+(num%2?'odd':'even')} style={{animationDelay:(num*40)+'ms'}}>
+        <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="body"><Thumb p={p} size={64} style={{borderRadius:18}}/>
+         <span className="col" style={{flex:1,minWidth:0,gap:4}}><span className="row between gap6"><span style={{fontSize:15,fontWeight:700}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontWeight:700,padding:'2px 8px',fontSize:11}}>새로운 발견</span>:it.meal?null:<Face level={it.level}/>}</span>
+         <span className="small" style={{color:'var(--sub)'}}>{it.meal?'식사 · ':''}{it.stay}분 머물러요</span>
+         <span style={{fontSize:12,color:'var(--primaryInk)'}}>{hashtags(p)}</span></span></a>
+        {editable&&!it.meal?<span className="edit"><button type="button" className="chip" onClick={()=>swap(p.id)}>다른 곳으로</button><button type="button" className="chip" onClick={()=>drop(p.id)}>빼기</button></span>:null}
+       </div></Fragment>;
      })}
     </div>
    </div>))}

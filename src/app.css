@@ -5,13 +5,13 @@
   --deco:'OkDanDan','Pretendard Variable',Pretendard,sans-serif;
   /* 메인 하늘색에 맞춰 면 색도 아주 옅은 푸른빛으로 통일 */
   --ink:#191F28;--ink2:#333D4B;--sub:#4E5968;--mute:#6B7684;--line:#E3EAF2;--soft:#EFF4FA;--bg2:#F5F8FC;
-  --paper:#FCFDFF;--page:#E6EEF7;
+  --paper:#FCFDFF;--paperWarm:#FFFBF4;--page:#E6EEF7;
   --navy:#2F3657;--primary:#3A78CF;--primaryInk:#2A64B0;--primaryT:#EFF5FD;
   --sky1:#A6D2F9;--sky2:#B9DAF7;--sky3:#CDE0F4;
   --blue:#8EC1F2;--blueT:#E6EFF9;--yellow:#FFE08A;--yellowT:#FFF5D6;--yellowInk:#7A5A0C;
   --mint:#A9DDB4;--mintT:#E2F4E7;--mintInk:#2D6B45;--peri:#93A9EE;--periT:#E8EDFC;--periInk:#3A4DA8;
   --red:#F28B82;--redT:#FFE4E4;--redInk:#A33A3A;--car:#7FCB98;
-  --shadow:0 2px 12px rgba(31,58,95,.07);--shadowUp:0 6px 20px rgba(31,58,95,.12);
+  --shadow:0 2px 12px rgba(31,58,95,.07);--shadowCard:0 6px 18px rgba(31,58,95,.10);--shadowUp:0 6px 20px rgba(31,58,95,.12);
   /* 움직임: 끝이 부드럽게 멈추는 곡선과 살짝 튕기는 곡선 */
   --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.45,.64,1);
   --fast:.2s;--mid:.32s;--slow:.5s;
@@ -176,3 +176,24 @@ a{color:var(--primary)}
 /* 코스 화면: 지도 크게 보기 (앱 폭 안에서 화면 가득) */
 .map-full{position:fixed;top:0;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;z-index:50;background:var(--paper);animation:mapIn var(--mid) var(--ease)}
 @keyframes mapIn{from{opacity:0;transform:translateX(-50%) scale(.98)}}
+
+/* ---------- 코스 타임라인 (DESIGN.md) ---------- */
+.trail{display:grid;grid-template-columns:52px 28px minmax(0,1fr);column-gap:8px;row-gap:10px;align-items:center;position:relative;padding:14px 0 6px}
+.trail>*{min-width:0}
+.trail .road{position:absolute;left:calc(52px + 8px + 13px);top:28px;bottom:26px;border-left:3px dashed var(--sky2);border-radius:2px}
+.trail .t{font-size:12px;font-weight:600;color:var(--mute);text-align:right;padding-right:2px;font-variant-numeric:tabular-nums}
+.trail .pin{width:28px;height:28px;border-radius:999px;background:#fff;border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;color:var(--navy);position:relative;z-index:1;box-shadow:0 2px 6px rgba(31,58,95,.12)}
+.trail .pin.end{border-color:var(--peri);color:var(--periInk)}
+.trail .lbl{font-size:14px;font-weight:700}
+.sticker{width:28px;height:28px;border-radius:999px;border:2px solid #fff;box-shadow:0 2px 6px rgba(31,58,95,.18);display:flex;align-items:center;justify-content:center;font-family:var(--deco);font-size:15px;color:var(--navy);position:relative;z-index:1}
+.hop{grid-column:3;justify-self:start;margin-left:-22px;display:inline-flex;align-items:center;gap:5px;height:26px;padding:0 10px 0 8px;border-radius:999px;background:var(--blueT);color:var(--primaryInk);font-size:12px;font-weight:600;position:relative;z-index:1}
+.hop svg{width:14px;height:14px}
+.stop{background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadowCard);padding:10px 10px 8px;display:flex;flex-direction:column;gap:8px;transition:transform var(--fast) var(--ease);animation:rise .35s var(--ease) both}
+.stop.odd{transform:rotate(-1.2deg)}.stop.even{transform:rotate(1deg)}
+.stop:active{transform:rotate(0) scale(.98)}
+.stop .body{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit}
+.stop .edit{display:flex;gap:6px;padding:0 2px}
+.stop .edit .chip{height:28px;font-size:12px;padding:0 11px}
+.sticky{grid-column:3;justify-self:start;position:relative;background:var(--yellowT);border-left:3px solid var(--yellow);border-radius:4px 12px 12px 4px;padding:7px 12px 7px 10px;font-size:13px;color:var(--yellowInk);font-weight:600;transform:rotate(1.5deg);box-shadow:0 2px 8px rgba(122,90,12,.10)}
+.sticky:before{content:'';position:absolute;top:-7px;left:18px;width:34px;height:12px;background:rgba(255,255,255,.55);border:1px solid rgba(122,90,12,.12);transform:rotate(-4deg);border-radius:2px}
+@keyframes rise{from{opacity:0;translate:0 8px}to{opacity:1;translate:0 0}}
