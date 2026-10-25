@@ -61,7 +61,7 @@ export default function Result(){
       const p=placeById(it.id);num++;const col=COLS[(num-1)%6];
       return <Fragment key={i}><span className="t">{fmtShort(it.time)}</span><span className="sticker" style={{background:col}}>{num}</span>
        <div className={'stop '+(num%2?'odd':'even')} style={{animationDelay:(num*40)+'ms'}}>
-        {it.meal?<span className="clip" aria-hidden="true"/>:<span className="tack" aria-hidden="true"/>}
+        <span className="clip" aria-hidden="true"/>
         <a href={'#/place?id='+p.id} aria-label={p.name+' 자세히 보기'} className="body">
          <span className="shot"><Thumb p={p} size={118} square style={{width:'100%',height:118}}/></span>
          <span className="name"><span style={{minWidth:0,overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}>{p.name}</span>{it.isNew?<span className="tag t-mint" style={{fontFamily:'var(--font)',fontWeight:700,padding:'2px 8px',fontSize:11,flexShrink:0}}>새로운 발견</span>:it.meal?null:<Face level={it.level} size={20}/>}</span>
