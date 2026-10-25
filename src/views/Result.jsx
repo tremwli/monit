@@ -1,19 +1,25 @@
 import {useStore} from '../store.jsx';
 import {HOME} from '../lib/data.js';
-import {buildCourse,hashtags,placeById,rememberCourse} from '../lib/logic.js';
+import {buildCourse,hashtags,placeById,courseEntry,statusOf,upsertCourse} from '../lib/logic.js';
 import {fmtT,fmtShort,fmtDate,travelLabel,toast,go} from '../lib/utils.js';
 import {Thumb,Face,Icon,MapBox,BottomCta} from '../components/ui.jsx';
 
+/* 금액 표시: 1만 원 이상은 'n만 n천 원', 그 아래는 'n천 원' */
+const won=v=>{v=Math.round(v/1000)*1000;if(!v)return '0원';const m=Math.floor(v/10000),k=(v%10000)/1000;return (m?m+'만 ':'')+(k?k+'천 ':'')+'원'};
 const COLS=['#FFE08A','#A9DDB4','#8EC1F2','#93A9EE','#FFE08A','#A9DDB4'];
 
 export default function Result(){
- const {S,set,setUI}=useStore();const L=S.lastCourse;const n=S.child.name;const c=S.c;
+ const {S,set}=useStore();const L=S.lastCourse;const n=S.child.name;const c=S.c;
  if(!L)return <div className="screen pad" style={{paddingTop:60}}><div className="h-title">아직 만든 코스가 없어요</div><div style={{paddingTop:20}}><a className="btn btn-primary" href="#/c1">코스 만들기</a></div></div>;
  const multi=L.days.length>1;let num=0;
  const pts=[{...HOME,home:true}];const route=[HOME];let k=0;
  L.days.forEach(d=>d.items.forEach(it=>{if(it.kind==='place'){const p=placeById(it.id);k++;pts.push({lat:p.lat,lng:p.lng,num:k,color:COLS[(k-1)%6],label:p.name});route.push(p)}}));route.push(HOME);
  const s=L.days[0].items[0].time,e=L.days[L.days.length-1].items.slice(-1)[0].time;
- const focus=id=>{setUI(u=>{u.mapSel=id;u.mapCat='fit'});go('map')};
+ const entry=courseEntry(S,L.createdAt);const st=entry?statusOf(entry):null;
+ const save=()=>{set(S=>{upsertCourse(S,S.lastCourse,{status:'saved'})});toast('저장한 코스에 담았어요')};
+ const start=()=>{set(S=>{upsertCourse(S,S.lastCourse,{status:'ongoing',startedAt:Date.now()})});go('trip')};
+ /* 저장·출발한 코스는 그대로 두고, 새로 짠 코스만 바꾼다 */
+ const rebuild=()=>{set(S=>{S.lastCourse=buildCourse(S)});toast('조건 그대로 새로 짰어요')};
  return (
 <div className="screen" style={{background:'radial-gradient(circle at 50% 160px,var(--sky1) 0,var(--sky2) 160px,var(--sky3) 320px,var(--paper) 321px)'}}>
  <MapBox id="resultMap" pts={pts} opts={{route,padTop:80,padBottom:60}} style={{height:330,background:'transparent'}}/>
@@ -24,9 +30,9 @@ export default function Result(){
  <div className="sheet pad" style={{marginTop:-30,paddingTop:10,zIndex:4}}>
   <div style={{width:36,height:4,borderRadius:999,background:'#D1D6DB',margin:'0 auto'}}/>
   <div className="col gap6" style={{paddingTop:16}}>
-   <div className="small">{fmtDate(L.days[0].date)}{multi?' – '+fmtDate(L.days[L.days.length-1].date):''} · {fmtT(s)} – {fmtT(e)}</div>
+   <div className="row between"><div className="small">{fmtDate(L.days[0].date)}{multi?' – '+fmtDate(L.days[L.days.length-1].date):''} · {fmtT(s)} – {fmtT(e)}</div>{st?null:<button type="button" className="chip" style={{height:30,fontSize:13}} onClick={rebuild}>다시 만들기</button>}</div>
    <div style={{fontSize:23,fontWeight:700}}>{n}를 위한 {multi?L.days.length+'일':(e-s>300?'하루':'반나절')} 코스</div>
-   <div className="row gap6 wrap" style={{paddingTop:4}}><span className="tag t-blue" style={{fontWeight:600}}>이동 {L.move}분</span><span className="tag t-yellow" style={{fontWeight:600}}>1인 약 {Math.round(L.fee/1000)}천 원</span><span className={'tag '+(L.relaxed?'t-red':'t-mint')} style={{fontWeight:600}}>{L.relaxed?'조건 일부 완화':'조건 모두 충족'}</span></div>
+   <div className="row gap6 wrap" style={{paddingTop:4}}><span className="tag t-blue" style={{fontWeight:600}}>이동 {L.move}분</span><span className="tag t-yellow" style={{fontWeight:600}}>{L.people?'총 약 '+won(L.fee):'1인 약 '+won(L.fee)}{L.budget?' / 예산 '+won(L.budget):''}</span><span className={'tag '+(L.relaxed?'t-red':'t-mint')} style={{fontWeight:600}}>{L.relaxed?'조건 일부 완화':'조건 모두 충족'}</span></div>
   </div>
   {L.days.map((d,di)=>(
    <div key={d.date}>
@@ -50,5 +56,8 @@ export default function Result(){
   {L.days.every(d=>d.count===0)?<div className="card" style={{padding:'14px 16px',marginTop:12,fontSize:14}}>시간 안에 들를 수 있는 곳을 찾지 못했어요. 돌아오는 시간이나 이동 시간을 늘려보세요.</div>:null}
   <div className="card row gap8" style={{padding:'12px 14px',marginTop:14,fontSize:13,color:'#333D4B'}}><Icon name="rain"/>{L.allIndoor?'비가 와도 그대로 가요 · 모두 실내예요':(c.rainIndoor?'비가 오면 실외 장소를 실내로 바꿔 알려드려요':'실외 장소가 포함돼 있어요')}</div>
  </div>
- <BottomCta><button type="button" className="btn btn-soft" style={{flex:1}} onClick={()=>{set(S=>{const prev=S.lastCourse?.createdAt;S.lastCourse=buildCourse(S);rememberCourse(S,prev)});toast('조건 그대로 새로 짰어요')}}>다시 만들기</button><a className="btn btn-primary" style={{flex:1.6}} href="#/record">다녀와서 기록하기</a></BottomCta>
+ {/* 저장 안 한 코스: 저장 / 바로 시작. 저장한 코스: 시작. 출발한 코스: 다녀왔어요. 기록 끝난 코스: 기록 보기 */}
+ <BottomCta>{st==='done'?<a className="btn btn-soft" href="#/courses">기록 보기</a>
+  :st==='ongoing'?<button type="button" className="btn btn-primary" onClick={()=>go('record')}>다녀왔어요 · 만족도 남기기</button>
+  :<><button type="button" className="btn btn-soft" style={{flex:1}} disabled={st==='saved'} onClick={save}>{st==='saved'?'저장됨':'코스 저장'}</button><button type="button" className="btn btn-primary" style={{flex:1.6}} onClick={start}>{st==='saved'?'시작하기':'바로 시작'}</button></>}</BottomCta>
 </div>)}

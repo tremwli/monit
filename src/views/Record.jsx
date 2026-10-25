@@ -1,10 +1,14 @@
 import {useStore} from '../store.jsx';
-import {placeById,learnFromVisit} from '../lib/logic.js';
+import {placeById,learnFromVisit,upsertCourse} from '../lib/logic.js';
+import {faceSvg,moodSvg} from '../lib/svg.js';
 import {fmtT,fmtDate,toast,go} from '../lib/utils.js';
 import {savePhoto,cachedPhoto} from '../lib/photos.js';
 import {newEntryId} from '../lib/journal.js';
 import {ageGroupOf} from '../lib/analysis.js';
-import {Icon,BottomCta} from '../components/ui.jsx';
+import {Icon,Html,BottomCta} from '../components/ui.jsx';
+
+/* 코스 전체 만족도 5단계 (5 = 최고) */
+const RATINGS=[[5,faceSvg('A',34),'최고였어요'],[4,faceSvg('B',34),'좋았어요'],[3,moodSvg('meh',34),'보통이에요'],[2,moodSvg('dislike',34),'아쉬웠어요'],[1,moodSvg('sad',34),'별로였어요']];
 
 export default function Record(){
  const {S,set,UI,setUI}=useStore();const L=S.lastCourse;const n=S.child.name;
@@ -21,14 +25,19 @@ export default function Record(){
     /* 반응·한 줄·사진 중 하나라도 있으면 엽서(일기)로도 남긴다 */
     if(r.v||r.note||ph.length)S.diary.push({id:newEntryId(),date,createdAt:Date.now(),kind:'visit',title:'',text:r.note||'',placeId:p.id,reaction:r.v||null,photos:ph,ageGroup:ag,analysis:null})}));
    /* 지난 코스 목록에 저장. 같은 코스를 다시 기록하면 덮어씀 */
-   const done={key:S.lastCourse.createdAt,date,done:true,course:S.lastCourse,places:S.lastCourse.days.flatMap(d=>d.items.filter(it=>it.kind==='place').map(it=>({id:it.id,time:it.time,v:(rec[it.id]||{}).v||null,note:(rec[it.id]||{}).note||''})))};
-   S.courses=[done,...(S.courses||[]).filter(k=>k.key!==done.key)]});
-  setUI(u=>{u.rec={};u.photos={}});go('calendar');setTimeout(()=>toast(changed?n+' 취향이 업데이트됐어요 · 엽서 저장':'엽서를 저장했어요'),150)};
+   /* 코스 목록에 '기록 완료'로. 저장·출발한 적 없는 코스(예전 흐름)도 여기서 들어간다 */
+   upsertCourse(S,S.lastCourse,{status:'done',doneAt:Date.now(),rating:UI.rating||null,
+    places:S.lastCourse.days.flatMap(d=>d.items.filter(it=>it.kind==='place').map(it=>({id:it.id,time:it.time,v:(rec[it.id]||{}).v||null,note:(rec[it.id]||{}).note||''})))})});
+  setUI(u=>{u.rec={};u.photos={};u.rating=null});go('calendar');setTimeout(()=>toast(changed?n+' 취향이 업데이트됐어요 · 엽서 저장':'엽서를 저장했어요'),150)};
  return (
 <div className="screen" style={{background:'var(--bg2)'}}>
  <div className="pad" style={{paddingTop:20}}><a className="iconbtn" href="#/result" aria-label="코스로 돌아가기" style={{background:'var(--paper)'}}><Icon name="back"/></a></div>
  <div className="pad col gap6" style={{paddingTop:14}}><div className="h-title">{fmtDate(L.days[0].date)}</div><div className="help">{n}랑 {ids.length}곳 다녀왔어요</div></div>
  <div className="pad col gap12" style={{paddingTop:18}}>
+  <div className="col gap12" style={{background:'var(--paper)',borderRadius:20,padding:18}}>
+   <span style={{fontSize:17,fontWeight:700}}>이번 코스 어땠나요?</span>
+   <div className="rate" role="radiogroup" aria-label="코스 만족도">{RATINGS.map(([v,svg,l])=><button type="button" key={v} role="radio" aria-checked={UI.rating===v} className={'rate-opt press'+(UI.rating===v?' on':'')} onClick={()=>setUI(u=>{u.rating=u.rating===v?null:v})}><Html s={svg} style={{display:'inline-flex'}}/><span>{l}</span></button>)}</div>
+  </div>
  {ids.map(it=>{const p=placeById(it.id);const r=UI.rec[p.id]||{};const ph=UI.photos[p.id]||[];return (
   <div key={p.id} className="col gap12" style={{background:'var(--paper)',borderRadius:20,padding:18}}>
    <div className="row between"><span style={{fontSize:17,fontWeight:700}}>{p.name}</span><span className="small">{fmtT(it.time)}</span></div>

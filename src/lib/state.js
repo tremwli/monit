@@ -1,5 +1,5 @@
 /* 원본 MVP 상태 기본값·저장 그대로 */
-import {nextSat} from './utils.js';
+import {nextSat,ymd} from './utils.js';
 import {DATA_SOURCE} from './data.js';
 import {LEGACY,migrateRef} from './interests.js';
 
@@ -14,7 +14,7 @@ export function defaults(){const sat=nextSat();return {
  c:{startDate:sat,startTime:570,endDate:sat,endTime:780,
     schedules:[{id:'s1',name:'낮잠',start:780,end:900,color:'#93A9EE'},{id:'s2',name:'간식',start:660,end:675,color:'#FFD666'}],
     place:'near',maxTravel:30,mode:'car',adults:['엄마','아빠'],stroller:'bring',
-    fac:['stroller','nursing','diaper','parking','pediatric'],feeMode:'paid',feeMax:30000,rainIndoor:true,
+    fac:['stroller','nursing','diaper','parking','pediatric'],feeMode:'paid',budget:100000,rainIndoor:true,
     wants:['공룡','물놀이'],energy:'high',novelty:'one',perDay:2,meal:true,avoidCrowd:true},
  lastCourse:null, history:[], visited:[], courses:[],
  diary:[], styles:{}, avoid:[]
@@ -31,6 +31,11 @@ export function load(){try{const saved=JSON.parse(localStorage.getItem(KEY));if(
   const mt=o=>{const r={};Object.entries(o||{}).forEach(([k,v])=>{r[migrateRef(k)]=v});return r};
   S.taste=mt(S.taste);if(S.prevTaste)S.prevTaste=mt(S.prevTaste);
   S.c={...S.c,wants:(S.c.wants||[]).map(migrateRef)};S.kidPicks=(S.kidPicks||[]).map(migrateRef);migrated=true}
+ /* 예전 '1인 최대 요금'(feeMax) → 여행 총예산(budget). 처음엔 10만 원으로 둔다 */
+ if(S.c&&S.c.budget==null){const {feeMax,...rest}=S.c;void feeMax;S.c={...rest,budget:100000};migrated=true}
+ /* 출발 날짜가 이미 지났으면 다음 토요일로 옮긴다 (며칠짜리 일정이면 기간은 그대로) */
+ const today=ymd(new Date());
+ if(S.c&&S.c.startDate<today){const days=Math.max(0,Math.round((new Date(S.c.endDate)-new Date(S.c.startDate))/864e5));const a=nextSat();const b=new Date(a+'T00:00:00');b.setDate(b.getDate()+days);S.c={...S.c,startDate:a,endDate:ymd(b)};migrated=true}
  if(migrated)save(S);
  return S}catch(e){return defaults()}}
 export function save(S){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}

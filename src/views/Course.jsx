@@ -3,8 +3,8 @@ import {useEffect,useRef} from 'react';
 import {useStore} from '../store.jsx';
 import {FAC,ICON} from '../lib/data.js';
 import {STARTER_REFS,isArea,label} from '../lib/interests.js';
-import {buildCourse,rememberCourse} from '../lib/logic.js';
-import {fmtT,fmtShort,fmtDate,demo,go} from '../lib/utils.js';
+import {buildCourse,peopleOf} from '../lib/logic.js';
+import {fmtT,fmtShort,fmtDate,demo,go,openPicker} from '../lib/utils.js';
 import {StepHead,BottomCta,Chip,Seg,Switch,Icon,Face,Html} from '../components/ui.jsx';
 
 /* ---------- 시간 휠 ---------- */
@@ -38,11 +38,11 @@ export function C1(){
  <div className="pad" style={{paddingTop:18}}>
   <div style={{borderTop:'1px solid var(--soft)',borderBottom:'1px solid var(--soft)'}}>
    <div className="row between" style={{height:56}}><span style={{fontSize:16}}>출발</span><div className="row gap6">
-    <label className="pill"><span>{fmtDate(c.startDate)}</span><input type="date" value={c.startDate} aria-label="출발 날짜" onChange={e=>{if(!e.target.value)return;set(S=>{S.c.startDate=e.target.value;if(S.c.endDate<S.c.startDate)S.c.endDate=S.c.startDate})}}/></label>
+    <label className="pill"><span>{fmtDate(c.startDate)}</span><input type="date" onClick={openPicker} value={c.startDate} aria-label="출발 날짜" onChange={e=>{if(!e.target.value)return;set(S=>{S.c.startDate=e.target.value;if(S.c.endDate<S.c.startDate)S.c.endDate=S.c.startDate})}}/></label>
     <button type="button" className={'pill '+(w==='start'?'on':'')} aria-expanded={w==='start'} onClick={()=>setUI(u=>{u.wheel=u.wheel==='start'?null:'start'})}><span>{fmtT(c.startTime)}</span></button></div></div>
    {w==='start'?<Wheel which="start"/>:null}
    <div className="row between" style={{height:56,borderTop:'1px solid var(--soft)'}}><span style={{fontSize:16}}>돌아오기</span><div className="row gap6">
-    <label className="pill"><span>{fmtDate(c.endDate)}</span><input type="date" value={c.endDate} min={c.startDate} aria-label="돌아오는 날짜" onChange={e=>{if(!e.target.value)return;set(S=>{S.c.endDate=e.target.value<S.c.startDate?S.c.startDate:e.target.value})}}/></label>
+    <label className="pill"><span>{fmtDate(c.endDate)}</span><input type="date" onClick={openPicker} value={c.endDate} min={c.startDate} aria-label="돌아오는 날짜" onChange={e=>{if(!e.target.value)return;set(S=>{S.c.endDate=e.target.value<S.c.startDate?S.c.startDate:e.target.value})}}/></label>
     <button type="button" className={'pill '+(w==='end'?'on':'')} aria-expanded={w==='end'} onClick={()=>setUI(u=>{u.wheel=u.wheel==='end'?null:'end'})}><span>{fmtT(c.endTime)}</span></button></div></div>
    {w==='end'?<Wheel which="end"/>:null}
   </div>
@@ -54,9 +54,9 @@ export function C1(){
     <div key={s.id} className="row gap10" style={{minHeight:50,borderBottom:i<c.schedules.length-1?'1px solid #E9ECEF':'none'}}>
      <span style={{width:10,height:10,borderRadius:999,background:s.color}}/>
      <input value={s.name} aria-label="일정 이름" style={{flex:1,minWidth:0,border:'none',background:'none',fontSize:15,outline:'none'}} onChange={e=>set(S=>{S.c.schedules[i].name=e.target.value})}/>
-     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'var(--paper)'}}><span>{fmtShort(s.start)}</span><input type="time" step={300} value={fmtShort(s.start)} aria-label="시작 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].start=toMin(e.target.value)})}}/></label>
+     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'var(--paper)'}}><span>{fmtShort(s.start)}</span><input type="time" onClick={openPicker} step={300} value={fmtShort(s.start)} aria-label="시작 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].start=toMin(e.target.value)})}}/></label>
      <span className="small">–</span>
-     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'var(--paper)'}}><span>{fmtShort(s.end)}</span><input type="time" step={300} value={fmtShort(s.end)} aria-label="끝 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].end=toMin(e.target.value)})}}/></label>
+     <label className="pill" style={{height:32,fontSize:13,padding:'0 10px',background:'var(--paper)'}}><span>{fmtShort(s.end)}</span><input type="time" onClick={openPicker} step={300} value={fmtShort(s.end)} aria-label="끝 시간" onChange={e=>{if(e.target.value)set(S=>{S.c.schedules[i].end=toMin(e.target.value)})}}/></label>
      <button type="button" className="iconbtn" aria-label="일정 삭제" style={{width:30,height:30,background:'transparent'}} onClick={()=>set(S=>{S.c.schedules.splice(i,1)})}><Icon name="close"/></button>
     </div>)):<div className="small" style={{padding:'14px 0'}}>등록된 일정이 없어요</div>}
   </div>
@@ -118,9 +118,12 @@ export function C4(){
  <div className="pad col" style={{paddingTop:18,gap:22}}>
   <div className="section"><div className="label">편의시설</div><div className="row gap6 wrap">{['stroller','nursing','diaper','parking','elevator','babychair','kidsmenu'].map(f=><Chip key={f} on={c.fac.includes(f)} onClick={()=>set(S=>tg(S.c.fac,f))}>{FAC[f]}</Chip>)}</div></div>
   <div className="section"><div className="label">안전</div><div className="row gap6 wrap">{['pediatric','er','shade'].map(f=><Chip key={f} on={c.fac.includes(f)} onClick={()=>set(S=>tg(S.c.fac,f))}>{FAC[f]}</Chip>)}</div></div>
-  <div className="section"><div className="label">입장료·체험비</div>
-   <div className="row gap6"><Chip on={c.feeMode==='free'} onClick={()=>set(S=>{S.c.feeMode='free'})}>무료만</Chip><Chip on={c.feeMode==='paid'} onClick={()=>set(S=>{S.c.feeMode='paid'})}>유료도 괜찮아요</Chip></div>
-   {c.feeMode==='paid'?<label className="input row gap8" style={{display:'flex',alignItems:'center'}}><span className="small" style={{color:'var(--sub)',flexShrink:0}}>한 사람당 최대</span><input inputMode="numeric" value={Number(c.feeMax).toLocaleString('ko-KR')} style={{flex:1,minWidth:0,border:'none',background:'none',fontSize:16,fontWeight:700,textAlign:'right',outline:'none'}} aria-label="최대 금액" onChange={e=>{const v=e.target.value.replace(/\D/g,'');set(S=>{S.c.feeMax=+v||0})}}/><span className="small" style={{color:'var(--sub)'}}>원</span></label>:null}
+  <div className="section"><div className="row between" style={{alignItems:'baseline'}}><div className="label">여행 예산</div>{c.feeMode==='paid'?<span className="small">{peopleOf(S)}명 · 입장료·식사 합계</span>:null}</div>
+   <div className="row gap6"><Chip on={c.feeMode==='free'} onClick={()=>set(S=>{S.c.feeMode='free'})}>무료만</Chip><Chip on={c.feeMode==='paid'} onClick={()=>set(S=>{S.c.feeMode='paid'})}>예산 정하기</Chip></div>
+   {c.feeMode==='paid'?<>
+    <label className="input row gap8" style={{display:'flex',alignItems:'center'}}><span className="small" style={{color:'var(--sub)',flexShrink:0}}>총예산</span><input inputMode="numeric" value={Number(c.budget||0).toLocaleString('ko-KR')} style={{flex:1,minWidth:0,border:'none',background:'none',fontSize:16,fontWeight:700,textAlign:'right',outline:'none'}} aria-label="여행 총예산" onChange={e=>{const v=e.target.value.replace(/\D/g,'');set(S=>{S.c.budget=+v||0})}}/><span style={{fontSize:16,fontWeight:700}}>원</span></label>
+    <div className="row gap6 wrap">{[50000,100000,200000,300000].map(v=><Chip key={v} on={c.budget===v} onClick={()=>set(S=>{S.c.budget=v})}>{v/10000}만 원</Chip>)}</div>
+   </>:null}
   </div>
   <div className="card row between" style={{padding:'14px 16px'}}><span className="col" style={{gap:2}}><span style={{fontSize:15,fontWeight:600}}>비 오면 실내로 바꾸기</span><span className="small">출발 전날 날씨를 보고 알려드려요</span></span><Switch on={c.rainIndoor} label="비 오면 실내로 바꾸기" onToggle={()=>set(S=>{S.c.rainIndoor=!S.c.rainIndoor})}/></div>
  </div>
@@ -135,7 +138,7 @@ export function C5(){
  /* 아이가 요즘 좋아하는 주제(기본 목록에 없는 것 포함)를 앞에, 그다음 기본 선택지 */
  const mine=Object.entries(S.taste).filter(([k,v])=>!isArea(k)&&v>=.55).sort((a,b)=>b[1]-a[1]).map(([k])=>k);
  const wantOpts=[...new Set([...c.wants,...mine,...STARTER_REFS])];
- const build=()=>{set(S=>{S.lastCourse=buildCourse(S);rememberCourse(S)});setUI(u=>{u.rec={};u.photos={}});go('result')};
+ const build=()=>{set(S=>{S.lastCourse=buildCourse(S)});setUI(u=>{u.rec={};u.photos={}});go('result')};
  return (
 <div className="screen">
  <StepHead n={5} back="c4" eyebrow={n+' 맞춤'} title={n+'에게 맞춰볼까요?'} help={'이번 코스를 '+n+'가 좋아할 것들로 채워요'}/>

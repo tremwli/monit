@@ -158,3 +158,12 @@ a{color:var(--primary)}
 .fab.on{opacity:1;transform:none;pointer-events:auto}
 .fab.on:active{transform:scale(.92)}
 .fab svg{width:28px;height:28px}
+
+/* 만족도 조사: 코스 전체 만족도 5단계 표정 */
+.rate{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:4px}
+.rate-opt{border:none;background:none;padding:6px 0;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:11px;color:var(--mute);white-space:nowrap}
+.rate-opt span:first-child{opacity:.45;filter:grayscale(.6);transition:opacity var(--mid) var(--ease),filter var(--mid) var(--ease),transform var(--slow) var(--spring)}
+.rate-opt.on{color:var(--ink);font-weight:700}
+.rate-opt.on span:first-child{opacity:1;filter:none;transform:scale(1.15)}
+/* 홈: 출발한 코스 이어가기 / 만족도 조사 권하기 */
+.trip-banner{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px;border-radius:20px;background:var(--blueT);margin-bottom:-14px}
