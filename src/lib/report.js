@@ -3,7 +3,7 @@
 import {PLACES} from './data.js';
 import {label,migrateRef,profileOf} from './interests.js';
 import {STYLE_TAGS} from './analysis.js';
-import {placeById,scorePlace} from './logic.js';
+import {placeById,scorePlace,levelOf} from './logic.js';
 
 export function quarterOf(date){const [y,m]=date.split('-').map(Number);return y+'-Q'+(Math.floor((m-1)/3)+1)}
 export function quarterLabel(q){const [y,n]=q.split('-Q');return y+'년 '+n+'분기'}
@@ -66,7 +66,7 @@ export function buildReport(S,q){
 
  /* 장면: 다녀온 곳마다 예상 vs 실제 */
  const scenes=hist.filter(h=>h.v||h.note).map(h=>{const p=placeById(h.id);if(!p)return null;const s=scorePlace(S,p);
-  const pred=Math.round(s*100);const hit=h.v?((s>=.52)===(h.v==='like')):null;
+  const pred=Math.round(s*100);const hit=h.v?((levelOf(s)==='A')===(h.v==='like')):null;
   return {id:h.id,name:p.name,date:h.date,pred,v:h.v,note:h.note,hit}}).filter(Boolean);
  const judged=scenes.filter(x=>x.hit!=null);const hits=judged.filter(x=>x.hit).length;
 

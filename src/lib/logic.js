@@ -38,8 +38,9 @@ export function scorePlace(S,p){
  if(st.lively!=null||st.quiet!=null)s+=.06*((st.lively??.5)-(st.quiet??.5))*(p.crowd?1:-1);
  if(st.hands!=null||st.watch!=null)s+=.06*((st.hands??.5)-(st.watch??.5))*(pr.areas.some(a=>HANDS_ON.includes(a))?1:-1);
  if(avoidHit(S,p))s-=.2;
- /* 실제 데이터: 꼭 필요하다고 고른 시설인데 정보가 없는 곳은 살짝 뒤로 (확인된 곳 먼저) */
- if(p.facKnown)s-=.05*c.fac.filter(f=>!p.facKnown.includes(f)&&f!=='pediatric'&&f!=='er').length;
+ /* 실제 데이터: 꼭 필요하다고 고른 시설인데 정보가 없는 곳은 살짝 뒤로 (확인된 곳 먼저).
+    '정보 없음'은 '없음'이 아니라서 작게만: 하나당 -0.02, 합쳐서 최대 -0.06. (전엔 -0.05씩 최대 -0.2라 취향보다 시설 정보 유무가 순위를 정했다) */
+ if(p.facKnown)s-=Math.min(.06,.02*c.fac.filter(f=>!p.facKnown.includes(f)&&f!=='pediatric'&&f!=='er').length);
  return Math.max(0,Math.min(1,s))}
 
 /* 다녀온 반응을 취향에 반영. 주제는 크게(±0.14~0.16), 흥미 유형은 넓은 범주라 그 절반만 */
@@ -57,7 +58,8 @@ export function migrateTaste(taste){
 }
 export {label};
 export function isNewCandidate(S,p){return fitOf(S,p)<.42&&p.base>=.7&&!S.visited.includes(p.id)}
-export function levelOf(s,isNew){if(isNew)return 'C';return s>=.72?'A':s>=.52?'B':'C'}
+/* 점수 → 표정. 취향 0.6(프로필의 '좋아해요')으로 낼 수 있는 최대 점수가 0.7 안팎이라 기준을 거기에 맞춘다 */
+export function levelOf(s,isNew){if(isNew)return 'C';return s>=.6?'A':s>=.46?'B':'C'}
 export function passFilters(S,p,relax){
  const c=S.c;
  if(!relax){const need=c.fac.filter(f=>p.type==='meal'?MEAL_FAC.includes(f)||f==='stroller':!MEAL_FAC.includes(f));if(!need.every(f=>p.fac.includes(f)||(p.facKnown&&!p.facKnown.includes(f))))return false}
