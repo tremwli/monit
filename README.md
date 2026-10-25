@@ -53,7 +53,19 @@ npm run build      # dist/
 - **연령 분기**: 4~6세는 부모 관찰 기록(행동 신호), 7~9세는 아이가 쓴 글·대화(감정 신호)로 프롬프트가 달라집니다 (`src/lib/analysis.js`).
 - **반영 규칙**: `새 점수 = 0.7 × 기존(없으면 0.5) + 0.3 × 신호`, 언급된 항목만. 원문·분석 결과는 `S.diary`에 쌓입니다.
 
-Vercel 배포 시 프로젝트 환경변수에 `GEMINI_API_KEY`와 `VITE_KAKAO_MAP_KEY`를 넣고, 카카오 콘솔 사이트 도메인에 배포 주소를 추가하세요.
+## 배포 (Vercel)
+
+정적 화면(Vite)과 `api/analyze.js`(Node 서버리스)가 한 프로젝트로 올라갑니다. `vercel.json`이 서울 리전(icn1)을 지정합니다.
+
+1. https://vercel.com → **Add New… → Project** → GitHub에서 `tremwli/monit` Import (Framework: Vite 자동 인식)
+2. **Environment Variables**에 세 개 입력 후 Deploy
+   - `GEMINI_API_KEY` — 일기 분석 (없으면 키워드 간단 분석으로 동작)
+   - `VITE_KAKAO_MAP_KEY` — 카카오 지도
+   - `GEMINI_MODEL` — 선택
+3. 배포 주소(예: `https://monit-xxx.vercel.app`)를 카카오 개발자 콘솔 → 플랫폼 → Web → 사이트 도메인에 추가 (안 하면 지도가 그림 지도로 뜸)
+4. 이후 `main`에 푸시할 때마다 자동 배포. PR은 미리보기 주소가 따로 생김
+
+CLI로 하려면: `npx vercel login` → `npx vercel --prod`
 
 ## 관심사 모델 (`src/lib/interests.js`)
 
